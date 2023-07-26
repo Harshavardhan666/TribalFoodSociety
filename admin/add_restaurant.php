@@ -180,9 +180,9 @@ if(isset($_POST['submit']))
         </div>
       
         <div class="left-sidebar">
-        
+    
             <div class="scroll-sidebar">
-          
+           
                 <nav class="sidebar-nav">
                    <ul id="sidebarnav">
                         <li class="nav-devider"></li>
@@ -193,26 +193,30 @@ if(isset($_POST['submit']))
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Canteen</span></a>
                             <ul aria-expanded="false" class="collapse">
 								<li><a href="all_restaurant.php">All Canteens</a></li>
-								<li><a href="add_category.php">Add Category</a></li>
+								<li><a href="add_category.php">Add Canteen Category</a></li>
                                 <li><a href="add_restaurant.php">Add Canteen</a></li>
                                 
                             </ul>
                         </li>
-                       <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span></a>
+                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span></a>
                             <ul aria-expanded="false" class="collapse">
 								<li><a href="all_menu.php">All Menues</a></li>
+                                <li><a href="add_foodCat.php">Add food Category</a></li>
 								<li><a href="add_menu.php">Add Menu</a></li>
                               
                                 
                             </ul>
                         </li>
 						 <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
+                         <li> <a href="reports.php"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Reports</span></a></li>
                          
+                         <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items report</span></a></li>
+
                     </ul>
                 </nav>
-              
+        
             </div>
-           
+         
         </div>
       
         <div class="page-wrapper">

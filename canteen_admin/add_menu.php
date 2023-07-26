@@ -10,13 +10,16 @@ session_start();
 
 if (isset($_POST['submit'])) {
 
+    $session=$_SESSION["adm_id"]; 
+    $sql = "SELECT rs_id from admin where adm_id=$session";
+    $result = mysqli_query($db, $sql);
+    $haha=mysqli_fetch_array($result);
 
 
 
 
 
-
-    if (empty($_POST['d_name']) || empty($_POST['about']) || $_POST['price'] == '') {
+    if (empty($_POST['d_name']) || empty($_POST['about']) || $_POST['price'] == ''||$_POST['food_cat']=='' || $_POST['calories'] == '') {
         $error =     '<div class="alert alert-danger alert-dismissible fade show">
 																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 																<strong>All fields Must be Fillup!</strong>
@@ -31,6 +34,7 @@ if (isset($_POST['submit'])) {
         $fnew = uniqid() . '.' . $extension;
 
         $store = "Res_img/dishes/" . basename($fnew);
+        $store1 = "admin/Res_img/dishes/" . basename($fnew);
 
         if ($extension == 'jpg' || $extension == 'png' || $extension == 'gif') {
             if ($fsize >= 1000000) {
@@ -45,9 +49,10 @@ if (isset($_POST['submit'])) {
 
 
 
-                $sql = "INSERT INTO dishes(rs_id,title,slogan,price,img) VALUE('" . $_POST['res_name'] . "','" . $_POST['d_name'] . "','" . $_POST['about'] . "','" . $_POST['price'] . "','" . $fnew . "')";  // store the submited data ino the database :images
+                $sql = "INSERT INTO dishes(rs_id,title,slogan,price,img,fc_id,calories) VALUE('".$haha['rs_id']."','".$_POST['d_name']."','".$_POST['about']."','".$_POST['price']."','".$fnew."','".$_POST['food_cat']."','".$_POST['calories']."')"; 
                 mysqli_query($db, $sql);
                 move_uploaded_file($temp, $store);
+                move_uploaded_file($temp, $store1);
 
                 $success =     '<div class="alert alert-success alert-dismissible fade show">
 																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -159,25 +164,44 @@ if (isset($_POST['submit'])) {
 
         <div class="left-sidebar">
 
-            <div class="scroll-sidebar">
+                <div class="scroll-sidebar">
 
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <li class="nav-devider"></li>
-                        <li class="nav-label">Home</li>
-                        <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a>
-                        </li>
-                        <li class="nav-label">Log</li>
-                        <li> <a href="all_menu.php"><i class="fa fa-cutlery" aria-hidden="true"></i><span>All Menues</span></a></li>
-                        <li> <a href="add_menu.php"><i class="fa fa-plus" aria-hidden="true"></i><span>Add Menu</span></a></li>
-                        <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
+                    <nav class="sidebar-nav">
+                        <ul id="sidebarnav">
+                            <li class="nav-devider"></li>
+                            <li class="nav-label">Home  </li>
+                            <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a>
+                            </li>
+                            <li class="nav-label">Log</li>
+                            <!-- <li> <a href="all_users.php">  <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li> -->
+                            <!-- <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Restaurant</span></a>
+                            <ul aria-expanded="false" class="collapse">
+								<li><a href="all_restaurant.php">All Restaurant</a></li>
+								<li><a href="add_category.php">Add Category</a></li>
+                                <li><a href="add_restaurant.php">Add Restaurant</a></li>
+                                
+                            </ul>
+                        </li> -->
 
-                    </ul>
-                </nav>
+                            <!-- <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span></a>
+                            <ul aria-expanded="false" class="collapse">
+								<li><a href="all_menu.php">All Menues</a></li>
+								<li><a href="add_menu.php">Add Menu</a></li>
+                              
+                                
+                            </ul>
+                        </li> -->
+                            <li> <a href="all_menu.php"><i class="fa fa-cutlery" aria-hidden="true"></i><span>All Menues</span></a></li>
+                            <li> <a href="add_menu.php"><i class="fa fa-plus" aria-hidden="true"></i><span>Add Menu</span></a></li>
+                            <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
+                            <li> <a href="reports.php"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Reports</span></a></li>
+                            <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items report</span></a></li>
+                        </ul>
+                    </nav>
+
+                </div>
 
             </div>
-
-        </div>
 
         <div class="page-wrapper">
 
@@ -238,35 +262,36 @@ if (isset($_POST['submit'])) {
                                         </div>
                                     </div>
 
-
-
                                     <div class="row">
-
-
-
-
-
-
-                                        <br>
-                                        <!-- <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="control-label">Select Restaurant</label>
-                                                <select name="res_name" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
-                                                    <option>--Select Restaurant--</option>
-                                                    <?php $ssql = "select * from restaurant";
-                                                    $res = mysqli_query($db, $ssql);
-                                                    while ($row = mysqli_fetch_array($res)) {
-                                                        echo ' <option value="' . $row['rs_id'] . '">' . $row['title'] . '</option>';;
-                                                    }
-
-                                                    ?>
-                                                </select>
+                                        
+                                        <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Select Food Category</label>
+													<select name="food_cat" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
+                                                        <option>--Select Category--</option>
+                                                 <?php $ssql ="select * from food_category";
+													$res=mysqli_query($db, $ssql); 
+													while($row=mysqli_fetch_array($res))  
+													{
+                                                       echo' <option value="'.$row['fc_id'].'">'.$row['fc_name'].'</option>';;
+													}  
+                                                 
+													?> 
+													 </select>
+                                                </div>
                                             </div>
-                                        </div> -->
-
-
-
-                                    </div>
+                                            
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Calories </label>
+                                                    <input type="number" name="calories" class="form-control" placeholder="Kcal">
+                                                </div>
+                                            </div>
+                                            
+											
+											
+											
+                                        </div>
 
                                 </div>
                         </div>

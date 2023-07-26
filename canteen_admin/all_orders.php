@@ -89,25 +89,44 @@ session_start();
 
         <div class="left-sidebar">
 
-            <div class="scroll-sidebar">
+                <div class="scroll-sidebar">
 
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <li class="nav-devider"></li>
-                        <li class="nav-label">Home</li>
-                        <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a>
-                        </li>
-                        <li class="nav-label">Log</li>
-                        <li> <a href="all_menu.php"><i class="fa fa-cutlery" aria-hidden="true"></i><span>All Menues</span></a></li>
-                        <li> <a href="add_menu.php"><i class="fa fa-plus" aria-hidden="true"></i><span>Add Menu</span></a></li>
-                        <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
+                    <nav class="sidebar-nav">
+                        <ul id="sidebarnav">
+                            <li class="nav-devider"></li>
+                            <li class="nav-label">Home  </li>
+                            <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a>
+                            </li>
+                            <li class="nav-label">Log</li>
+                            <!-- <li> <a href="all_users.php">  <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li> -->
+                            <!-- <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Restaurant</span></a>
+                            <ul aria-expanded="false" class="collapse">
+								<li><a href="all_restaurant.php">All Restaurant</a></li>
+								<li><a href="add_category.php">Add Category</a></li>
+                                <li><a href="add_restaurant.php">Add Restaurant</a></li>
+                                
+                            </ul>
+                        </li> -->
 
-                    </ul>
-                </nav>
+                            <!-- <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span></a>
+                            <ul aria-expanded="false" class="collapse">
+								<li><a href="all_menu.php">All Menues</a></li>
+								<li><a href="add_menu.php">Add Menu</a></li>
+                              
+                                
+                            </ul>
+                        </li> -->
+                            <li> <a href="all_menu.php"><i class="fa fa-cutlery" aria-hidden="true"></i><span>All Menues</span></a></li>
+                            <li> <a href="add_menu.php"><i class="fa fa-plus" aria-hidden="true"></i><span>Add Menu</span></a></li>
+                            <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
+                            <li> <a href="reports.php"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Reports</span></a></li>
+                            <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items report</span></a></li>
+                        </ul>
+                    </nav>
+
+                </div>
 
             </div>
-
-        </div>
 
         <div class="page-wrapper">
 
@@ -143,7 +162,13 @@ session_start();
 
 
                                             <?php
-                                            $sql = "SELECT users.*, users_orders.* FROM users INNER JOIN users_orders ON users.u_id=users_orders.u_id ";
+                                            $session=$_SESSION["adm_id"];
+
+                                            $sql = "SELECT u.username AS User, o.title AS 'Item Name', o.quantity AS Quantity, o.price AS Price, o.status AS Status, o.date AS 'Reg-Date'
+                                            FROM users u
+                                            JOIN users_orders o ON u.u_id = o.u_id
+                                            JOIN restaurant r ON o.rs_id = r.rs_id
+                                            WHERE r.rs_id = (select rs_id from admin where adm_id='$session');";
                                             $query = mysqli_query($db, $sql);
 
                                             if (!mysqli_num_rows($query) > 0) {
@@ -154,10 +179,10 @@ session_start();
                                             ?>
                                                     <?php
                                                     echo ' <tr>
-																					           <td>' . $rows['username'] . '</td>
-																								<td>' . $rows['title'] . '</td>
-																								<td>' . $rows['quantity'] . '</td>
-																								<td>Rs ' . $rows['price'] . '</td>';
+																					           <td>' . $rows['User'] . '</td>
+																								<td>' . $rows['Item Name'] . '</td>
+																								<td>' . $rows['Quantity'] . '</td>
+																								<td>Rs ' . $rows['Price'] . '</td>';
                                                     ?>
                                                     <?php
                                                     $status = $rows['status'];

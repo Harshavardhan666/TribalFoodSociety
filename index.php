@@ -125,7 +125,7 @@ session_start();
                                             <div class="food-item-wrap">
                                                 <div class="figure-wrap bg-image" data-image-src="admin/Res_img/dishes/'.$r['img'].'"></div>
                                                 <div class="content">
-                                                    <h5><a href="dishes.php?res_id='.$r['rs_id'].'">'.$r['title'].'</a></h5>
+                                                    <h5><a href="dishes.php?res_id='.$r['rs_id'].'">'.$r['title']." (".$r['calories']."kcal)".'</a></h5>
                                                     <div class="product-name">'.$print_stat.'</div>
                                                     <div class="price-btn-block"> <span class="price">Rs '.$r['price'].'</span> <a href="dishes.php?res_id='.$r['rs_id'].'" class="btn theme-btn-dash pull-right">Order Now</a> </div>
                                                 </div>

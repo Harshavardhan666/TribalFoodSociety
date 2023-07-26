@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
 
 session_start(); 
 error_reporting(0); 
@@ -58,6 +64,150 @@ include("connection/connect.php");
 // 	}
 
 // }
+
+        if (isset($_POST['submit'])) {
+          $username = $_POST['username'];
+          $email = $_POST['email'];
+          $phone = $_POST['phone'];
+          // $newpassword = $_POST['newpassword'];
+          // $confirmpassword = $_POST['confpass'];
+
+          // if ($newpassword != $confirmpassword) {
+          //   echo '<script>showModal("Passwords Doesn\'t Match"); redirectToPage(1000)</script>'; 
+          // } else {
+            // Passwords match, continue with further actions 
+
+            // Check if the provided information exists in the users table
+            $query = "SELECT * FROM users WHERE username='$username' AND email='$email' AND phone='$phone'";
+            $result = mysqli_query($db, $query);
+            $rows = mysqli_fetch_array( $result);
+            if (mysqli_num_rows($result) > 0) {
+              // Information exists in the database
+              // Perform further actions (e.g., send OTP, reset account, etc.)
+              // Add your code here
+              $mail = new PHPMailer(true);
+
+              $link = "http://localhost/FoodOrderingSystem/reset_pass.php?id=$rows[u_id]";
+
+              $mail->isSMTP();
+              $mail->Host = 'smtp.gmail.com';
+              $mail->SMTPAuth = true;
+              $mail->Username = 'canteenavvp@gmail.com'; // Your geatt
+              // $mail->Password = 'jmrknaiiwtjlcfiq';
+              $mail->Password = 'jogqrsiyblybugel';
+              $mail->SMTPSecure = 'ssl';
+              $mail->Port = 465;
+
+              $mail->setFrom('canteenavvp@gmail.com'); // Your gmail
+
+              $mail->addAddress($_POST["email"]);
+
+              $mail->isHTML(true);
+
+              $mail->Subject = "Reset Password Link";
+              $bodyContent='
+                    <!doctype html>
+                    <html lang="en-US">
+                    
+                    <head>
+                        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+                        <title>Reset Password Email Template</title>
+                        <meta name="description" content="Reset Password Email Template.">
+                        <style type="text/css">
+                            a:hover {text-decoration: underline !important;}
+                        </style>
+                    </head>
+                    
+                    <body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; background-color: #f2f3f8;" leftmargin="0">
+                        <!--100% body table-->
+                        <table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#f2f3f8"
+                            style="@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: "Open Sans", sans-serif;">
+                            <tr>
+                                <td>
+                                    <table style="background-color: #f2f3f8; max-width:670px;  margin:0 auto;" width="100%" border="0"
+                                        align="center" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td style="height:80px;">&nbsp;</td>
+                                        </tr>
+                    <!--                     <tr>
+                                            <td style="text-align:center;">
+                                              <a href="https://rakeshmandal.com" title="logo" target="_blank">
+                                                <img width="60" src="https://i.ibb.co/hL4XZp2/android-chrome-192x192.png" title="logo" alt="logo">
+                                              </a>
+                                            </td>
+                                        </tr> -->
+                                        <tr>
+                                            <td style="height:20px;">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0"
+                                                    style="max-width:670px;background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);">
+                                                    <tr>
+                                                        <td style="height:40px;">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding:0 35px;">
+                                                          <h2 style="color:#1e1e2d; margin:0;font-family:"Rubik",sans-serif;">Dear ' .$username. '</h2> <br>
+                                              
+                                                            <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:"Rubik",sans-serif;">You have
+                                                                requested to reset your password</h1><br> <br> 
+                    <!--                                         <span
+                                                                style="display:inline-block; vertical-align:middle; margin:35px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span> -->
+                                                            <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
+                                                                We cannot simply send you your old password. A link to reset your
+                                                                password has been generated for you. To reset your password, click the
+                                                                following link and follow the instructions.
+                                                            </p>
+                                                            <a href='.$link.'
+                                                                style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Reset
+                                                                Password</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="height:40px;">&nbsp;</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        <tr>
+                                            <td style="height:20px;">&nbsp;</td>
+                                        </tr>
+                    <!--                     <tr>
+                                            <td style="text-align:center;">
+                                                <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;">&copy; <strong>www.rakeshmandal.com</strong></p>
+                                            </td>
+                                        </tr> -->
+                                        <tr>
+                                            <td style="height:80px;">&nbsp;</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        <!--/100% body table-->
+                    </body>
+                    
+                    </html>
+
+              ';
+              // $mail->Body = "<h1>Dear " .$username . "\nTap the click below to reset your user account password. If you didn't request a new password, you can safely delete this email. \n".$link."</h1>";
+              $mail->Body = $bodyContent ;
+
+              $mail->send();
+
+              echo
+              "
+                  <script>
+                  alert('Sent Successfully');
+                  document.location.href = 'edit.php';
+                  </script>
+                  ";
+
+            } else {
+              // Information does not exist in the database
+              echo "Account Doesn't Exist!";
+            }
+        }
 
 ?>
 
@@ -351,20 +501,26 @@ body {
                         <div class="widget" >
                            <div class="widget-body">
                             
-							  <form action="edit.php" method="post" onsubmit="return toggle()" >
+							  <form action="" method="post" onsubmit="return toggle()" >
                 <h2 style="text-align: center; color: #8050C7; font-family: Arial, sans-serif; font-size: 30px">Reset Your Account</h2>
                 <div id="form">
                               <div class="row">
-								                    <div class="form-group col-sm-7">
+								                    <div class="form-group col-sm-4">
                                        <label for="username">User-Name</label>
                                        <input class="form-control" type="text" name="username" id="username" required> 
                                     </div>
-                           
-                                    <div class="form-group col-sm-6">
+                                    </div>
+                                 
+                                    <div class="row">
+                                    <div class="form-group col-sm-4">
                                        <label for="email">Email Address</label>
                                        <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp" required> 
                                     </div>
-                                    <div class="form-group col-sm-6">
+                                    
+                                    </div>
+
+                                    <div class="row">
+                                    <div class="form-group col-sm-4">
                                        <label for="mobile">Phone number</label>
                                        <input class="form-control" type="text" name="phone" id="mobile" required> 
                                     </div>
@@ -372,7 +528,7 @@ body {
                                        <label for="exampleInputPassword1">Password</label>
                                        <input type="password" class="form-control" name="password" id="exampleInputPassword1" required>
                                     </div> -->
-                                    <div class="form-group col-sm-6">
+                                    <!-- <div class="form-group col-sm-6">
                                        <label for="exampleInputPassword1">New Password</label>
                                        <input type="password" class="form-control" name="newpassword" id="exampleInputPassword1" onkeyup="checkPasswordStrength(this.value)" required> 
                                        <div id="password-strength"></div>
@@ -380,17 +536,16 @@ body {
                                     <div class="form-group col-sm-6">
                                        <label for="exampleInputPassword2">Confirm Password</label>
                                        <input type="password" class="form-control" name="confpass" id="exampleInputPassword2" required>
-                                    </div>
+                                    </div> -->
                                    
                             </div>
                                 
                                  <div class="row">
                                     <div class="col-sm-3">
-                                       <input type="submit" class="btn btn-primary" name="submit" value="Send OTP">
+                                       <input type="submit" class="btn btn-primary" name="submit" value="Reset">
                                     </div>
-
                                     <div class="col-sm-3">
-                                      <button type="button" name="cancel" class="btn btn-primary" onclick="redirect()" id="canbtn">Cancel</button>
+                                      <button type="button" name="cancel" class="btn btn-primary" onclick="redirect()" id="canbtn">Back to Login</button>
                                     </div>
                                  </div>
 
@@ -600,37 +755,7 @@ body {
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     
-    <?php
-
-        if (isset($_POST['submit'])) {
-          $username = $_POST['username'];
-          $email = $_POST['email'];
-          $phone = $_POST['phone'];
-          $newpassword = $_POST['newpassword'];
-          $confirmpassword = $_POST['confpass'];
-
-          if ($newpassword != $confirmpassword) {
-            echo '<script>showModal("Passwords Doesn\'t Match"); redirectToPage(1000)</script>'; 
-          } else {
-            // Passwords match, continue with further actions
-
-            // Check if the provided information exists in the users table
-            $query = "SELECT * FROM users WHERE username='$username' AND email='$email' AND phone='$phone'";
-            $result = mysqli_query($db, $query);
-
-            if (mysqli_num_rows($result) > 0) {
-              // Information exists in the database
-              // Perform further actions (e.g., send OTP, reset account, etc.)
-              // Add your code here
-              echo "Information Exists in the Database.";
-            } else {
-              // Information does not exist in the database
-              echo "Invalid Credentials!";
-            }
-          }
-        }
-
-    ?>
+    
 
 </body>
 

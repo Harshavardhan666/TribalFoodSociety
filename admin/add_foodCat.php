@@ -124,7 +124,10 @@ if(isset($_POST['submit'] ))
                             </ul>
                         </li>
 						 <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
+                         <li> <a href="reports.php"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Reports</span></a></li>
                          
+                         <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items report</span></a></li>
+
                     </ul>
                 </nav>
         
