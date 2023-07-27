@@ -294,7 +294,7 @@ if (strlen($_SESSION['user_id']) == 0) {
 
     </div>
 
-    <footer class="footer"> © 2023 - Online Food Ordering System </footer>
+    <footer class="footer"> © 2023 - TribalFoodSociety </footer>
 
     </div>
 

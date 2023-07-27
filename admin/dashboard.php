@@ -70,19 +70,19 @@ else
                         <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
                         <li class="nav-label">Log</li>
                         <li> <a href="all_users.php">  <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Canteen</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Departments</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_restaurant.php">All Canteens</a></li>
-								<li><a href="add_category.php">Add Canteen Category</a></li>
-                                <li><a href="add_restaurant.php">Add Canteen</a></li>
+								<li><a href="all_restaurant.php">All Departments</a></li>
+								<!-- <li><a href="add_category.php">Add village</a></li> --> 
+                                <li><a href="add_restaurant.php">Add new Departments</a></li>
                                 
                             </ul>
                         </li>
-                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span></a>
+                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Products</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_menu.php">All Menues</a></li>
-                                <li><a href="add_foodCat.php">Add food Category</a></li>
-								<li><a href="add_menu.php">Add Menu</a></li>
+								<li><a href="all_menu.php">All Products</a></li>
+                                <li><a href="add_foodCat.php">Add Product Sub-Category</a></li>
+								<li><a href="add_menu.php">Add Product</a></li>
                               
                                 
                             </ul>
@@ -111,11 +111,11 @@ else
                             </div>
                      <div class="row">
                    
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-home f-s-40 "></i></span>
+                                <span><i class="fa fa-th-large f-s-40" aria-hidden="true"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2><?php $sql="select * from restaurant";
@@ -123,7 +123,7 @@ else
 													$rws=mysqli_num_rows($result);
 													
 													echo $rws;?></h2>
-                                    <p class="m-b-0">Canteens</p>
+                                    <p class="m-b-0">Departments</p>
                                 </div>
                             </div>
                         </div>
@@ -165,27 +165,11 @@ else
                         </div>
                     </div>
 					
-					<div class="col-md-3">
-                        <div class="card p-30">
-                            <div class="media">
-                                <div class="media-left meida media-middle"> 
-                                    <span><i class="fa fa-shopping-cart f-s-40" aria-hidden="true"></i></span>
-                                </div>
-                                <div class="media-body media-text-right">
-                                    <h2><?php $sql="select * from users_orders";
-												$result=mysqli_query($db,$sql); 
-													$rws=mysqli_num_rows($result);
-													
-													echo $rws;?></h2>
-                                    <p class="m-b-0">Total Orders</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>	                   
+						                   
                 </div>     
                 
                 <div class="row">
-                    <div class="col-md-4">
+                    <!-- <div class="col-md-4">
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle"> 
@@ -201,8 +185,24 @@ else
                                 </div>
                             </div>
                         </div>
+                    </div> -->
+                    <div class="col-md-3">
+                        <div class="card p-30">
+                            <div class="media">
+                                <div class="media-left meida media-middle"> 
+                                    <span><i class="fa fa-shopping-cart f-s-40" aria-hidden="true"></i></span>
+                                </div>
+                                <div class="media-body media-text-right">
+                                    <h2><?php $sql="select * from users_orders";
+												$result=mysqli_query($db,$sql); 
+													$rws=mysqli_num_rows($result);
+													
+													echo $rws;?></h2>
+                                    <p class="m-b-0">Total Orders</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
                     <div class="col-md-4">
                         <div class="card p-30">
                             <div class="media">

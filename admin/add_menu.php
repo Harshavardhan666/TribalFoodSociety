@@ -190,19 +190,19 @@ if(isset($_POST['submit']))
                         <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
                         <li class="nav-label">Log</li>
                         <li> <a href="all_users.php">  <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Canteen</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Departments</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_restaurant.php">All Canteens</a></li>
-								<li><a href="add_category.php">Add Canteen Category</a></li>
-                                <li><a href="add_restaurant.php">Add Canteen</a></li>
+								<li><a href="all_restaurant.php">All Departments</a></li>
+								<!-- <li><a href="add_category.php">Add village</a></li> -->
+                                <li><a href="add_restaurant.php">Add new Departments</a></li>
                                 
                             </ul>
                         </li>
-                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span></a>
+                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Products</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_menu.php">All Menues</a></li>
-                                <li><a href="add_foodCat.php">Add food Category</a></li>
-								<li><a href="add_menu.php">Add Menu</a></li>
+								<li><a href="all_menu.php">All Products</a></li>
+                                <li><a href="add_foodCat.php">Add Product Sub-Category</a></li>
+								<li><a href="add_menu.php">Add Product</a></li>
                               
                                 
                             </ul>
@@ -238,7 +238,7 @@ if(isset($_POST['submit']))
                                     <div class="col-lg-12">
                         <div class="card card-outline-primary">
                             <div class="card-header">
-                                <h4 class="m-b-0 text-white">Add Menu</h4>
+                                <h4 class="m-b-0 text-white">Add Product</h4>
                             </div>
                             <div class="card-body">
                                 <form action='' method='post'  enctype="multipart/form-data">
@@ -248,7 +248,7 @@ if(isset($_POST['submit']))
                                         <div class="row p-t-20">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="control-label">Dish Name</label>
+                                                    <label class="control-label">Product Name</label>
                                                     <input type="text" name="d_name" class="form-control" >
                                                    </div>
                                             </div>
@@ -290,9 +290,9 @@ if(isset($_POST['submit']))
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="control-label">Select Food Category</label>
+                                                    <label class="control-label">Select Product Sub-Category</label>
 													<select name="food_cat" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
-                                                        <option>--Select Category--</option>
+                                                        <option>--Select Sub-Category--</option>
                                                  <?php $ssql ="select * from food_category";
 													$res=mysqli_query($db, $ssql); 
 													while($row=mysqli_fetch_array($res))  
@@ -310,9 +310,9 @@ if(isset($_POST['submit']))
 
 											 <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="control-label">Select Canteen</label>
+                                                    <label class="control-label">Select Department</label>
 													<select name="res_name" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
-                                                        <option>--Select Canteen--</option>
+                                                        <option>--Select Department--</option>
                                                  <?php $ssql ="select * from restaurant";
 													$res=mysqli_query($db, $ssql); 
 													while($row=mysqli_fetch_array($res))  
@@ -342,7 +342,7 @@ if(isset($_POST['submit']))
                             
                         </div>
                     </div>
-                    <footer class="footer"> © 2023 - Online Food Ordering System </footer>
+                    <footer class="footer"> © 2023 - TribalFoodSociety </footer>
                 </div>               
             </div>
         </div>    

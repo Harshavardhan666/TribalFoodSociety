@@ -88,19 +88,19 @@ session_start();
                         <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
                         <li class="nav-label">Log</li>
                         <li> <a href="all_users.php">  <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Canteen</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Departments</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_restaurant.php">All Canteens</a></li>
-								<li><a href="add_category.php">Add Canteen Category</a></li>
-                                <li><a href="add_restaurant.php">Add Canteen</a></li>
+								<li><a href="all_restaurant.php">All Departments</a></li>
+								<!-- <li><a href="add_category.php">Add village</a></li> -->
+                                <li><a href="add_restaurant.php">Add new Departments</a></li>
                                 
                             </ul>
                         </li>
-                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span></a>
+                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Products</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_menu.php">All Menues</a></li>
-                                <li><a href="add_foodCat.php">Add food Category</a></li>
-								<li><a href="add_menu.php">Add Menu</a></li>
+								<li><a href="all_menu.php">All Products</a></li>
+                                <li><a href="add_foodCat.php">Add Product Sub-Category</a></li>
+								<li><a href="add_menu.php">Add Product</a></li>
                               
                                 
                             </ul>
@@ -135,7 +135,7 @@ session_start();
                              <div class="col-lg-12">
                         <div class="card card-outline-primary">
                             <div class="card-header">
-                                <h4 class="m-b-0 text-white">All Menu</h4>
+                                <h4 class="m-b-0 text-white">All Products</h4>
                             </div>
                                 
 								
@@ -143,7 +143,7 @@ session_start();
                                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead class="thead-dark">
                                             <tr style="text-align: center;">
-											 <th>Canteen</th>
+											 <th>Department</th>
                                                 <th>Item</th>
                                                 <th>Description</th>
                                                 <th>Price</th>
@@ -233,7 +233,7 @@ session_start();
              
             </div>
          
-            <footer class="footer"> © 2023 - Online Food Ordering System </footer>
+            <footer class="footer"> © 2023 - TribalFoodSociety </footer>
            
         </div>
        
