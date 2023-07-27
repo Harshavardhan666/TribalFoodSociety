@@ -114,7 +114,7 @@ include_once 'product-action.php';
                 <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
                     <ul class="nav navbar-nav">
                         <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
-                        <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Canteens <span class="sr-only"></span></a> </li>
+                        <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Categories <span class="sr-only"></span></a> </li>
                         <?php
                         if (empty($_SESSION["user_id"])) {
                             echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>';
@@ -137,8 +137,8 @@ include_once 'product-action.php';
             <div class="container">
                 <ul class="row links">
 
-                    <li class="col-xs-12 col-sm-4 link-item"><span>1</span><a href="restaurants.php">Choose Canteen</a></li>
-                    <li class="col-xs-12 col-sm-4 link-item active"><span>2</span><a href="dishes_sortby_price.php?res_id=<?php echo $_GET['res_id']; ?>">Pick Your favorite food</a></li>
+                    <li class="col-xs-12 col-sm-4 link-item"><span>1</span><a href="restaurants.php">Choose Category</a></li>
+                    <li class="col-xs-12 col-sm-4 link-item active"><span>2</span><a href="dishes_sortby_price.php?res_id=<?php echo $_GET['res_id']; ?>">Pick Your Product</a></li>
                     <li class="col-xs-12 col-sm-4 link-item"><span>3</span><a href="#">Order and Pay</a></li>
 
                 </ul>
@@ -195,11 +195,11 @@ include_once 'product-action.php';
                                 <?php
 
                                 $item_total = 0;
-                                $total_cal=0;
+                                $total_cal = 0;
 
                                 foreach ($_SESSION["cart_item"] as $item) {
-                                    $user= mysqli_query($db," select * from dishes where title='$item[title]' ");
-                                    $rows=mysqli_fetch_array($user);
+                                    $user = mysqli_query($db, " select * from dishes where title='$item[title]' ");
+                                    $rows = mysqli_fetch_array($user);
                                 ?>
 
                                     <div class="title-row">
@@ -224,7 +224,6 @@ include_once 'product-action.php';
                                 <?php
                                     $item_total += ($item["price"] * $item["quantity"]);
                                     $total_cal += ($rows["calories"] * $item["quantity"]);
-
                                 }
                                 ?>
 
@@ -235,8 +234,8 @@ include_once 'product-action.php';
 
                         <div class="widget-body">
                             <div class="price-wrap text-xs-center">
-                            <p style="margin-bottom: 0px;">TOTAL CALORIES <br>of items in this cart</p>
-                                <h3 class="value"><strong><?php echo $total_cal." kcal"; ?></strong></h3>
+                                <p style="margin-bottom: 0px;">TOTAL CALORIES <br>of items in this cart</p>
+                                <h3 class="value"><strong><?php echo $total_cal . " kcal"; ?></strong></h3>
                                 <br>
                                 <p style="margin-bottom: 0px;">TOTAL BIll</p>
                                 <h3 class="value"><strong><?php echo "Rs " . $item_total; ?></strong></h3>
@@ -268,7 +267,7 @@ include_once 'product-action.php';
                     <div class="row">
                         <h1>Menu</h1>
                         <div class="dropdown-menu">
-                            <button class="menu-btn">Sort by <</button>
+                            <button class="menu-btn">Sort by << /button>
                                     <div class="menu-content">
                                         <?php echo '<a class="links-hidden" href="dishes.php?res_id=' . $rows['rs_id'] . '">Dish Name</a>'; ?>
                                         <?php echo '<a class="links-hidden" href="dishes_sortby_calories.php?res_id=' . $rows['rs_id'] . '">Calories</a>'; ?>
@@ -413,14 +412,14 @@ include_once 'product-action.php';
                                         </li>
                                     </ul>
                                 </div> -->
-                            <a href="https://www.amrita.edu/" target="_blank"><img src="images/amrita.jpg" class="col-xs-12 col-sm-3 payment-options color-gray"></a>
+                            <a href="" target="_blank"><img src="images/masinagudi.jpg" class="col-xs-12 col-sm-3 payment-options color-gray"></a>
 
                             <div class="col-xs-12 col-sm-4 address color-gray">
                                 <h5>Address</h5>
-                                <p>Amrita Vishwa Vidyapeetham, Ettimadai, Coimbatore, Tamil Nadu, PIN: 641112 </p>
+                                <p>Masinagudi Village, Tribal Cooperative Society building, Near Ooty Main Town, PIN: 643223</p>
                             </div>
                             <div class="col-xs-12 col-sm-5 additional-info color-gray">
-                                <h5>Addition informations</h5>
+                                <h5>Additional Information</h5>
                                 <!-- <p>Join thousands of other restaurants who benefit from having partnered with us.</p> -->
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aliquam quam consequuntur quasi deserunt debitis, similique maiores repudiandae laborum id nulla, veritatis magni incidunt mollitia voluptatum? Perspiciatis pariatur molestiae sunt.</p>
                             </div>

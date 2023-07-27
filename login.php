@@ -109,7 +109,7 @@
                     <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
                        <ul class="nav navbar-nav">
                             <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
-                            <li class="nav-item"> <a class="nav-link active" href="restaurants.php"> Canteens <span class="sr-only"></span></a> </li>
+                            <li class="nav-item"> <a class="nav-link active" href="restaurants.php"> Categories <span class="sr-only"></span></a> </li>
                             
 							<?php
 						if(empty($_SESSION["user_id"]))
@@ -266,15 +266,15 @@ if(isset($_POST['submit']))
                                 </li>
                             </ul>
                         </div> -->
-                        <a href="https://www.amrita.edu/" target="_blank"><img src="images/amrita.jpg" class="col-xs-12 col-sm-3 payment-options color-gray"></a>
+                        <a href="" target="_blank"><img src="images/masinagudi.jpg" class="col-xs-12 col-sm-3 payment-options color-gray"></a>
 
 
                         <div class="col-xs-12 col-sm-4 address color-gray">
                         <h5>Address</h5>
-                                    <p>Amrita Vishwa Vidyapeetham, Ettimadai, Coimbatore, Tamil Nadu, PIN: 641112 </p>
+                                    <p>Masinagudi Village, Tribal Cooperative Society building, Near Ooty Main Town, PIN: 643223</p>
                                     </div>
                                 <div class="col-xs-12 col-sm-5 additional-info color-gray">
-                                    <h5>Addition informations</h5>
+                                    <h5>Additional Information</h5>
                                 <!-- <p>Join thousands of other restaurants who benefit from having partnered with us.</p> -->
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aliquam quam consequuntur quasi deserunt debitis, similique maiores repudiandae laborum id nulla, veritatis magni incidunt mollitia voluptatum? Perspiciatis pariatur molestiae sunt.</p>
                                 </div>

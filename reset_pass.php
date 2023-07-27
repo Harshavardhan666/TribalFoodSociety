@@ -260,7 +260,7 @@ session_start();
                 <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
                     <ul class="nav navbar-nav">
                         <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
-                        <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Canteens <span class="sr-only"></span></a> </li>
+                        <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Categories <span class="sr-only"></span></a> </li>
 
 
                         <?php
@@ -322,58 +322,58 @@ session_start();
 
 
                         <div id="passwordFields" style="display: none;">
-                                <!-- <div class="form-group">
+                            <!-- <div class="form-group">
                                     <label class="col-md-3 control-label">Current Password:</label>
                                     <div class="col-md-8">
                                         <input class="form-control" type="password" value="" name="old_pass" required>
                                     </div>
                                 </div> -->
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">New Password:</label>
-                                    <div class="col-md-8">
-                                        <input class="form-control" type="password" value="" name="new_pass" onkeyup="checkPasswordStrength(this.value)" required>
-                                        <div id="password-strength"></div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Confirm New password:</label>
-                                    <div class="col-md-8">
-                                        <input class="form-control" type="password" value="" name="confirm_pass" required>
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">New Password:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="password" value="" name="new_pass" onkeyup="checkPasswordStrength(this.value)" required>
+                                    <div id="password-strength"></div>
                                 </div>
                             </div>
-                              
                             <div class="form-group">
-                                <label class="col-md-3 control-label"></label>
+                                <label class="col-md-3 control-label">Confirm New password:</label>
                                 <div class="col-md-8">
-                                    <div class="row">
+                                    <input class="form-control" type="password" value="" name="confirm_pass" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-8">
+                                <div class="row">
                                     <div class="col-md-6">
                                         <input type="submit" class="btn btn-primary" name="submit" value="Change Password" id="chpas" style="display: none;">
                                     </div>
                                     <div class="col-md-6">
                                         <button class="btn btn-primary" name="cancel" onclick="cancelClick()" style="display: none;" id="canbtn">Cancel</button>
                                     </div>
+                                </div>
+                                <span></span>
+                                <div id="myModal" class="modal">
+                                    <div class="modal-content">
+                                        <!-- <span class="close" onclick="hideModal();">&times;</span> -->
+                                        <!-- <div class="modal-icon modal-success"><i class="fa-solid fa-badge-check fa-2xs"></i></div> -->
+
+                                        <p id="modalContent">Modal Content</p>
                                     </div>
-                                    <span></span>
-                                    <div id="myModal" class="modal">
-                                        <div class="modal-content">
-                                            <!-- <span class="close" onclick="hideModal();">&times;</span> -->
-                                            <!-- <div class="modal-icon modal-success"><i class="fa-solid fa-badge-check fa-2xs"></i></div> -->
 
-                                            <p id="modalContent">Modal Content</p>
-                                        </div>
-
-                                        </div>
                                 </div>
                             </div>
+                        </div>
 
 
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label"></label>
-                                    <div class="col-md-8">
-                                    <button type="button" class="btn btn-primary" name="editPassword" onclick="togglePasswordFields()">Edit Password</button>
-                                </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-8">
+                                <button type="button" class="btn btn-primary" name="editPassword" onclick="togglePasswordFields()">Edit Password</button>
                             </div>
+                        </div>
                         <br>
                     </form>
                 </div>
@@ -407,11 +407,11 @@ session_start();
                                  </li>
                               </ul>
                            </div> -->
-                            <a href="https://www.amrita.edu/" target="_blank"><img src="images/amrita.jpg" class="col-xs-12 col-sm-3 payment-options color-gray"></a>
+                            <a href="" target="_blank"><img src="images/masinagudi.jpg" class="col-xs-12 col-sm-3 payment-options color-gray"></a>
 
                             <div class="col-xs-12 col-sm-4 address color-gray">
                                 <h5>Address</h5>
-                                <p>Amrita Vishwa Vidyapeetham, Ettimadai, Coimbatore, Tamil Nadu, PIN: 641112 </p>
+                                <p>Masinagudi Village, Tribal Cooperative Society building, Near Ooty Main Town, PIN: 643223</p>
                             </div>
                             <div class="col-xs-12 col-sm-5 additional-info color-gray">
                                 <h5>Addition informations</h5>
@@ -442,12 +442,12 @@ session_start();
             var editPasswordButton = document.getElementsByName("editPassword")[0];
 
             if (passwordFields.style.display === "none") {
-            passwordFields.style.display = "block";
-            // editPasswordButton.textContent = "Hide Password";
-            editPasswordButton.style.display = "none";
-            document.getElementById("chpas").style.display = "block";
-            document.getElementById("canbtn").style.display = "block";
-            } 
+                passwordFields.style.display = "block";
+                // editPasswordButton.textContent = "Hide Password";
+                editPasswordButton.style.display = "none";
+                document.getElementById("chpas").style.display = "block";
+                document.getElementById("canbtn").style.display = "block";
+            }
         }
 
         function cancelClick() {
@@ -457,7 +457,8 @@ session_start();
             passwordFields.style.display = "none";
             document.getElementById("chpas").style.display = "none";
             document.getElementById("canbtn").style.display = "none";
-    }
+        }
+
         function checkPasswordStrength(password) {
             var strengthText = document.getElementById("password-strength");
             var strengthIndicator = document.createElement("span");
@@ -518,7 +519,6 @@ session_start();
     </script>
 
     <script>
-       
         // const delayInMilliseconds = 5000;
         function showModal(content) {
             // console.log("Showing modal with message:", content);
@@ -563,32 +563,30 @@ session_start();
         }
     </script>
 
-<?php
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit']))  
-{
-	// $old_pass = $_POST['old_pass'];
-    // $old_pass = md5($_POST['old_pass']);
-	$new_pass = $_POST['new_pass'];
-    $confirm_pass = $_POST['confirm_pass'];
-    $session=$_GET['id']; 
-	
-	if(!empty($_POST["submit"]))   
-     {
-        $session=$_GET['id'];       
-        // $loginquery ="SELECT password FROM users WHERE u_id='$session' "; //selecting matching records
-        // $result=mysqli_query($db, $loginquery); //executing
-        // $row=mysqli_fetch_array($result);
-        // password='".md5($password)."'
-        // if($row['password']==$old_pass){
-            if($new_pass == $confirm_pass){
-                $mql = "UPDATE users SET password=('".md5($_POST['new_pass'])."') WHERE u_id='$session'";
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+        // $old_pass = $_POST['old_pass'];
+        // $old_pass = md5($_POST['old_pass']);
+        $new_pass = $_POST['new_pass'];
+        $confirm_pass = $_POST['confirm_pass'];
+        $session = $_GET['id'];
+
+        if (!empty($_POST["submit"])) {
+            $session = $_GET['id'];
+            // $loginquery ="SELECT password FROM users WHERE u_id='$session' "; //selecting matching records
+            // $result=mysqli_query($db, $loginquery); //executing
+            // $row=mysqli_fetch_array($result);
+            // password='".md5($password)."'
+            // if($row['password']==$old_pass){
+            if ($new_pass == $confirm_pass) {
+                $mql = "UPDATE users SET password=('" . md5($_POST['new_pass']) . "') WHERE u_id='$session'";
                 mysqli_query($db, $mql);
                 // header("refresh:0.1;url=login.php");
                 // echo '<div class="modal-icon modal-success"><i class="fas fa-check-circle"></i></div>';
                 echo '<script>showModal("Password Updated Successfully"); redirectToPage(1000);</script>';
-                
+
                 exit;
-            }else{
+            } else {
                 // echo "<script>alert('Both the passwords are not matching');</script>";
                 // echo "<script>document.getElementById('myModal').style.display = 'block'; document.getElementById('modalContent').innerText = 'Pass doesn\'t match';</script>";
                 // echo '<script> window.location.reload();</script>';
@@ -596,12 +594,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit']))
                 echo '<script>showModal("Pass doesn\'t match"); redirectToPage1(1000)</script>';
                 // console.log("Passwords don't match");\
             }
-        // }
-        
-	 }
-}
-?>
-    
+            // }
+
+        }
+    }
+    ?>
+
 </body>
 
 </html>

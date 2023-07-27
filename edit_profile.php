@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">        
+<html lang="en">
 <?php
-include("connection/connect.php"); 
+include("connection/connect.php");
 error_reporting(0);
 session_start();
 ?>
@@ -27,7 +27,6 @@ session_start();
 
 
     <style>
-
         .btn-inverse {
             background: #2f3d4a;
             border: 1px solid #2f3d4a;
@@ -186,114 +185,111 @@ session_start();
 
 
         .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
         }
 
         .modal-content {
-        background-color: #f9f9f9;
-        margin: 10% auto;
-        padding: 20px;
-        border: 1px solid #ccc;
-        width: 80%;
-        max-width: 400px;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            background-color: #f9f9f9;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .close {
-        color: #aaa;
-        float: right;
-        font-size: 24px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: color 0.3s ease;
+            color: #aaa;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
         }
 
         .close:hover,
         .close:focus {
-        color: #333;
+            color: #333;
         }
 
         .modal-content p {
-        margin: 0;
-        font-size: 18px;
-        line-height: 1.5;
-        color: #333;
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.5;
+            color: #333;
         }
 
         .modal-content p:first-of-type {
-        margin-bottom: 20px;
+            margin-bottom: 20px;
         }
 
         .modal-content p:last-of-type {
-        text-align: center;
+            text-align: center;
         }
 
         .modal-content p:last-of-type a {
-        color: #007bff;
-        text-decoration: none;
+            color: #007bff;
+            text-decoration: none;
         }
 
         .modal-content p:last-of-type a:hover {
-        text-decoration: underline;
+            text-decoration: underline;
         }
 
         #canbtn {
             margin-left: -140px;
         }
-
-</style>
+    </style>
 </head>
 
 <body>
-<header id="header" class="header-scroll top-header headrom">
-            <nav class="navbar navbar-dark">
-                <div class="container">
-                    <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#mainNavbarCollapse">&#9776;</button>
-                    <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/icn.png" alt=""> </a>
-                    <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
-                            <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Canteens <span class="sr-only"></span></a> </li>
-                            
-                           
-							<?php
-						if(empty($_SESSION["user_id"])) // if user is not login
-							{
-                                echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>';
-							}
-						else
-							{
-                                echo '<li class="nav-item"><a href="edit_profile.php" class="nav-link active">Profile</a> </li>';
+    <header id="header" class="header-scroll top-header headrom">
+        <nav class="navbar navbar-dark">
+            <div class="container">
+                <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#mainNavbarCollapse">&#9776;</button>
+                <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/icn.png" alt=""> </a>
+                <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
+                        <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Categories <span class="sr-only"></span></a> </li>
 
-									echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">My Orders</a> </li>';
-									echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
-							}
 
-						?>
-							 
-                        </ul>
-						 
-                    </div>
+                        <?php
+                        if (empty($_SESSION["user_id"])) // if user is not login
+                        {
+                            echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>';
+                        } else {
+                            echo '<li class="nav-item"><a href="edit_profile.php" class="nav-link active">Profile</a> </li>';
+
+                            echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">My Orders</a> </li>';
+                            echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
+                        }
+
+                        ?>
+
+                    </ul>
+
                 </div>
-            </nav>
+            </div>
+        </nav>
 
-        </header>
+    </header>
     <?php
-        $session=$_SESSION["user_id"]; 
-        $user= mysqli_query($db," select * from users where u_id='$session' ");
-        $rows=mysqli_fetch_array($user);
- 	?> 
+    $session = $_SESSION["user_id"];
+    $user = mysqli_query($db, " select * from users where u_id='$session' ");
+    $rows = mysqli_fetch_array($user);
+    ?>
     <div class="page-wrapper">
-    
+
 
         <div class="container">
             <br>
@@ -307,7 +303,7 @@ session_start();
                         <div class="form-group">
                             <label class="col-lg-3 control-label">First name:</label>
                             <div class="col-lg-8">
-                            <input class="form-control" type="text" value="<?php echo $rows["f_name"]; ?>" readonly>
+                                <input class="form-control" type="text" value="<?php echo $rows["f_name"]; ?>" readonly>
                             </div>
                         </div>
                         <div class="form-group">
@@ -353,61 +349,61 @@ session_start();
                             </div>
                         </div>
                         <div id="passwordFields" style="display: none;">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Current Password:</label>
-                                    <div class="col-md-8">
-                                        <input class="form-control" type="password" value="" name="old_pass" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">New Password:</label>
-                                    <div class="col-md-8">
-                                        <input class="form-control" type="password" value="" name="new_pass" onkeyup="checkPasswordStrength(this.value)" required>
-                                        <div id="password-strength"></div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Confirm New password:</label>
-                                    <div class="col-md-8">
-                                        <input class="form-control" type="password" value="" name="confirm_pass" required>
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Current Password:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="password" value="" name="old_pass" required>
                                 </div>
                             </div>
-                              
                             <div class="form-group">
-                                <label class="col-md-3 control-label"></label>
+                                <label class="col-md-3 control-label">New Password:</label>
                                 <div class="col-md-8">
-                                    <div class="row">
+                                    <input class="form-control" type="password" value="" name="new_pass" onkeyup="checkPasswordStrength(this.value)" required>
+                                    <div id="password-strength"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Confirm New password:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="password" value="" name="confirm_pass" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-8">
+                                <div class="row">
                                     <div class="col-md-6">
                                         <input type="submit" class="btn btn-primary" name="submit" value="Change Password" id="chpas" style="display: none;">
                                     </div>
                                     <div class="col-md-6">
                                         <button class="btn btn-primary" name="cancel" onclick="cancelClick()" style="display: none;" id="canbtn">Cancel</button>
                                     </div>
+                                </div>
+                                <span></span>
+                                <div id="myModal" class="modal">
+                                    <div class="modal-content">
+                                        <!-- <span class="close" onclick="hideModal();">&times;</span> -->
+                                        <!-- <div class="modal-icon modal-success"><i class="fa-solid fa-badge-check fa-2xs"></i></div> -->
+
+                                        <p id="modalContent">Modal Content</p>
                                     </div>
-                                    <span></span>
-                                    <div id="myModal" class="modal">
-                                        <div class="modal-content">
-                                            <!-- <span class="close" onclick="hideModal();">&times;</span> -->
-                                            <!-- <div class="modal-icon modal-success"><i class="fa-solid fa-badge-check fa-2xs"></i></div> -->
 
-                                            <p id="modalContent">Modal Content</p>
-                                        </div>
-
-                                        </div>
                                 </div>
                             </div>
+                        </div>
 
 
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label"></label>
-                                    <div class="col-md-8">
-                                    <button type="button" class="btn btn-primary" name="editPassword" onclick="togglePasswordFields()">Edit Password</button>
-                                </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-8">
+                                <button type="button" class="btn btn-primary" name="editPassword" onclick="togglePasswordFields()">Edit Password</button>
                             </div>
+                        </div>
                         <br>
                     </form>
-                <!-- <button type="button" onclick="editaccess()" class="btn btn-primary" style = "margin-left: 240px" id="editBtn">Edit Password</button> -->
+                    <!-- <button type="button" onclick="editaccess()" class="btn btn-primary" style = "margin-left: 240px" id="editBtn">Edit Password</button> -->
                 </div>
             </div>
         </div>
@@ -439,14 +435,14 @@ session_start();
                                  </li>
                               </ul>
                            </div> -->
-                            <a href="https://www.amrita.edu/" target="_blank"><img src="images/amrita.jpg" class="col-xs-12 col-sm-3 payment-options color-gray"></a>
+                            <a href="" target="_blank"><img src="images/masinagudi.jpg" class="col-xs-12 col-sm-3 payment-options color-gray"></a>
 
                             <div class="col-xs-12 col-sm-4 address color-gray">
                                 <h5>Address</h5>
-                                <p>Amrita Vishwa Vidyapeetham, Ettimadai, Coimbatore, Tamil Nadu, PIN: 641112 </p>
+                                <p>Masinagudi Village, Tribal Cooperative Society building, Near Ooty Main Town, PIN: 643223</p>
                             </div>
                             <div class="col-xs-12 col-sm-5 additional-info color-gray">
-                                <h5>Addition informations</h5>
+                                <h5>Additional Information</h5>
                                 <!-- <p>Join thousands of other restaurants who benefit from having partnered with us.</p> -->
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aliquam quam consequuntur quasi deserunt debitis, similique maiores repudiandae laborum id nulla, veritatis magni incidunt mollitia voluptatum? Perspiciatis pariatur molestiae sunt.</p>
                             </div>
@@ -457,7 +453,7 @@ session_start();
             </div>
         </footer>
 
-    </div>  
+    </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -468,79 +464,78 @@ session_start();
     <script src="js/foodpicky.min.js"></script>
     <script src="https://kit.fontawesome.com/15f8b2b9b3.js" crossorigin="anonymous"></script>
 
-<script>
-    function checkPasswordStrength(password) {
-        var strengthText = document.getElementById("password-strength");
-        var strengthIndicator = document.createElement("span");
-
-        if (password.length === 0) {
-            strengthText.innerHTML = "";
-            return;
-        }
-
-        var strength = 0;
-        if (password.length >= 6) {
-            strength += 1;
-        }
-        if (password.match(/[a-z]/)) {
-            strength += 1;
-        }
-        if (password.match(/[A-Z]/)) {
-            strength += 1;
-        }
-        if (password.match(/[0-9]/)) {
-            strength += 1;
-        }
-        if (password.match(/[$@#&!]/)) {
-            strength += 1;
-        }
-
-        switch (strength) {
-            case 0:
-                strengthIndicator.innerHTML = "Weak";
-                strengthIndicator.style.color = "red";
-
-                break;
-            case 1:
-                strengthIndicator.innerHTML = "Weak";
-                strengthIndicator.style.color = "red";
-                break;
-            case 2:
-                strengthIndicator.innerHTML = "Medium";
-                strengthIndicator.style.color = "orange";
-                break;
-            case 3:
-                strengthIndicator.innerHTML = "Strong";
-                strengthIndicator.style.color = "green";
-                break;
-            case 4:
-                strengthIndicator.innerHTML = "Very Strong";
-                strengthIndicator.style.color = "darkgreen";
-                break;
-            case 5:
-                strengthIndicator.innerHTML = "Excellent";
-                strengthIndicator.style.color = "darkgreen";
-                break;
-        }
-
-        strengthText.innerHTML = "<strong>Password Strength: </strong>";
-        strengthText.appendChild(strengthIndicator);
-    }
-    </script>
-    
     <script>
+        function checkPasswordStrength(password) {
+            var strengthText = document.getElementById("password-strength");
+            var strengthIndicator = document.createElement("span");
 
+            if (password.length === 0) {
+                strengthText.innerHTML = "";
+                return;
+            }
+
+            var strength = 0;
+            if (password.length >= 6) {
+                strength += 1;
+            }
+            if (password.match(/[a-z]/)) {
+                strength += 1;
+            }
+            if (password.match(/[A-Z]/)) {
+                strength += 1;
+            }
+            if (password.match(/[0-9]/)) {
+                strength += 1;
+            }
+            if (password.match(/[$@#&!]/)) {
+                strength += 1;
+            }
+
+            switch (strength) {
+                case 0:
+                    strengthIndicator.innerHTML = "Weak";
+                    strengthIndicator.style.color = "red";
+
+                    break;
+                case 1:
+                    strengthIndicator.innerHTML = "Weak";
+                    strengthIndicator.style.color = "red";
+                    break;
+                case 2:
+                    strengthIndicator.innerHTML = "Medium";
+                    strengthIndicator.style.color = "orange";
+                    break;
+                case 3:
+                    strengthIndicator.innerHTML = "Strong";
+                    strengthIndicator.style.color = "green";
+                    break;
+                case 4:
+                    strengthIndicator.innerHTML = "Very Strong";
+                    strengthIndicator.style.color = "darkgreen";
+                    break;
+                case 5:
+                    strengthIndicator.innerHTML = "Excellent";
+                    strengthIndicator.style.color = "darkgreen";
+                    break;
+            }
+
+            strengthText.innerHTML = "<strong>Password Strength: </strong>";
+            strengthText.appendChild(strengthIndicator);
+        }
+    </script>
+
+    <script>
         function togglePasswordFields() {
             var passwordFields = document.getElementById("passwordFields");
             var editPasswordButton = document.getElementsByName("editPassword")[0];
 
             if (passwordFields.style.display === "none") {
-            passwordFields.style.display = "block";
-            // editPasswordButton.textContent = "Hide Password";
-            editPasswordButton.style.display = "none";
-            document.getElementById("chpas").style.display = "block";
-            document.getElementById("canbtn").style.display = "block";
-            } 
+                passwordFields.style.display = "block";
+                // editPasswordButton.textContent = "Hide Password";
+                editPasswordButton.style.display = "none";
+                document.getElementById("chpas").style.display = "block";
+                document.getElementById("canbtn").style.display = "block";
+            }
         }
 
         function cancelClick() {
@@ -550,7 +545,7 @@ session_start();
             passwordFields.style.display = "none";
             document.getElementById("chpas").style.display = "none";
             document.getElementById("canbtn").style.display = "none";
-    }
+        }
 
         // const delayInMilliseconds = 5000;
         function showModal(content) {
@@ -568,80 +563,76 @@ session_start();
         // setTimeout(showModal, delayInMilliseconds);
 
 
-            // Function to redirect to a specific page
-            function redirectToPage(delayInMilliseconds) {
-                settime(delayInMilliseconds);
-            }
-
-            // Set the timer to redirect after the delay
-            function settime(delayInMilliseconds){
-                setTimeout(page, delayInMilliseconds);
-            }
-
-            function page(){
-                window.location.href = "logout.php";
-            }
-
-            function redirectToPage1(delayInMilliseconds) {
-                settime1(delayInMilliseconds);
-            }
-
-            // Set the timer to redirect after the delay
-            function settime1(delayInMilliseconds){
-                setTimeout(page1, delayInMilliseconds);
-            }
-
-            function page1(){
-                window.location.href = "edit_profile.php";
-            }
-
-</script> 
-
-<?php
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit']))  
-{
-	// $old_pass = $_POST['old_pass'];
-    $old_pass = md5($_POST['old_pass']);
-	$new_pass = $_POST['new_pass'];
-    $confirm_pass = $_POST['confirm_pass'];
-	
-	if(!empty($_POST["submit"]))   
-     {
-        $session=$_SESSION["user_id"];       
-        $loginquery ="SELECT password FROM users WHERE u_id='$session' "; //selecting matching records
-        $result=mysqli_query($db, $loginquery); //executing
-        $row=mysqli_fetch_array($result);
-        // password='".md5($password)."'
-        if($row['password']==$old_pass){
-            if($new_pass == $confirm_pass){
-                $mql = "UPDATE users SET password=('".md5($_POST['new_pass'])."') WHERE u_id='$session'";
-                mysqli_query($db, $mql);
-                // header("refresh:0.1;url=login.php");
-                // echo '<div class="modal-icon modal-success"><i class="fas fa-check-circle"></i></div>';
-                echo '<script>showModal("Password Updated Successfully"); redirectToPage(1000);</script>';
-                
-                exit;
-            }else{
-                // echo "<script>alert('Both the passwords are not matching');</script>";
-                // echo "<script>document.getElementById('myModal').style.display = 'block'; document.getElementById('modalContent').innerText = 'Pass doesn\'t match';</script>";
-                // echo '<script> window.location.reload();</script>';
-                // echo '<div class="modal-icon modal-success"><i class="fas fa-check-circle"></i></div>';
-                echo '<script>showModal("Pass doesn\'t match"); redirectToPage1(1000)</script>';
-                // console.log("Passwords don't match");\
-            }
-        }else{
-            // echo "<script>alert('WRONG PASSWORD');</script>"; 
-            // echo '<script>document.getElementById("myModal").style.display = "block"; document.getElementById("modalContent").innerText = "Wrong Pass";</script>';
-            // echo '<script> window.location.reload(true);</script>';
-            // echo '<div class="modal-icon modal-success"><i class="fas fa-check-circle"></i></div>';
-            echo '<script>showModal("Wrong Pass"); redirectToPage1(1000)</script>';
-            // console.log("Wrong password");
+        // Function to redirect to a specific page
+        function redirectToPage(delayInMilliseconds) {
+            settime(delayInMilliseconds);
         }
-	 }
-}
-?>
+
+        // Set the timer to redirect after the delay
+        function settime(delayInMilliseconds) {
+            setTimeout(page, delayInMilliseconds);
+        }
+
+        function page() {
+            window.location.href = "logout.php";
+        }
+
+        function redirectToPage1(delayInMilliseconds) {
+            settime1(delayInMilliseconds);
+        }
+
+        // Set the timer to redirect after the delay
+        function settime1(delayInMilliseconds) {
+            setTimeout(page1, delayInMilliseconds);
+        }
+
+        function page1() {
+            window.location.href = "edit_profile.php";
+        }
+    </script>
+
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+        // $old_pass = $_POST['old_pass'];
+        $old_pass = md5($_POST['old_pass']);
+        $new_pass = $_POST['new_pass'];
+        $confirm_pass = $_POST['confirm_pass'];
+
+        if (!empty($_POST["submit"])) {
+            $session = $_SESSION["user_id"];
+            $loginquery = "SELECT password FROM users WHERE u_id='$session' "; //selecting matching records
+            $result = mysqli_query($db, $loginquery); //executing
+            $row = mysqli_fetch_array($result);
+            // password='".md5($password)."'
+            if ($row['password'] == $old_pass) {
+                if ($new_pass == $confirm_pass) {
+                    $mql = "UPDATE users SET password=('" . md5($_POST['new_pass']) . "') WHERE u_id='$session'";
+                    mysqli_query($db, $mql);
+                    // header("refresh:0.1;url=login.php");
+                    // echo '<div class="modal-icon modal-success"><i class="fas fa-check-circle"></i></div>';
+                    echo '<script>showModal("Password Updated Successfully"); redirectToPage(1000);</script>';
+
+                    exit;
+                } else {
+                    // echo "<script>alert('Both the passwords are not matching');</script>";
+                    // echo "<script>document.getElementById('myModal').style.display = 'block'; document.getElementById('modalContent').innerText = 'Pass doesn\'t match';</script>";
+                    // echo '<script> window.location.reload();</script>';
+                    // echo '<div class="modal-icon modal-success"><i class="fas fa-check-circle"></i></div>';
+                    echo '<script>showModal("Pass doesn\'t match"); redirectToPage1(1000)</script>';
+                    // console.log("Passwords don't match");\
+                }
+            } else {
+                // echo "<script>alert('WRONG PASSWORD');</script>"; 
+                // echo '<script>document.getElementById("myModal").style.display = "block"; document.getElementById("modalContent").innerText = "Wrong Pass";</script>';
+                // echo '<script> window.location.reload(true);</script>';
+                // echo '<div class="modal-icon modal-success"><i class="fas fa-check-circle"></i></div>';
+                echo '<script>showModal("Wrong Pass"); redirectToPage1(1000)</script>';
+                // console.log("Wrong password");
+            }
+        }
+    }
+    ?>
 
 </body>
 
 </html>
-

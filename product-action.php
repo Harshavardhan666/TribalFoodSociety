@@ -10,7 +10,7 @@ if (!empty($_GET["action"])) {
 				$stmt->bind_param('i', $productId);
 				$stmt->execute();
 				$productDetails = $stmt->get_result()->fetch_object();
-				$itemArray = array($productDetails->d_id => array('title' => $productDetails->title, 'd_id' => $productDetails->d_id,'calories' => $productDetails->calories, 'quantity' => $quantity, 'price' => $productDetails->price));
+				$itemArray = array($productDetails->d_id => array('title' => $productDetails->title, 'd_id' => $productDetails->d_id, 'calories' => $productDetails->calories, 'quantity' => $quantity, 'price' => $productDetails->price));
 				if (!empty($_SESSION["cart_item"])) {
 					if (in_array($productDetails->d_id, array_keys($_SESSION["cart_item"]))) {
 						foreach ($_SESSION["cart_item"] as $k => $v) {
@@ -40,31 +40,15 @@ if (!empty($_GET["action"])) {
 			break;
 
 		case "decrement":
-			if (!empty($quantity)) {
-				$stmt = $db->prepare("SELECT * FROM dishes WHERE d_id = ?");
-				$stmt->bind_param('i', $productId);
-				$stmt->execute();
-				$productDetails = $stmt->get_result()->fetch_object();
-				$itemArray = array($productDetails->d_id => array('title' => $productDetails->title, 'd_id' => $productDetails->d_id, 'quantity' => $quantity, 'price' => $productDetails->price));
-
-				if (!empty($_SESSION["cart_item"])) {
-					if (in_array($productDetails->d_id, array_keys($_SESSION["cart_item"]))) {
-						$_SESSION["cart_item"][$productDetails->d_id]["quantity"] += $quantity;
-					} else {
-						$_SESSION["cart_item"] = $_SESSION["cart_item"] + $itemArray;
-					}
-				} else {
-					$_SESSION["cart_item"] = $itemArray;
-				}
-			} elseif (!empty($_SESSION["cart_item"])) {
+			if (!empty($_SESSION["cart_item"]) && array_key_exists($productId, $_SESSION["cart_item"])) {
 				// Decrement the quantity of an item in the cart by 1
 				$_SESSION["cart_item"][$productId]["quantity"] -= 1;
 
 				if ($_SESSION["cart_item"][$productId]["quantity"] <= 0) {
+					// Remove the item completely if the quantity is 0 or less
 					unset($_SESSION["cart_item"][$productId]);
 				}
 			}
-
 			break;
 
 
