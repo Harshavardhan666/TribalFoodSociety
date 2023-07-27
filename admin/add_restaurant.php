@@ -39,7 +39,7 @@ if(isset($_POST['submit']))
    
 								$store = "Res_img/".basename($fnew);                      
 	
-					if($extension == 'jpg'||$extension == 'png'||$extension == 'gif' )
+					if($extension == 'jpg'||$extension == 'png'||$extension == 'gif' ||$extension == 'jpeg')
 					{        
 									if($fsize>=1000000)
 										{
