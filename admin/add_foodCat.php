@@ -106,19 +106,19 @@ if(isset($_POST['submit'] ))
                         <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
                         <li class="nav-label">Log</li>
                         <li> <a href="all_users.php">  <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Canteen</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Departments</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_restaurant.php">All Canteens</a></li>
-								<li><a href="add_category.php">Add Canteen Category</a></li>
-                                <li><a href="add_restaurant.php">Add Canteen</a></li>
+								<li><a href="all_restaurant.php">All Departments</a></li>
+								<!-- <li><a href="add_category.php">Add village</a></li> -->
+                                <li><a href="add_restaurant.php">Add new Departments</a></li>
                                 
                             </ul>
                         </li>
-                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span></a>
+                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Products</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_menu.php">All Menues</a></li>
-                                <li><a href="add_foodCat.php">Add food Category</a></li>
-								<li><a href="add_menu.php">Add Menu</a></li>
+								<li><a href="all_menu.php">All Products</a></li>
+                                <li><a href="add_foodCat.php">Add Product Sub-Category</a></li>
+								<li><a href="add_menu.php">Add Product</a></li>
                               
                                 
                             </ul>
@@ -161,7 +161,7 @@ if(isset($_POST['submit'] ))
                             <div class="col-lg-12">
                         <div class="card card-outline-primary">
                             <div class="card-header">
-                                <h4 class="m-b-0 text-white">Add Food Category</h4>
+                                <h4 class="m-b-0 text-white">Add Product Sub-Category</h4>
                             </div>
                                 <form action='' method='post' >
                                     <div class="form-body">
@@ -170,7 +170,7 @@ if(isset($_POST['submit'] ))
                                         <div class="row p-t-20">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="control-label">Food Category Name</label>
+                                                    <label class="control-label">Sub-Category Name</label>
                                                     <input type="text" name="fc_name" class="form-control" >
                                                    </div>
                                             </div>
@@ -199,7 +199,7 @@ if(isset($_POST['submit'] ))
                                     <table id="myTable" class="table table-bordered table-hover table-striped">
                                         <thead class="thead-dark">
                                             <tr  style="text-align:center;">
-                                                <th>Category Name</th>
+                                                <th>Sub-Category Name</th>
                                                 <th  style="text-align:center;">Action</th>
 												 
                                             </tr>
@@ -256,7 +256,7 @@ if(isset($_POST['submit'] ))
                
             </div>
        
-            <footer class="footer"> © 2023 - Online Food Ordering System </footer>
+            <footer class="footer"> © 2023 - TribalFoodSociety </footer>
       
         </div>
    

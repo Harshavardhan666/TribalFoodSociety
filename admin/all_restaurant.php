@@ -89,19 +89,19 @@ session_start();
                         <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
                         <li class="nav-label">Log</li>
                         <li> <a href="all_users.php">  <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Canteen</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Departments</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_restaurant.php">All Canteens</a></li>
-								<li><a href="add_category.php">Add Canteen Category</a></li>
-                                <li><a href="add_restaurant.php">Add Canteen</a></li>
+								<li><a href="all_restaurant.php">All Departments</a></li>
+								<!-- <li><a href="add_category.php">Add village</a></li> -->
+                                <li><a href="add_restaurant.php">Add new Departments</a></li>
                                 
                             </ul>
                         </li>
-                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span></a>
+                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Products</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_menu.php">All Menues</a></li>
-                                <li><a href="add_foodCat.php">Add food Category</a></li>
-								<li><a href="add_menu.php">Add Menu</a></li>
+								<li><a href="all_menu.php">All Products</a></li>
+                                <li><a href="add_foodCat.php">Add Product Sub-Category</a></li>
+								<li><a href="add_menu.php">Add Product</a></li>
                               
                                 
                             </ul>
@@ -135,7 +135,7 @@ session_start();
                     <div class="col-lg-12">
                         <div class="card card-outline-primary">
                             <div class="card-header">
-                                <h4 class="m-b-0 text-white">All Canteens</h4>
+                                <h4 class="m-b-0 text-white">All Departments</h4>
                             </div>
 								
                                 <div class="table-responsive m-t-40">
@@ -143,11 +143,11 @@ session_start();
                                     <thead class="thead-dark">
                                             <tr  style="text-align:center;">
 											 <th>Category</th>
-                                                <th>Name</th>
+                                                <th>Dept Name</th>
 
-                                                <th>Open Hrs</th>
-                                                <th>Close Hrs</th>
-												<th>Open Days</th>
+                                                <!-- <th>Open Hrs</th> -->
+                                                <!-- <th>Close Hrs</th> -->
+												<!-- <th>Open Days</th> -->
 												  <th>Landmark</th>
 												  <th>Image</th>
 												   <th>Action</th>  
@@ -178,9 +178,7 @@ session_start();
 																								<td>'.$rows['title'].'</td>
 																								
 																								
-																								<td>'.$rows['o_hr'].'</td>
-																								<td>'.$rows['c_hr'].'</td>
-																								<td>'.$rows['o_days'].'</td>
+																							
 																								
 																								<td>'.$rows['address'].'</td>
 																								
@@ -192,6 +190,26 @@ session_start();
 																									 <td><a href="delete_restaurant.php?res_del='.$rows['rs_id'].'" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i></a> 
 																									 <a href="update_restaurant.php?res_upd='.$rows['rs_id'].'" class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fa fa-edit"></i></a>
 																									</td></tr>';
+
+                                                                                    // echo ' <tr  style="text-align:center;"><td>'.$row['c_name'].'</td>
+																					// 			<td>'.$rows['title'].'</td>
+																								
+																								
+																					// 			<td>'.$rows['o_hr'].'</td>
+																					// 			<td>'.$rows['c_hr'].'</td>
+																					// 			<td>'.$rows['o_days'].'</td>
+																								
+																					// 			<td>'.$rows['address'].'</td>
+																								
+																					// 			<td><div class="col-md-3 col-lg-8 m-b-10">
+																					// 			<center><img src="Res_img/'.$rows['image'].'" class="img-responsive radius"  style="min-width:150px;min-height:100px;"/></center>
+																					// 			</div></td>
+																								
+																								
+																					// 				 <td><a href="delete_restaurant.php?res_del='.$rows['rs_id'].'" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i></a> 
+																					// 				 <a href="update_restaurant.php?res_upd='.$rows['rs_id'].'" class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fa fa-edit"></i></a>
+																					// 				</td></tr>';
+																					 
 																					 
 																						
 																						
@@ -237,7 +255,7 @@ session_start();
             
             </div>
          
-            <footer class="footer"> © 2023 - Online Food Ordering System </footer>
+            <footer class="footer"> © 2023 - TribalFoodSociety </footer>
      
         </div>
 
