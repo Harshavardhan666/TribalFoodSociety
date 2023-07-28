@@ -102,8 +102,12 @@ include_once 'product-action.php';
             background-color: #669999;
         }
 
-        .nav-item.dropdown:hover .dropdown-menu {
+        #nav:hover #dm {
             display: block;
+        }
+
+        #dm{
+            display: none;
         }
 
         .dropdown-item:hover {
@@ -126,11 +130,11 @@ include_once 'product-action.php';
                         <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Categories <span class="sr-only"></span></a> </li>
                         <!-- <li class="nav-item"> <a class="nav-link active" href="">About <span class="sr-only"></span></a> </li> -->
 
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" id="nav">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
                                 About
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu" id="dm" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Tribals</a>
                                 <a class="dropdown-item" href="#">Products</a>
                                 <div class="dropdown-divider"></div>

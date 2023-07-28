@@ -215,7 +215,8 @@ session_start();
                     src: 'images/tom4.jpeg'
                 }
             ],
-            transition: 'slideLeft2', delay: 3000
+            transition: 'slideLeft2',
+            delay: 3000
         });
     </script>
 
