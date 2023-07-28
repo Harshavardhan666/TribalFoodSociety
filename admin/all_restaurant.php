@@ -13,7 +13,7 @@ session_start();
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-    <title>All Canteens</title>
+    <title>All Departments</title>
     <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -142,7 +142,7 @@ session_start();
                                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                     <thead class="thead-dark">
                                             <tr  style="text-align:center;">
-											 <th>Category</th>
+											 <!-- <th>Category</th> -->
                                                 <th>Dept Name</th>
 
                                                 <!-- <th>Open Hrs</th> -->
@@ -163,7 +163,7 @@ session_start();
 												
 													if(!mysqli_num_rows($query) > 0 )
 														{
-															echo '<td colspan="11"><center>No Canteens</center></td>';
+															echo '<td colspan="11"><center>No Departments</center></td>';
 														}
 													else
 														{				
@@ -174,7 +174,7 @@ session_start();
 																					$res=mysqli_query($db,$mql);
 																					$row=mysqli_fetch_array($res);
 																				
-																					echo ' <tr  style="text-align:center;"><td>'.$row['c_name'].'</td>
+																					echo ' <tr  style="text-align:center;">
 																								<td>'.$rows['title'].'</td>
 																								
 																								

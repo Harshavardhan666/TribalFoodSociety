@@ -64,7 +64,7 @@ if(isset($_POST['submit']))
 			  
 													$success = 	'<div class="alert alert-success alert-dismissible fade show">
 																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-																 New Canteen Added Successfully.
+																 New Department Added Successfully.
 															</div>';
                 
 	
@@ -363,7 +363,7 @@ if(isset($_POST['submit']))
 											
                                         </div>
                         
-                                        <h3 class="box-title m-t-40">Canteen Landmark</h3>
+                                        <h3 class="box-title m-t-40">Stall Landmark</h3>
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-12 ">

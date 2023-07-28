@@ -147,7 +147,7 @@ else
                         </div>
                     </div>
 					
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
@@ -186,7 +186,7 @@ else
                             </div>
                         </div>
                     </div> -->
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle"> 
@@ -203,7 +203,7 @@ else
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle"> 
@@ -259,7 +259,7 @@ else
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle"> 

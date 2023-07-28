@@ -24,6 +24,14 @@ if (empty($_SESSION['user_id'])) {
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <style type="text/css" rel="stylesheet">
+            .nav-item.dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-item:hover {
+                background-color: #abcdef;
+            }
+
             .indent-small {
                 margin-left: 5px;
             }
@@ -91,7 +99,7 @@ td, th {
 	font-size: 14px;
 	
 	} */
-            */ @media only screen and (max-width: 760px),
+            @media only screen and (max-width: 760px),
             (min-device-width: 768px) and (max-device-width: 1024px) {
 
                 /* table { 
@@ -154,6 +162,19 @@ td, th {
                         <ul class="nav navbar-nav">
                             <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
                             <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Categories <span class="sr-only"></span></a> </li>
+                            <!-- <li class="nav-item"> <a class="nav-link active" href="">About <span class="sr-only"></span></a> </li> -->
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
+                                    About
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Tribals</a>
+                                    <a class="dropdown-item" href="#">Products</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Developers</a>
+                                </div>
+                            </li>
 
                             <?php
                             if (empty($_SESSION["user_id"])) {
@@ -177,7 +198,7 @@ td, th {
 
 
 
-            <div class="inner-page-hero bg-image" data-image-src="images/img/pimg.jpg">
+            <div class="inner-page-hero bg-image" data-image-src="images/ts2.jpeg" style="height: 400px;">
                 <div class="container"> </div>
 
             </div>
@@ -252,10 +273,6 @@ td, th {
                                                             ?>
 
 
-
-
-
-
                                                         </td>
                                                         <td data-column="Date"> <?php echo $row['date']; ?></td>
 
@@ -314,7 +331,7 @@ td, th {
                                         </li>
                                     </ul>
                                 </div> -->
-                        <a href="" target="_blank"><img src="images/masinagudi.jpg" class="col-xs-12 col-sm-3 payment-options color-gray"></a>
+                        <a href="" target="_blank"><img src="images/masinagudi.jpg" class="col-xs-12 col-sm-3 payment-options color-gray" style="height: 190px;"></a>
 
                         <div class="col-xs-12 col-sm-4 address color-gray">
                             <h5>Address</h5>

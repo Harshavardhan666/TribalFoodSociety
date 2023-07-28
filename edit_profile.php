@@ -248,6 +248,14 @@ session_start();
         #canbtn {
             margin-left: -140px;
         }
+
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-item:hover {
+            background-color: #abcdef;
+        }
     </style>
 </head>
 
@@ -261,7 +269,19 @@ session_start();
                     <ul class="nav navbar-nav">
                         <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
                         <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Categories <span class="sr-only"></span></a> </li>
+                        <!-- <li class="nav-item"> <a class="nav-link active" href="">About <span class="sr-only"></span></a> </li> -->
 
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
+                                About
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Tribals</a>
+                                <a class="dropdown-item" href="#">Products</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Developers</a>
+                            </div>
+                        </li>
 
                         <?php
                         if (empty($_SESSION["user_id"])) // if user is not login
@@ -312,24 +332,24 @@ session_start();
                                 <input class="form-control" type="text" value="<?php echo $rows["l_name"]; ?>" readonly>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="col-lg-3 control-label">Academic Program:</label>
                             <div class="col-lg-8">
                                 <input class="form-control" type="text" value="<?php echo $rows["Academic Program"]; ?>" readonly>
                             </div>
-                        </div>
-                        <div class="form-group">
+                        </div> -->
+                        <!-- <div class="form-group">
                             <label class="col-lg-3 control-label">Admitted Branch:</label>
                             <div class="col-lg-8">
                                 <input class="form-control" type="text" value="<?php echo $rows["Admitted Branch"]; ?>" readonly>
                             </div>
-                        </div>
-                        <div class="form-group">
+                        </div> -->
+                        <!-- <div class="form-group">
                             <label class="col-lg-3 control-label">Section:</label>
                             <div class="col-lg-8">
                                 <input class="form-control" type="text" value="<?php echo $rows["Section"]; ?>" readonly>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Email:</label>
                             <div class="col-lg-8">
@@ -435,7 +455,7 @@ session_start();
                                  </li>
                               </ul>
                            </div> -->
-                            <a href="" target="_blank"><img src="images/masinagudi.jpg" class="col-xs-12 col-sm-3 payment-options color-gray"></a>
+                            <a href="" target="_blank"><img src="images/masinagudi.jpg" class="col-xs-12 col-sm-3 payment-options color-gray" style="width: 250px; height: 150px; "></a>
 
                             <div class="col-xs-12 col-sm-4 address color-gray">
                                 <h5>Address</h5>

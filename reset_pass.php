@@ -248,6 +248,14 @@ session_start();
         #canbtn {
             margin-left: -140px;
         }
+
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-item:hover {
+            background-color: #abcdef;
+        }
     </style>
 </head>
 
@@ -261,7 +269,19 @@ session_start();
                     <ul class="nav navbar-nav">
                         <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
                         <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Categories <span class="sr-only"></span></a> </li>
+                        <!-- <li class="nav-item"> <a class="nav-link active" href="">About <span class="sr-only"></span></a> </li> -->
 
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
+                                About
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Tribals</a>
+                                <a class="dropdown-item" href="#">Products</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Developers</a>
+                            </div>
+                        </li>
 
                         <?php
                         if (empty($_SESSION["user_id"])) // if user is not login
@@ -414,7 +434,7 @@ session_start();
                                 <p>Masinagudi Village, Tribal Cooperative Society building, Near Ooty Main Town, PIN: 643223</p>
                             </div>
                             <div class="col-xs-12 col-sm-5 additional-info color-gray">
-                                <h5>Addition informations</h5>
+                                <h5>Additional Information</h5>
                                 <!-- <p>Join thousands of other restaurants who benefit from having partnered with us.</p> -->
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aliquam quam consequuntur quasi deserunt debitis, similique maiores repudiandae laborum id nulla, veritatis magni incidunt mollitia voluptatum? Perspiciatis pariatur molestiae sunt.</p>
                             </div>

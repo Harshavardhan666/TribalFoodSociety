@@ -6,14 +6,46 @@ include_once 'product-action.php';
 error_reporting(0);
 session_start();
 
+?>
 
-function function_alert()
-{
+<script>
+    function showModal(content) {
+        // console.log("Showing modal with message:", content);
+        document.getElementById("modalContent").textContent = content;
+        document.getElementById("myModal").style.display = "block";
+    }
+
+    function redirectToPage(delayInMilliseconds) {
+        settime(delayInMilliseconds);
+    }
+
+    function settime(delayInMilliseconds) {
+        setTimeout(page, delayInMilliseconds);
+    }
+
+    function page() {
+        window.location.href = "your_orders.php";
+    }
+</script>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <!-- <span class="close" onclick="hideModal();">&times;</span> -->
+        <!-- <div class="modal-icon modal-success"><i class="fa-solid fa-badge-check fa-2xs"></i></div> -->
+
+        <p id="modalContent">Modal Content</p>
+    </div>
+</div>
+
+<?php
+
+// function function_alert()
+// {
 
 
-    echo "<script>alert('Thank you. Your Order has been placed!');</script>";
-    echo "<script>window.location.replace('your_orders.php');</script>";
-}
+//     echo "<script>alert('Thank you. Your Order has been placed!');</script>";
+//     echo "<script>window.location.replace('your_orders.php');</script>";
+// }
 
 if (empty($_SESSION["user_id"])) {
     header('location:login.php');
@@ -26,9 +58,9 @@ if (empty($_SESSION["user_id"])) {
 
         if ($_POST['submit']) {
             $session = $_SESSION["user_id"];
-            $user = mysqli_query($db, "select balance,pin from users where u_id='$session' ");
+            $user = mysqli_query($db, "select balance from users where u_id='$session' ");
             $rows = mysqli_fetch_array($user);
-            if ((($rows["balance"] - $item_total) >= 0) && ($rows["pin"] == $_POST['pin'])) {
+            if ((($rows["balance"] - $item_total) >= 0)) {
                 $bal = $rows["balance"] - $item_total;
                 $SQL = "UPDATE users SET balance=$bal WHERE u_id='" . $_SESSION["user_id"] . "'";
                 mysqli_query($db, $SQL);
@@ -40,9 +72,8 @@ if (empty($_SESSION["user_id"])) {
                 unset($item["quantity"]);
                 unset($item["price"]);
                 $success = "Thank you. Your order has been placed!";
-                function_alert();
-            } else if ($rows["pin"] != $_POST['pin']) {
-                echo "<script>alert('wrong pin');</script>";
+                // showModal($success);
+                echo '<script>showModal("' . $success . '"); redirectToPage(1000);</script>';
             } else {
                 echo "<script>alert('Insufficient Balance');</script>";
             }
@@ -92,6 +123,63 @@ if (empty($_SESSION["user_id"])) {
         }
 
     </style> -->
+
+        <style>
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0, 0, 0, 0.6);
+            }
+
+            .modal-content {
+                background-color: #f9f9f9;
+                margin: 10% auto;
+                padding: 20px;
+                border: 1px solid #ccc;
+                width: 80%;
+                max-width: 400px;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            }
+
+            .modal-content p {
+                margin: 0;
+                font-size: 18px;
+                line-height: 1.5;
+                color: #333;
+            }
+
+            .modal-content p:first-of-type {
+                margin-bottom: 20px;
+            }
+
+            .modal-content p:last-of-type {
+                text-align: center;
+            }
+
+            .modal-content p:last-of-type a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+            .modal-content p:last-of-type a:hover {
+                text-decoration: underline;
+            }
+
+            .nav-item.dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-item:hover {
+                background-color: #abcdef;
+            }
+        </style>
     </head>
 
     <body>
@@ -107,6 +195,19 @@ if (empty($_SESSION["user_id"])) {
                                 <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
                                 <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Categories <span class="sr-only"></span></a> </li>
                                 <li class="nav-item"> <a class="nav-link active" href="edit_profile.php">Profile <span class="sr-only"></span></a> </li>
+                                <!-- <li class="nav-item"> <a class="nav-link active" href="">About <span class="sr-only"></span></a> </li> -->
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
+                                        About
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#">Tribals</a>
+                                        <a class="dropdown-item" href="#">Products</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Developers</a>
+                                    </div>
+                                </li>
 
                                 <?php
                                 if (empty($_SESSION["user_id"])) {
@@ -139,7 +240,7 @@ if (empty($_SESSION["user_id"])) {
                 <div class="container">
 
                     <span style="color:green;">
-                        <?php echo $success; ?>
+                        <?php echo '<script>showModal($success); redirectToPage(1000);</script>' ?>
                     </span>
 
                 </div>
@@ -188,7 +289,7 @@ if (empty($_SESSION["user_id"])) {
                                                     <hr style="width:100%;text-align:left;margin-left:0">
                                                     <li>
                                                         <label for="radioStacked1" class="custom-control custom-radio  m-b-20">
-                                                            <input name="Amrita wallet" id="radioStacked1" checked value="Amrita wallet" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">E-Wallet</span>
+                                                            <input name="Amrita wallet" id="radioStacked1" checked value="Amrita wallet" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Cash on Delivery (COD)</span>
                                                         </label>
                                                     </li>
                                                     <div class="cart-totals-fields">
@@ -215,18 +316,19 @@ if (empty($_SESSION["user_id"])) {
                                             </li> -->
                                                 </ul>
 
-                                                <form class="form-horizontal" role="form" action="" method="post" id="myForm">
+                                                <!-- <form class="form-horizontal" role="form" action="" method="post" id="myForm">
                                                     <div class="col-md-4">
                                                         <label class="control-label">E-Wallet PIN:</label>
                                                         <input class="form-control" type="password" value="****" max=4 name="pin" required>
                                                     </div>
-                                                </form>
+                                                </form> -->
                                                 <br>
                                                 <br>
                                                 <br>
                                                 <br>
                                                 <p class="text-xs-center"> <input type="submit" onclick="return confirm('Do you want to confirm the order?');" name="submit" class="btn btn-success btn-block" value="Order Now"> </p>
                                             </div>
+
                                 </form>
                             </div>
                         </div>
