@@ -217,7 +217,7 @@ if (isset($_POST['submit'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="#">
+  <link rel="icon" type="image/x-icon" href="images/tribes2.ico">
   <title>Edit</title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -487,7 +487,7 @@ if (isset($_POST['submit'])) {
       <nav class="navbar navbar-dark">
         <div class="container">
           <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#mainNavbarCollapse">&#9776;</button>
-          <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/icn.png" alt=""> </a>
+          <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/tribes.ico" width="100" height="40" alt=""> </a>
           <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
             <ul class="nav navbar-nav">
               <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
