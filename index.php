@@ -24,6 +24,10 @@ session_start();
 
 
     <style>
+        ul li a:visited {
+            text-decoration: none;
+        }
+
         .nav-item.dropdown:hover .dropdown-menu {
             display: block;
         }
@@ -70,6 +74,11 @@ session_start();
         .hero-inner {
             position: relative;
             /* This ensures the text is displayed above the overlay */
+        }
+
+        .container .bottom-footer .row{
+            display: flex;
+            justify-content: space-between;
         }
     </style>
 </head>
@@ -393,49 +402,59 @@ session_start();
         </div>
     </section>
 
-
     <footer class="footer">
         <div class="container">
-
-
             <div class="bottom-footer">
                 <div class="row">
-                    <!-- <div class="col-xs-12 col-sm-3 payment-options color-gray">
-                            <h5>Payment Options</h5>
-                            <ul>
-                                <li>
-                                    <a href="#"> <img src="images/paypal.png" alt="Paypal"> </a>
-                                </li>
-                                <li>
-                                    <a href="#"> <img src="images/mastercard.png" alt="Mastercard"> </a>
-                                </li>
-                                <li>
-                                    <a href="#"> <img src="images/maestro.png" alt="Maestro"> </a>
-                                </li>
-                                <li>
-                                    <a href="#"> <img src="images/stripe.png" alt="Stripe"> </a>
-                                </li>
-                                <li>
-                                    <a href="#"> <img src="images/bitcoin.png" alt="Bitcoin"> </a>
-                                </li>
+                    <div class="col-sm-2 col-xs-12 order-first text-center">
+                        <a href="" target="_blank"><img src="images/masinagudi.jpg" class="payment-options color-gray" style="width: 250px; height: 150px; margin-left: -75px;"></a>
+                    </div>
+                    <div class="col-sm-3 col-xs-12">
+                        <div class="address color-gray">
+                            <h5>Address</h5>
+                            <p>Masinagudi Village, Tribal Cooperative Society building, Near Ooty Main Town, PIN: 643223</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-xs-12">
+                        <div class="social-links color-gray">
+                            <h5>Keep Connected</h5>
+                            <ul style="list-style-type: disc; list-style-position: inside; line-height: 35px;">
+                                <li type="none"><a href="#" class="fa fa-facebook"> Like us on Facebbok</a></li>
+                                <li type="none"><a href="#" class="fa fa-twitter"> Follow us on Twitter</a></li>
+                                <li type="none"><a href="#" class="fa fa-instagram"> Follow us on Instagram</a></li>
+                                <li type="none"><a href="#" class="fa fa-linkedin"> Follow us on Linkedin</a></li>
+                                <li type="none"><a href="#" class="fa fa-youtube"> Follow us on YouTube</a></li>
                             </ul>
-                        </div> -->
-                    <a href="" target="_blank"><img src="images/masinagudi.jpg" class="col-xs-12 col-sm-3 payment-options color-gray"></a>
-
-                    <div class="col-xs-12 col-sm-4 address color-gray">
-                        <h5>Address</h5>
-                        <p>Masinagudi Village, Tribal Cooperative Society building, Near Ooty Main Town, PIN: 643223</p>
+                        </div>
                     </div>
-                    <div class="col-xs-12 col-sm-5 additional-info color-gray">
-                        <h5>Additional Information</h5>
-                        <!-- <p>Join thousands of other restaurants who benefit from having partnered with us.</p> -->
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aliquam quam consequuntur quasi deserunt debitis, similique maiores repudiandae laborum id nulla, veritatis magni incidunt mollitia voluptatum? Perspiciatis pariatur molestiae sunt.</p>
+                    <div class="col-sm-3 col-xs-12">
+                        <div class="support color-gray">
+                            <h5>Support</h5>
+                            <p style="line-height: 35px; color: #bbbbbb;">If you have any questions or you need our help,</p>
+                            <p style="line-height: 0px; color: #bbbbbb;">you can contact us through our</p>
+                            <p style="line-height: 40px;"><a href="#"><input type="button" value="SUPPORT SITE" style="background-color: #303036; border: 1; border-color: white; color: white; line-height: 25px;"></a></p>
+                        </div>
                     </div>
+                    <div class="col-sm-2 col-xs-12 text-center">
+                        <div class="quick link color-gray">
+                            <h5>Quick links</h5>
+                            <ul style="list-style-type: disc; list-style-position: inside; line-height: 35px;">
+                                <li type="none"><a href="#">FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- <div class="col-sm-5 col-xs-12">
+                        <div class="additional-info color-gray">
+                            <h5>Additional Information</h5>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aliquam quam consequuntur quasi deserunt debitis, similique maiores repudiandae laborum id nulla, veritatis magni incidunt mollitia voluptatum? Perspiciatis pariatur molestiae sunt.</p>
+                        </div>
+                    </div> -->
                 </div>
             </div>
-
         </div>
     </footer>
+
+
 
 
 
