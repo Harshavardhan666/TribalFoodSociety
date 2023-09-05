@@ -98,7 +98,7 @@ session_start();
              <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="all_menu.php">All Products</a></li>
-                        <li><a href="add_foodCat.php">Add Product Sub-Category</a></li>
+                        <li><a href="add_foodCat.php">Add Product Category</a></li>
                         <li><a href="add_menu.php">Add Product</a></li>
                       
                         
@@ -132,13 +132,13 @@ session_start();
                                     <table id="myTable" class="table table-bordered table-striped table-hover">
                                     <thead class="thead-dark">
                                             <tr style="text-align: center;">
-                                                <th>Username</th>
+                                                <!-- <th>Username</th> -->
                                                 <th>FirstName</th>
                                                 <th>LastName</th>
                                                 <th>Email</th>
                                                 <th>Phone</th>
 												<!-- <th>Address</th>												 -->
-                                                 <th>Balance</th>
+                                                 <!-- <th>Balance</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -159,12 +159,13 @@ session_start();
 																					
 																				
 																				
-																					echo ' <tr  style="text-align:center;"><td>'.$rows['username'].'</td>
+																					echo ' <tr  style="text-align:center;">
+                                                                                                
 																								<td>'.$rows['f_name'].'</td>
 																								<td>'.$rows['l_name'].'</td>
 																								<td>'.$rows['email'].'</td>
 																								<td>'.$rows['phone'].'</td>
-                                                                                                <td  style="text-align:center;">'.$rows['balance'].'</td></tr>';
+                                                                                                </tr>';
 																		}	
 														}
 											?>

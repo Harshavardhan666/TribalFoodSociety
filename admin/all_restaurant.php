@@ -100,7 +100,7 @@ session_start();
                      <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Products</span></a>
                             <ul aria-expanded="false" class="collapse">
 								<li><a href="all_menu.php">All Products</a></li>
-                                <li><a href="add_foodCat.php">Add Product Sub-Category</a></li>
+                                <li><a href="add_foodCat.php">Add Product Category</a></li>
 								<li><a href="add_menu.php">Add Product</a></li>
                               
                                 
@@ -126,12 +126,6 @@ session_start();
          
                 <div class="row">
                     <div class="col-12">
-                        
-                       
-                      
-                       
-						
-						
                     <div class="col-lg-12">
                         <div class="card card-outline-primary">
                             <div class="card-header">
@@ -148,7 +142,7 @@ session_start();
                                                 <!-- <th>Open Hrs</th> -->
                                                 <!-- <th>Close Hrs</th> -->
 												<!-- <th>Open Days</th> -->
-												  <th>Landmark</th>
+												  <th>Description</th>
 												  <th>Image</th>
 												   <th>Action</th>  
                                             </tr>
@@ -176,17 +170,11 @@ session_start();
 																				
 																					echo ' <tr  style="text-align:center;">
 																								<td>'.$rows['title'].'</td>
-																								
-																								
-																							
-																								
 																								<td>'.$rows['address'].'</td>
 																								
 																								<td><div class="col-md-3 col-lg-8 m-b-10">
 																								<center><img src="Res_img/'.$rows['image'].'" class="img-responsive radius"  style="min-width:150px;min-height:100px;"/></center>
 																								</div></td>
-																								
-																								
 																									 <td><a href="delete_restaurant.php?res_del='.$rows['rs_id'].'" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i></a> 
 																									 <a href="update_restaurant.php?res_upd='.$rows['rs_id'].'" class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fa fa-edit"></i></a>
 																									</td></tr>';

@@ -17,7 +17,7 @@ if(isset($_POST['submit']))
 		  
 		
 		
-		if(empty($_POST['c_name'])||empty($_POST['res_name'])||$_POST['o_hr']==''||$_POST['c_hr']==''||$_POST['o_days']==''||$_POST['address']=='')
+		if(empty($_POST['res_name'])||$_POST['address']=='')
 		{	
 											$error = 	'<div class="alert alert-danger alert-dismissible fade show">
 																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -201,7 +201,7 @@ if(isset($_POST['submit']))
                      <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Products</span></a>
                             <ul aria-expanded="false" class="collapse">
 								<li><a href="all_menu.php">All Products</a></li>
-                                <li><a href="add_foodCat.php">Add Product Sub-Category</a></li>
+                                <li><a href="add_foodCat.php">Add Product Category</a></li>
 								<li><a href="add_menu.php">Add Product</a></li>
                               
                                 
@@ -250,7 +250,12 @@ if(isset($_POST['submit']))
                                                     <input type="text" name="res_name" class="form-control">
                                                    </div>
                                             </div>
-                                  
+                                            <div class="col-md-6">
+                                                <div class="form-group has-danger">
+                                                    <label class="control-label">Image</label>
+                                                    <input type="file" name="file"  id="lastName" class="form-control form-control-danger" placeholder="12n">
+                                                    </div>
+                                            </div>
                                             <!-- <div class="col-md-6">
                                                 <div class="form-group has-danger">
                                                     <label class="control-label">Bussiness E-mail</label>
@@ -277,71 +282,7 @@ if(isset($_POST['submit']))
                                        
                                         </div> -->
                                  
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label">Open Hours</label>
-                                                    <select name="o_hr" class="form-control custom-select" data-placeholder="Choose a Category" >
-                                                     <option>--Select your Hours--</option>
-                                                        <option value="6am">6am</option>
-                                                        <option value="7am">7am</option> 
-														<option value="8am">8am</option>
-														<option value="9am">9am</option>
-														<option value="10am">10am</option>
-														<option value="11am">11am</option>
-                                                        <option value="12pm">12pm</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        
-                                             <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label">Close Hours</label>
-                                                    <select name="c_hr" class="form-control custom-select" data-placeholder="Choose a Category" >
-                                                     <option>--Select your Hours--</option>
-                                                        <option value="3pm">3pm</option>
-                                                        <option value="4pm">4pm</option> 
-														<option value="5pm">5pm</option>
-														<option value="6pm">6pm</option>
-														<option value="7pm">7pm</option>
-														<option value="8pm">8pm</option>
-                                                        <option value="9pm">9pm</option>
-                                                        <option value="10pm">10pm</option>
-                                                        <option value="11pm">11pm</option>
-                                                        <option value="12am">12am</option>
-                                                        <option value="1am">1am</option>
-                                                        <option value="2am">2am</option>
-                                                        <option value="3am">3am</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-											
-											 <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label">Open Days</label>
-                                                    <select name="o_days" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
-                                                        <option>--Select your Days--</option>
-                                                        <option value="All Days">All Days</option>
-                                                        <option value="Mon-Wed">Mon-Wed</option> 
-														<option value="Mon-Thu">Mon-Thu</option>
-														<option value="Mon-Fri">Mon-Fri</option>
-														<option value="Mon-Sat">Mon-Sat</option>
-														<option value="24hr-x7">24hr-x7</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-											
-											
-											<div class="col-md-6">
-                                                <div class="form-group has-danger">
-                                                    <label class="control-label">Image</label>
-                                                    <input type="file" name="file"  id="lastName" class="form-control form-control-danger" placeholder="12n">
-                                                    </div>
-                                            </div>
-                                 
-											
-											
-											
+                                        <!-- <div class="row">
 											 <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="control-label">Select Category</label>
@@ -358,12 +299,10 @@ if(isset($_POST['submit']))
 													 </select>
                                                 </div>
                                             </div>
-											
-											
-											
-                                        </div>
+
+                                        </div> -->
                         
-                                        <h3 class="box-title m-t-40">Stall Landmark</h3>
+                                        <h3 class="box-title m-t-10">Description</h3>
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-12 ">

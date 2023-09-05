@@ -11,12 +11,6 @@ session_start();
 if(isset($_POST['submit']))          
 {
 	
-			
-		
-			
-		  
-		
-		
 		if(empty($_POST['d_name'])||empty($_POST['about'])||$_POST['price']==''||$_POST['res_name']==''||$_POST['food_cat']==''||$_POST['calories']=='')
 		{	
 											$error = 	'<div class="alert alert-danger alert-dismissible fade show">
@@ -85,8 +79,7 @@ if(isset($_POST['submit']))
 																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 																<strong>invalid extension!</strong>png, jpg, jpeg, Gif are accepted.
 															</div>';
-						
-	   
+
 						}               
 	   
 	   
@@ -201,7 +194,7 @@ if(isset($_POST['submit']))
                      <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Products</span></a>
                             <ul aria-expanded="false" class="collapse">
 								<li><a href="all_menu.php">All Products</a></li>
-                                <li><a href="add_foodCat.php">Add Product Sub-Category</a></li>
+                                <li><a href="add_foodCat.php">Add Product Category</a></li>
 								<li><a href="add_menu.php">Add Product</a></li>
                               
                                 
