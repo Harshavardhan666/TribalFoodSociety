@@ -242,7 +242,7 @@ session_start();
                 $query_res = mysqli_query($db, "select * from dishes LIMIT 6");
                 while ($r = mysqli_fetch_array($query_res)) {
                     $start_position = 0;
-                    $length = 95;
+                    $length = 80;
                     $suffix = "...";
 
                     if (strlen($r['slogan']) > ($length - 3)) {
