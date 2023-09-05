@@ -58,7 +58,7 @@ if(isset($_POST['submit']))
 												
 												$res_name=$_POST['res_name'];
 				                                 
-												$sql = "INSERT INTO restaurant(c_id,title,o_hr,c_hr,o_days,address,image) VALUE('".$_POST['c_name']."','".$res_name."','".$_POST['o_hr']."','".$_POST['c_hr']."','".$_POST['o_days']."','".$_POST['address']."','".$fnew."')";  // store the submited data ino the database :images
+												$sql = "INSERT INTO restaurant(title,address,image) VALUE('".$res_name."','".$_POST['address']."','".$fnew."')";  // store the submited data ino the database :images
 												mysqli_query($db, $sql); 
 												move_uploaded_file($temp, $store);
 			  
