@@ -362,12 +362,12 @@ session_start();
                                 <input class="form-control" type="text" value="<?php echo $rows["username"]; ?>" readonly>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="col-md-3 control-label">Balance:</label>
                             <div class="col-md-8">
                                 <input class="form-control" type="number" value="<?php echo $rows["balance"]; ?>" readonly>
                             </div>
-                        </div>
+                        </div> -->
                         <div id="passwordFields" style="display: none;">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Current Password:</label>

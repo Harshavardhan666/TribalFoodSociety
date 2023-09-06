@@ -39,9 +39,6 @@ session_start();
                 <div class="navbar-collapse">
             
                     <ul class="navbar-nav mr-auto mt-md-0">
-              
-                        
-                     
                        
                     </ul>Admin
             
@@ -63,8 +60,6 @@ session_start();
                                 </ul>
                             </div>
                         </li>
-         
-               
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted" style="padding: 0.5rem 0.5rem" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/bookingSystem/user-icn.png" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
@@ -133,7 +128,7 @@ session_start();
                                     <table id="myTable" class="table table-bordered table-striped table-hover">
                                     <thead class="thead-dark">
                                             <tr style="text-align: center;">
-                                                <!-- <th>Username</th> -->
+                                                <th>Username</th>
                                                 <th>FirstName</th>
                                                 <th>LastName</th>
                                                 <th>Email</th>
@@ -162,6 +157,7 @@ session_start();
 																				
 																					echo ' <tr  style="text-align:center;">
                                                                                                 
+                                                                                                <td>'.$rows['username'].'</td>
 																								<td>'.$rows['f_name'].'</td>
 																								<td>'.$rows['l_name'].'</td>
 																								<td>'.$rows['email'].'</td>
