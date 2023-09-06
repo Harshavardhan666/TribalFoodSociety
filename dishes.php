@@ -262,8 +262,8 @@ include_once 'product-action.php';
 
                         <div class="widget-body">
                             <div class="price-wrap text-xs-center">
-                                <p style="margin-bottom: 0px;">TOTAL CALORIES <br>of items in this cart</p>
-                                <h3 class="value"><strong><?php echo $total_cal . " kcal"; ?></strong></h3>
+                                <!-- <p style="margin-bottom: 0px;">TOTAL CALORIES <br>of items in this cart</p> -->
+                                <h3 class="value"></h3>
                                 <br>
                                 <p style="margin-bottom: 0px;">TOTAL BIll</p>
                                 <h3 class="value"><strong><?php echo "Rs " . $item_total; ?></strong></h3>
@@ -344,7 +344,7 @@ include_once 'product-action.php';
                                                                 </div>
 
                                                                 <div class="rest-descr">
-                                                                    <h6><a href="#"><?php echo $product['title']; ?> </a> (<span><?php echo $product['calories']; ?>Kcal)</span></h6>
+                                                                    <h6><a href="#"><?php echo $product['title']; ?> </a> </h6>
                                                                     <p> <?php echo $product['slogan']; ?></p>
                                                                 </div>
 

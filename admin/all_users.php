@@ -32,7 +32,8 @@ session_start();
             <div class="navbar-header">
                     <a class="navbar-brand" href="dashboard.php">
                         
-                        <span><img src="images/icn.png" alt="homepage" class="dark-logo" /></span>
+                        <span><img src="images/tribes.ico" alt="homepage" class="dark-logo img-rounded"  width="75"
+                        height="45" /></span>
                     </a>
                 </div>
                 <div class="navbar-collapse">
