@@ -345,25 +345,6 @@ session_start();
                         <h4>Featured Categories</h4>
                     </div>
                 </div>
-                <!-- <div class="col-sm-8">
-                    <div class="restaurants-filter pull-right">
-                        <nav class="primary pull-left">
-                            <ul>
-                                <li><a href="#" class="selected" data-filter="*">all</a> </li>
-                                <?php
-                                /* $res = mysqli_query($db, "select * from res_category");
-                                while ($row = mysqli_fetch_array($res)) {
-                                    echo '<li><a href="#" data-filter=".' . $row['c_name'] . '"> ' . $row['c_name'] . '</a> </li>';
-                                }
-                                */
-                                ?>
-                                
-
-                            </ul>
-                        </nav>
-                    </div>
-
-                </div> -->
             </div>
 
             <div class="row">
@@ -377,8 +358,7 @@ session_start();
                         $length = 95;
                         $suffix = "...";
 
-                        $query = mysqli_query($db, "select * from res_category where c_id='" . $rows['c_id'] . "' ");
-                        $rowss = mysqli_fetch_array($query);
+                        
 
                         if (strlen($rows['address']) > ($length - 3)) {
                             $print_stat = substr(strip_tags($rows['address']), $start_position, $length) . $suffix;
@@ -386,7 +366,7 @@ session_start();
                             $print_stat = $rows['address'];
                         }
 
-                        echo ' <div class="col-xs-12 col-sm-12 col-md-6 single-restaurant all ' . $rowss['c_name'] . '">
+                        echo ' <div class="col-xs-12 col-sm-12 col-md-6 single-restaurant all">
 														<div class="restaurant-wrap">
 															<div class="row">
 																<div class="col-xs-12 col-sm-3 col-md-12 col-lg-3 text-xs-center">
