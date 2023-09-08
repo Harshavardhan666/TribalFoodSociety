@@ -184,7 +184,8 @@ td, th {
       <td><b>Status</b></td>
       <td><select name="status" required="required" >
       <option value="">Select Status</option>
-      <option value="in process">Preparing</option>
+      <option value="packing">Preparing</option>
+      <option value="packed">Packed</option>
     <option value="closed">Delivered</option>
 	 <option value="rejected">Cancelled</option>
         

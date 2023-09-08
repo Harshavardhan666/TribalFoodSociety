@@ -254,8 +254,13 @@ td, th {
                                                             <?php
                                                             $status = $row['status'];
 
-                                                            if ($status == "in process" or $status == "" or $status == "NULL") { ?>
+                                                            if ($status == "packing" or $status == "" or $status == "NULL") { ?>
                                                                 <button type="button" class="btn btn-warning"><span class="fa fa-cog fa-spin" aria-hidden="true"></span> Preparing</button>
+                                                            <?php
+                                                            }
+                                                            if ($status == "packed") {
+                                                            ?>
+                                                                <button type="button" class="btn btn-info"><span class="fa fa-shopping-bag  " aria-hidden="true"></span> Ready for pick-up</button>
                                                             <?php
                                                             }
                                                             if ($status == "closed") {

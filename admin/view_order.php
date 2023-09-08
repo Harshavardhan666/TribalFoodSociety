@@ -204,11 +204,20 @@ popUpWin = open(URLStr,'popUpWin', 'toolbar=no,location=no,directories=no,status
 																			?>
 																		   <?php 
 																			  
-																			   if($status=="in process" or $status=="" or $status=="NULL")
+																			   if($status=="packing" or $status=="" or $status=="NULL")
 																			 { ?>
-																			<td>   <center><button type="button" class="btn btn-warning"><span class="fa fa-cog fa-spin"  aria-hidden="true" ></span> Preparing</button></center></td> 
+																			<td>   <center><button type="button" class="btn btn-warning"><span class="fa fa-cog fa-spin"  aria-hidden="true" ></span> Packing</button></center></td> 
 																			<?php
 																				}
+                                                                            
+                                                                            if($status=="packed")
+                                                                            {
+																			?>
+																			<td>  <center><button type="button" class="btn btn-info" ><span  class="fa fa-shopping-bag" aria-hidden="true"></span> Ready to pick-up</button></center></td> 
+																			<?php 
+																			} 
+																			
+
 																			if($status=="closed")
 																				{
 																			?>
