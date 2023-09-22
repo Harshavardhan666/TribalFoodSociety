@@ -282,25 +282,7 @@ if(isset($_POST['submit']))
                                        
                                         </div> -->
                                  
-                                        <!-- <div class="row">
-											 <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="control-label">Select Category</label>
-													<select name="c_name" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
-                                                        <option>--Select Category--</option>
-                                                 <?php $ssql ="select * from res_category";
-													$res=mysqli_query($db, $ssql); 
-													while($row=mysqli_fetch_array($res))  
-													{
-                                                       echo' <option value="'.$row['c_id'].'">'.$row['c_name'].'</option>';;
-													}  
-                                                 
-													?> 
-													 </select>
-                                                </div>
-                                            </div>
-
-                                        </div> -->
+                                        
                         
                                         <h3 class="box-title m-t-10">Description</h3>
                                         <hr>

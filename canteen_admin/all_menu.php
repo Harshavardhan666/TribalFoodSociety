@@ -87,17 +87,17 @@ session_start();
 
         <div class="left-sidebar">
 
-                <div class="scroll-sidebar">
+            <div class="scroll-sidebar">
 
-                    <nav class="sidebar-nav">
-                        <ul id="sidebarnav">
-                            <li class="nav-devider"></li>
-                            <li class="nav-label">Home  </li>
-                            <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a>
-                            </li>
-                            <li class="nav-label">Log</li>
-                            <!-- <li> <a href="all_users.php">  <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li> -->
-                            <!-- <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Restaurant</span></a>
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-devider"></li>
+                        <li class="nav-label">Home </li>
+                        <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a>
+                        </li>
+                        <li class="nav-label">Log</li>
+                        <!-- <li> <a href="all_users.php">  <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li> -->
+                        <!-- <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Restaurant</span></a>
                             <ul aria-expanded="false" class="collapse">
 								<li><a href="all_restaurant.php">All Restaurant</a></li>
 								<li><a href="add_category.php">Add Category</a></li>
@@ -106,7 +106,7 @@ session_start();
                             </ul>
                         </li> -->
 
-                            <!-- <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span></a>
+                        <!-- <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Menu</span></a>
                             <ul aria-expanded="false" class="collapse">
 								<li><a href="all_menu.php">All Menues</a></li>
 								<li><a href="add_menu.php">Add Menu</a></li>
@@ -114,17 +114,17 @@ session_start();
                                 
                             </ul>
                         </li> -->
-                            <li> <a href="all_menu.php"><i class="fa fa-cutlery" aria-hidden="true"></i><span>All Menues</span></a></li>
-                            <li> <a href="add_menu.php"><i class="fa fa-plus" aria-hidden="true"></i><span>Add Menu</span></a></li>
-                            <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
-                            <li> <a href="reports.php"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Reports</span></a></li>
-                            <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items report</span></a></li>
-                        </ul>
-                    </nav>
-
-                </div>
+                        <li> <a href="all_menu.php"><i class="fa fa-cutlery" aria-hidden="true"></i><span>All Menues</span></a></li>
+                        <li> <a href="add_menu.php"><i class="fa fa-plus" aria-hidden="true"></i><span>Add Menu</span></a></li>
+                        <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
+                        <li> <a href="reports.php"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Reports</span></a></li>
+                        <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items report</span></a></li>
+                    </ul>
+                </nav>
 
             </div>
+
+        </div>
 
         <div class="page-wrapper">
 
@@ -139,86 +139,82 @@ session_start();
                                 </div>
 
                                 <div class="table-responsive m-t-40">
-                                <?php
-            $categories = [];
-            $query = "SELECT * FROM food_category";
-            $result = mysqli_query($db, $query);
-            if ($result) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $categories[] = $row;
-                }
-            }
+                                    <?php
+                                    $categories = [];
+                                    $query = "SELECT * FROM food_category";
+                                    $result = mysqli_query($db, $query);
+                                    if ($result) {
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            $categories[] = $row;
+                                        }
+                                    }
 
-            // Fetch dishes from the database
-            $session=$_SESSION["adm_id"];
-            $dishes = [];
-            $query = "SELECT * FROM dishes WHERE dishes.rs_id = (select rs_id from admin where adm_id='$session') ORDER by dishes.title";
-            $result = mysqli_query($db, $query);
-            if ($result) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $dishes[] = $row;
-                }
-            }
+                                    // Fetch dishes from the database
+                                    $session = $_SESSION["adm_id"];
+                                    $dishes = [];
+                                    $query = "SELECT * FROM dishes WHERE dishes.rs_id = (select rs_id from admin where adm_id='$session') ORDER by dishes.title";
+                                    $result = mysqli_query($db, $query);
+                                    if ($result) {
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            $dishes[] = $row;
+                                        }
+                                    }
 
-            // Loop through the categories
-            foreach ($categories as $category) {
-                $categoryId = $category['fc_id'];
-                $categoryTitle = $category['fc_name'];
+                                    // Loop through the categories
+                                    foreach ($categories as $category) {
+                                        $categoryId = $category['fc_id'];
+                                        $categoryTitle = $category['fc_name'];
 
-                // Output the category title
-                echo "<h2>$categoryTitle</h2>";
+                                        // Output the category title
+                                        echo "<h2>$categoryTitle</h2>";
 
-                // Filter dishes belonging to the current category
-                $categoryDishes = array_filter($dishes, function ($dish) use ($categoryId) {
-                    return $dish['fc_id'] == $categoryId;
-                });
-                if (count($categoryDishes) > 0) {
-                    // Create a table for the dishes
-                    echo '<table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">';
-                    echo "<th>Item</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Calories</th>
-                    <th>Image</th>
-                   <th>Action</th>";
+                                        // Filter dishes belonging to the current category
+                                        $categoryDishes = array_filter($dishes, function ($dish) use ($categoryId) {
+                                            return $dish['fc_id'] == $categoryId;
+                                        });
+                                        if (count($categoryDishes) > 0) {
+                                            // Create a table for the dishes
+                                            echo '<table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">';
+                                            echo "<th>Item</th>
+                                                        <th>Description</th>
+                                                        <th>Price</th>
+                                                        <th>Calories</th>
+                                                        <th>Image</th>
+                                                    <th>Action</th>";
 
-                    // Loop through the dishes and display them in the table
-                    foreach ($categoryDishes as $dish) {
-                        $dishTitle = $dish['title'];
-                        $dishPrice = $dish['price'];
+                                            // Loop through the dishes and display them in the table
+                                            foreach ($categoryDishes as $dish) {
+                                                $dishTitle = $dish['title'];
+                                                $dishPrice = $dish['price'];
 
-                        // echo "<tr><td>$dishTitle</td><td>$dishPrice</td></tr>";
-                        echo '<tr>
-                                <td>' . $dishTitle . '</td>
-                                <td>' . $dish['slogan'] . '</td>
-                                <td>Rs ' . $dishPrice . '</td>
-                                <td>' . $dish['calories'] ." kcal". '</td>
-                                
-                                
-                                <td><div class="col-md-3 col-lg-8 m-b-10">
-                                <img src="Res_img/dishes/' . $dish['img'] . '" class="img-responsive  radius" style="max-height:600px;max-width:600px;align:center;" />
-                                </div></td>
-                                
-                            
-                                        <td><a href="delete_menu.php?menu_del=' . $dish['d_id'] . '" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i></a> 
-                                        <a href="update_menu.php?menu_upd=' . $dish['d_id'] . '" class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fa fa-edit"></i></a>
-                                    </td></tr>';
-                    }
+                                                // echo "<tr><td>$dishTitle</td><td>$dishPrice</td></tr>";
+                                                echo '<tr>
+                                                        <td>' . $dishTitle . '</td>
+                                                        <td>' . $dish['slogan'] . '</td>
+                                                        <td>Rs ' . $dishPrice . '</td>
+                                                        <td>' . $dish['calories'] . " kcal" . '</td>
+                                                        <td><div class="col-md-3 col-lg-8 m-b-10">
+                                                        <img src="Res_img/dishes/' . $dish['img'] . '" class="img-responsive  radius" style="max-height:600px;max-width:600px;align:center;" />
+                                                        </div></td>
+                                                            <td><a href="delete_menu.php?menu_del=' . $dish['d_id'] . '" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i></a> 
+                                                            <a href="update_menu.php?menu_upd=' . $dish['d_id'] . '" class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fa fa-edit"></i></a>
+                                                        </td></tr>';
+                                            }
 
-                    echo "</table> <br>";
-                } else {
-                    // Display a message when there are no items in the category
-                    echo "<p>No items found in this category.</p> <br>";
-                }
-            }
-            ?>
-                                  
-                                    
-                                                                        
+                                            echo "</table> <br>";
+                                        } else {
+                                            // Display a message when there are no items in the category
+                                            echo "<p>No items found in this category.</p> <br>";
+                                        }
+                                    }
+                                    ?>
+
+
+
                                 </div>
-                          </div>
-                      </div>
-                            
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
