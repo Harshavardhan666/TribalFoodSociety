@@ -23,6 +23,13 @@ if (empty($_SESSION['user_id'])) {
         <link href="css/animsition.min.css" rel="stylesheet">
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+        <style>
+        .no-hover:hover {
+            /* Disable hover effects */
+            background-color: transparent !important; /* You can set this to any desired style */
+            /* Add any other style adjustments as needed */
+        }
+        </style>
         <style type="text/css" rel="stylesheet">
             .nav-item.dropdown:hover .dropdown-menu {
                 display: block;
@@ -220,79 +227,156 @@ td, th {
                             <div class="bg-gray">
                                 <div class="row">
 
+                                <!-- <table class="table table-bordered table-hover" >
+                                    <thead style="background: #404040; color:white;" >
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Item</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                            <th>Status</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $query_res = mysqli_query($db, "select * from users_orders where u_id='" . $_SESSION['user_id'] . "'");
+                                        $prevDate = null; // Initialize previous date
+                                        while ($row = mysqli_fetch_array($query_res)) {
+                                            $date = $row['date'];
+                                            $status = $row['status'];
+
+                                            // Check if the date is different from the previous row
+                                            if ($date != $prevDate) {
+                                                // Count how many rows have the same date and time
+                                                $rowCount = mysqli_num_rows(mysqli_query($db, "SELECT * FROM users_orders WHERE date = '$date'"));
+
+                                                // Display date with rowspan
+                                                echo '<tr>';
+                                                echo '<td rowspan="' . $rowCount . '">' . $date . '</td>';
+                                                echo '<td data-column="Item">' . $row['title'] . '</td>';
+                                                echo '<td data-column="Quantity">' . $row['quantity'] . '</td>';
+                                                echo '<td data-column="price">Rs ' . $row['price'] . '</td>';
+                                                echo '<td data-column="status">';
+
+                                                // Display status buttons
+                                                if ($status == "packing" || $status == "" || $status == "NULL") {
+                                                    echo '<button type="button" class="btn btn-warning"><span class="fa fa-cog fa-spin" aria-hidden="true"></span> Preparing</button>';
+                                                } elseif ($status == "packed") {
+                                                    echo '<button type="button" class="btn btn-info"><span class="fa fa-shopping-bag" aria-hidden="true"></span> Ready for pick-up</button>';
+                                                } elseif ($status == "closed") {
+                                                    echo '<button type="button" class="btn btn-success"><span class="fa fa-check-circle" aria-hidden="true"></span> Delivered</button>';
+                                                } elseif ($status == "rejected") {
+                                                    echo '<button type="button" class="btn btn-danger"><i class="fa fa-close"></i> Cancelled</button>';
+                                                }
+
+                                                echo '</td>';
+                                                echo '</tr>';
+                                                $prevDate = $date; // Update previous date
+                                            } else {
+                                                // For rows with the same date, only display order details without date
+                                                echo '<tr>';
+                                                echo '<td data-column="Item">' . $row['title'] . '</td>';
+                                                echo '<td data-column="Quantity">' . $row['quantity'] . '</td>';
+                                                echo '<td data-column="price">Rs ' . $row['price'] . '</td>';
+                                                echo '<td data-column="status">';
+
+                                                // Display status buttons
+                                                if ($status == "packing" || $status == "" || $status == "NULL") {
+                                                    echo '<button type="button" class="btn btn-warning"><span class="fa fa-cog fa-spin" aria-hidden="true"></span> Preparing</button>';
+                                                } elseif ($status == "packed") {
+                                                    echo '<button type="button" class="btn btn-info"><span class="fa fa-shopping-bag" aria-hidden="true"></span> Ready for pick-up</button>';
+                                                } elseif ($status == "closed") {
+                                                    echo '<button type="button" class="btn btn-success"><span class="fa fa-check-circle" aria-hidden="true"></span> Delivered</button>';
+                                                } elseif ($status == "rejected") {
+                                                    echo '<button type="button" class="btn btn-danger"><i class="fa fa-close"></i> Cancelled</button>';
+                                                }
+
+                                                echo '</td>';
+                                                echo '</tr>';
+                                            }
+                                        }
+                                        if (!mysqli_num_rows($query_res) > 0) {
+                                            echo '<tr>';
+                                            echo '<td colspan="5"><center>You have No orders Placed yet.</center></td>';
+                                            echo '</tr>';
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table> -->
+                                <div class="table-responsive">
                                     <table class="table table-bordered table-hover">
                                         <thead style="background: #404040; color:white;">
                                             <tr>
-
                                                 <th>Item</th>
                                                 <th>Quantity</th>
                                                 <th>Price</th>
                                                 <th>Status</th>
-                                                <th>Date</th>
-
-
+                                                <!-- <th>Date</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
-
-
                                             <?php
-
                                             $query_res = mysqli_query($db, "select * from users_orders where u_id='" . $_SESSION['user_id'] . "'");
+                                            $prevDate = null; // Initialize previous date
+                                            $orderCounter = 0; // Initialize order counter
+
+                                            while ($row = mysqli_fetch_array($query_res)) {
+                                                $date = $row['date'];
+                                                $status = $row['status'];
+
+                                                // Check if the date is different from the previous row
+                                                if ($date != $prevDate) {
+                                                    // Increment the order counter for each new date
+                                                    $orderCounter++;
+                                                    // Display date with order number
+                                                    echo '<tr>';
+                                                    echo '<td colspan="5"><a href="bill.php?orderID=' . $date . '" target="_blank"> Order-' . $orderCounter . ' on Date: ' . $date . '</a></td>';
+                                                    echo '</tr>';
+                                                    $prevDate = $date; // Update previous date
+                                                }
+                                                
+                                                // Display order details
+                                                echo '<tr class="no-hover">';
+                                                echo '<td data-column="Item">' . $row['title'] . '</td>';
+                                                echo '<td data-column="Quantity">' . $row['quantity'] . '</td>';
+                                                echo '<td data-column="price">Rs ' . $row['price'] . '</td>';
+                                                echo '<td data-column="status">';
+
+                                                // Display status buttons
+                                                if ($status == "packing" || $status == "" || $status == "NULL") {
+                                                    echo '<button type="button" class="btn btn-warning"><span class="fa fa-cog fa-spin" aria-hidden="true"></span> Preparing</button>';
+                                                } elseif ($status == "packed") {
+                                                    echo '<button type="button" class="btn btn-info"><span class="fa fa-shopping-bag" aria-hidden="true"></span> Ready for pick-up</button>';
+                                                } elseif ($status == "closed") {
+                                                    echo '<button type="button" class="btn btn-success"><span class="fa fa-check-circle" aria-hidden="true"></span> Delivered</button>';
+                                                } elseif ($status == "rejected") {
+                                                    echo '<button type="button" class="btn btn-danger"><i class="fa fa-close"></i> Cancelled</button>';
+                                                }
+
+                                                echo '</td>';
+                                                // Display the date as "Order-x date"
+                                                // echo '<td data-column="Date">Order-' . $orderCounter . ' date: ' . $row['date'] . '</td>';
+                                                echo '</tr>';
+                                            }
                                             if (!mysqli_num_rows($query_res) > 0) {
-                                                echo '<td colspan="6"><center>You have No orders Placed yet. </center></td>';
-                                            } else {
-
-                                                while ($row = mysqli_fetch_array($query_res)) {
-
+                                                echo '<tr>';
+                                                echo '<td colspan="5"><center>You have No orders Placed yet.</center></td>';
+                                                echo '</tr>';
+                                            }
+                                            
                                             ?>
-                                                    <tr>
-                                                        <td data-column="Item"> <?php echo $row['title']; ?></td>
-                                                        <td data-column="Quantity"> <?php echo $row['quantity']; ?></td>
-                                                        <td data-column="price">Rs <?php echo $row['price']; ?></td>
-                                                        <td data-column="status">
-                                                            <?php
-                                                            $status = $row['status'];
-
-                                                            if ($status == "packing" or $status == "" or $status == "NULL") { ?>
-                                                                <button type="button" class="btn btn-warning"><span class="fa fa-cog fa-spin" aria-hidden="true"></span> Preparing</button>
-                                                            <?php
-                                                            }
-                                                            if ($status == "packed") {
-                                                            ?>
-                                                                <button type="button" class="btn btn-info"><span class="fa fa-shopping-bag  " aria-hidden="true"></span> Ready for pick-up</button>
-                                                            <?php
-                                                            }
-                                                            if ($status == "closed") {
-                                                            ?>
-                                                                <button type="button" class="btn btn-success"><span class="fa fa-check-circle" aria-hidden="true"></span> Delivered</button>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                            <?php
-                                                            if ($status == "rejected") {
-                                                            ?>
-                                                                <button type="button" class="btn btn-danger"> <i class="fa fa-close"></i> Cancelled</button>
-                                                            <?php
-                                                            }
-                                                            ?>
-
-
-                                                        </td>
-                                                        <td data-column="Date"> <?php echo $row['date']; ?></td>
-
-
-                                                    </tr>
-
-
-                                            <?php }
-                                            } ?>
-
-
-
-
                                         </tbody>
                                     </table>
+                                </div>
+
+
+
+
+
+
+
+
 
 
 
