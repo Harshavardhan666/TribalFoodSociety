@@ -191,7 +191,7 @@ else
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle"> 
-                                    <span><i class="fa fa-spinner f-s-40" aria-hidden="true"></i></span>
+                                    <span><i class="fa fa-shopping-bag f-s-35" aria-hidden="true"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2><?php $sql="select * from users_orders WHERE status = 'packed' ";
