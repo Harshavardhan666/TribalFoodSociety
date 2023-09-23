@@ -6,6 +6,10 @@ include("../connection/connect.php");
 error_reporting(0);
 session_start();
 
+if (isset($_GET['not_poss'])) {
+    echo "<script>alert('Delete is not possible!');</script>";
+}
+
 
 if(isset($_POST['submit'] ))
 {
