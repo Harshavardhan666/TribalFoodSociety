@@ -5,28 +5,94 @@ include("../connection/connect.php");
 error_reporting(0);
 session_start();
 
+if (!(isset($_GET['dept']))) {
+    header('location:index.php');
+}
 
 
 
 if(isset($_POST['submit']))          
 {
 	
-		if($_POST['res_name']=='')
+		if(empty($_POST['d_name'])||empty($_POST['about'])||$_POST['price']==''||$_POST['food_cat']=='')
 		{	
-            $error = 	'<div class="alert alert-danger alert-dismissible fade show">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <strong>All fields Must be Fillup!</strong>
-                            </div>';
+											$error = 	'<div class="alert alert-danger alert-dismissible fade show">
+																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																<strong>All fields Must be Fillup!</strong>
+															</div>';
 									
 		
 								
 		}
 	else
 		{
-            header("Location: add_menu_step2.php?dept=$_POST[res_name] ");
+		
+				$fname = $_FILES['file']['name'];
+								$temp = $_FILES['file']['tmp_name'];
+								$fsize = $_FILES['file']['size'];
+								$extension = explode('.',$fname);
+								$extension = strtolower(end($extension));  
+								$fnew = uniqid().'.'.$extension;
+   
+								$store = "Res_img/dishes/".basename($fnew);                    
+	
+					if($extension == 'jpg'||$extension == 'png'||$extension == 'gif' || $extension == 'jpeg' )
+					{        
+									if($fsize>=1000000)
+										{
+		
+		
+												$error = 	'<div class="alert alert-danger alert-dismissible fade show">
+																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																<strong>Max Image Size is 1024kb!</strong> Try different Image.
+															</div>';
+	   
+										}
+		
+									else
+										{
+												
+												
+												
+                                                // $dept=$_GET['dept'];
+												$sql = "INSERT INTO dishes(rs_id,title,slogan,price,img,fc_id) VALUE('".$_GET['dept']."','".$_POST['d_name']."','".$_POST['about']."','".$_POST['price']."','".$fnew."','".$_POST['food_cat']."')"; 
+												mysqli_query($db, $sql); 
+												move_uploaded_file($temp, $store);
+			  
+													$success = 	'<div class="alert alert-success alert-dismissible fade show">
+																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																 New Dish Added Successfully.
+                                                            
+															</div>';
+                                                header("Location: all_menu.php ");
+                                                    
+                
+	
+										}
+					}
+					elseif($extension == '')
+					{
+						$error = 	'<div class="alert alert-danger alert-dismissible fade show">
+																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																<strong>select image</strong>
+															</div>';
+					}
+					else{
+					
+											$error = 	'<div class="alert alert-danger alert-dismissible fade show">
+																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																<strong>invalid extension!</strong>png, jpg, jpeg, Gif are accepted.
+															</div>';
 
-		}
+						}               
+	   
+	   
+	   }
+
+
+
 }
+
 
 ?>
 <head>
@@ -119,11 +185,11 @@ if(isset($_POST['submit']))
                                 
                             </ul>
                         </li>
-                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Items</span></a>
+                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Products</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_menu.php">All Categories</a></li>
-                                <li><a href="add_foodCat.php">Add Item Category</a></li>
-								<li><a href="add_menu.php">Add Item</a></li>
+								<li><a href="all_menu.php">All Products</a></li>
+                                <li><a href="add_foodCat.php">Add Product Category</a></li>
+								<li><a href="add_menu.php">Add Product</a></li>
                               
                                 
                             </ul>
@@ -164,9 +230,52 @@ if(isset($_POST['submit']))
                             <div class="card-body">
                                 <form action='' method='post'  enctype="multipart/form-data">
                                     <div class="form-body">
+                                       
                                         <hr>
-                                        <div class="row">
+                                        <div class="row p-t-20">
                                             <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Product Name</label>
+                                                    <input type="text" name="d_name" class="form-control" >
+                                                   </div>
+                                            </div>
+                                      
+                                            <div class="col-md-6">
+                                                <div class="form-group has-danger">
+                                                    <label class="control-label">Description</label>
+                                                    <input type="text" name="about" class="form-control form-control-danger" minlength="95" >
+                                                    </div>
+                                            </div>
+                                     
+                                        </div>
+                                  
+                                        <div class="row p-t-20">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Price </label>
+                                                    <input type="text" name="price" class="form-control" placeholder="Rs">
+                                                   </div>
+                                            </div>
+                                   
+                                            <div class="col-md-6">
+                                                <div class="form-group has-danger">
+                                                    <label class="control-label">Image</label>
+                                                    <input type="file" name="file"  id="lastName" class="form-control form-control-danger" placeholder="12n">
+                                                    </div>
+                                            </div>
+
+                                            <!-- <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Calories </label>
+                                                    <input type="text" name="calories" class="form-control" placeholder="Kcal">
+                                                   </div>
+                                            </div> -->
+                                        </div>
+                              
+										
+                                  
+                                        <div class="row">
+                                            <!-- <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="control-label">Select Department</label>
                                                         <select name="res_name" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
@@ -181,18 +290,36 @@ if(isset($_POST['submit']))
                                                         ?> 
                                                         </select>
                                                     </div>
-                                            </div>
-                                        </div>
+                                            </div> -->
 
-                                        <div class="form-actions">
-                                        <input type="submit" name="submit" class="btn btn-primary" value="Next"> 
-                                        <a href="add_menu.php" class="btn btn-inverse">Cancel</a>
-                                    </div>
-                                    </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Select Product Sub-Category</label>
+													<select name="food_cat" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
+                                                        <option>--Select Sub-Category--</option>
+                                                 <?php 
+                                                 $dept=$_GET['dept'];
+                                                 $ssql ="select * from food_category WHERE rs_id = '$dept'";
+													$res=mysqli_query($db, $ssql); 
+													while($row=mysqli_fetch_array($res))  
+													{
+                                                       echo' <option value="'.$row['fc_id'].'">'.$row['fc_name'].'</option>';;
+													}  
+                                                 
+													?> 
+													 </select>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
                                      
                                         </div>
                                     </div>
-                                    
+                                    <div class="form-actions">
+                                        <input type="submit" name="submit" class="btn btn-primary" value="Save"> 
+                                        <a href="add_menu.php" class="btn btn-inverse">Cancel</a>
+                                    </div>
                                 </form>
                             </div>
                             
