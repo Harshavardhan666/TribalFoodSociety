@@ -26,7 +26,7 @@ include_once 'product-action.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/input-spinner/dist/input-spinner.min.css">
     <script src="https://cdn.jsdelivr.net/npm/input-spinner/dist/input-spinner.min.js"></script>
     <style>
-        .collapsible {
+         .collapsible {
             background-color: #FAFAF8;
             color: white;
             cursor: pointer;
@@ -36,6 +36,13 @@ include_once 'product-action.php';
             outline: none;
             font-size: 15px;
             color: #25282B;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+            /* Adjust the color as needed */
         }
 
         /* .collapsible .row {
@@ -53,16 +60,29 @@ include_once 'product-action.php';
         }
 
         .menu-btn {
-            background-color: #040008;
-            color: white;
-            padding: 12px;
-            font-size: 20px;
-            font-weight: bolder;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #007BFF;
+            /* Button background color */
+            color: #fff;
+            /* Button text color */
+            padding: 10px 20px;
             border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            background-color: #0056b3;
+            /* Hover background color */
         }
 
         .dropdown-menu {
+            position: inherit;
+            display: inline-block;
+        }
+
+        .dropdown-menu1 {
             position: relative;
             display: inline-block;
         }
@@ -70,25 +90,30 @@ include_once 'product-action.php';
         .menu-content {
             display: none;
             position: absolute;
-            background-color: #F1F1F1;
+            background-color: #fff;
             min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
+            text-align: left;
         }
 
         .links-hidden {
-            display: inline-block;
-            color: BLACK;
+            display: block;
             padding: 12px 16px;
             text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
+            color: #333;
+            transition: background-color 0.3s ease;
         }
 
         .links-hidden {
             display: block;
         }
 
-        .links-hidden:hover,
+        .links-hidden:hover {
+            background-color: #f2f2f2;
+            /* Hover background color */
+        }
+
         /* .links:hover {
             background-color: black;
             color: white;
@@ -98,17 +123,30 @@ include_once 'product-action.php';
             display: block;
         }
 
-        .dropdown-menu:hover .menu-btn {
-            background-color: #669999;
+        .dropdown-menu1:hover .menu-content {
+            display: block;
         }
 
-        .nav-item.dropdown:hover .dropdown-menu {
+        /* .dropdown-menu:hover .menu-btn {
+            background-color: #669999;
+        } */
+
+        #nav:hover #dm {
             display: block;
+        }
+
+        #dm {
+            display: none;
         }
 
         .dropdown-item:hover {
             background-color: #abcdef;
         }
+
+        /* .dropdown-menu1:hover+.content-below {
+            margin-top: 20px;
+        } */
+
     </style>
 </head>
 
@@ -289,17 +327,16 @@ include_once 'product-action.php';
                 <div class="col-md-8">
                     <div class="row">
                         <h1>Items</h1>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu1">
                             <button class="menu-btn">Sort by < </button>
                                     <div class="menu-content">
                                         <?php echo '<a class="links-hidden" href="dishes.php?res_id=' . $rows['rs_id'] . '">Dish Name</a>'; ?>
-                                        <?php echo '<a class="links-hidden" href="dishes_sortby_calories.php?res_id=' . $rows['rs_id'] . '">Calories</a>'; ?>
 
                                         <!-- <a class="links-hidden" href="#">Visit Us</a>
                                         <a class="links-hidden" href="#">About Us</a> -->
                                     </div>
                         </div>
-                    </div>
+                    </div><br>
 
 
 

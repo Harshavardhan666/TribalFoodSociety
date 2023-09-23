@@ -115,11 +115,11 @@ if(isset($_POST['submit'] ))
                                 
                             </ul>
                         </li>
-                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Products</span></a>
+                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Items</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_menu.php">All Products</a></li>
-                                <li><a href="add_foodCat.php">Add Product Category</a></li>
-								<li><a href="add_menu.php">Add Product</a></li>
+								<li><a href="all_menu.php">All Categories</a></li>
+                                <li><a href="add_foodCat.php">Add Item Category</a></li>
+								<li><a href="add_menu.php">Add Item</a></li>
                               
                                 
                             </ul>
@@ -162,7 +162,7 @@ if(isset($_POST['submit'] ))
                             <div class="col-lg-12">
                         <div class="card card-outline-primary">
                             <div class="card-header">
-                                <h4 class="m-b-0 text-white">Add Product Category</h4>
+                                <h4 class="m-b-0 text-white">Add Item Category</h4>
                             </div>
                                 <form action='' method='post' >
                                     <div class="form-body">
@@ -241,12 +241,25 @@ if(isset($_POST['submit'] ))
 														
 																					echo ' <tr  style="text-align:center;">
 																								<td>'.$rows['fc_name'].'</td>
+                                                                                                <td>';
+
+                                                                                                $rs_id = $rows['rs_id'];
+                                                                                                $quer = "SELECT title FROM restaurant WHERE rs_id = $rs_id";
+                                                                                                $result = mysqli_query($db,$quer);
                                                                                                 
-																								<td>'.$rows['rs_id'].'</td>
-																									 <td  style="text-align:center;"> <a href="delete_foodCat.php?cat_del='.$rows['fc_id'].'" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i></a> 
-																									 <a href="update_foodCat.php?cat_upd='.$rows['fc_id'].'" " class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fa fa-edit"></i></a>
-																									</td></tr>';
-																					 
+																								if ($result && mysqli_num_rows($result) > 0) {
+                                                                                                    $restaurantData = mysqli_fetch_assoc($result);
+                                                                                                    echo $restaurantData['title'];
+                                                                                                } else {
+                                                                                                    echo 'Title not found';
+                                                                                                }
+                                                                                                
+                                                                                                echo '</td>
+                                                                                                        <td style="text-align:center;">
+                                                                                                            <a href="delete_foodCat.php?cat_del=' . $rows['fc_id'] . '" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i></a> 
+                                                                                                            <a href="update_foodCat.php?cat_upd=' . $rows['fc_id'] . '" class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fa fa-edit"></i></a>
+                                                                                                        </td>
+                                                                                                    </tr>';
 																						
 																						
 																		}	
