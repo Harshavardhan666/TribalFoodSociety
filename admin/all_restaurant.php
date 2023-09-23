@@ -164,9 +164,9 @@ session_start();
 																	while($rows=mysqli_fetch_array($query))
 																		{
 																					
-																				$mql="SELECT * FROM res_category where c_id='".$rows['c_id']."'";
-																					$res=mysqli_query($db,$mql);
-																					$row=mysqli_fetch_array($res);
+																				// $mql="SELECT * FROM res_category where c_id='".$rows['c_id']."'";
+																				// 	$res=mysqli_query($db,$mql);
+																				// 	$row=mysqli_fetch_array($res);
 																				
 																					echo ' <tr  style="text-align:center;">
 																								<td>'.$rows['title'].'</td>

@@ -96,7 +96,7 @@ session_start();
                     <ul class="nav navbar-nav">
                         <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span
                                     class="sr-only">(current)</span></a> </li>
-                        <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Categories <span
+                        <li class="nav-item"> <a class="nav-link active" href="restaurants.php"> Departments <span
                                     class="sr-only"></span></a> </li>
                         <!-- <li class="nav-item"> <a class="nav-link active" href="">About <span class="sr-only"></span></a> </li> -->
 
@@ -158,7 +158,7 @@ session_start();
                                 </path>
                             </g>
                         </svg>
-                        <h4><span style="color:white;">1. </span>Choose Product Category</h4>
+                        <h4><span style="color:white;">1. </span>Choose Department</h4>
                     </div>
 
                     <div class="step-item step2">
@@ -297,7 +297,7 @@ session_start();
                                         </g>
                                     </svg>
                                 </div>
-                                <h3>Choose a Product Category</h3>
+                                <h3>Choose a Department</h3>
                                 <p>We"ve got your covered all Categories</p>
                             </div>
                         </div>
