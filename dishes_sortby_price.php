@@ -332,6 +332,7 @@ include_once 'product-action.php';
                                     <div class="menu-content">
                                         <?php echo '<a class="links-hidden" href="dishes.php?res_id=' . $rows['rs_id'] . '">Dish Name</a>'; ?>
 
+
                                         <!-- <a class="links-hidden" href="#">Visit Us</a>
                                         <a class="links-hidden" href="#">About Us</a> -->
                                     </div>
