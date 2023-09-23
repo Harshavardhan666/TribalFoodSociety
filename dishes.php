@@ -238,7 +238,7 @@ include_once 'product-action.php';
 
                                     <div class="form-group row no-gutter">
                                         <div class="col-xs-8">
-                                            <input type="text" class="form-control b-r-0" value=<?php echo "Rs" . $item["price"]; ?> readonly id="exampleSelect1">
+                                            <input type="text" class="form-control b-r-0" value=<?php echo "Rs". $item["price"]; ?> readonly id="exampleSelect1">
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="form-control" type="text" readonly value='<?php echo $item["quantity"]; ?>' id="example-number-input">

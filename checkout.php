@@ -276,11 +276,7 @@ if (empty($_SESSION["user_id"])) {
                                                     </table>
                                                 </div>
                                             </div>
-                                            <?php
-                                            $session = $_SESSION["user_id"];
-                                            $user = mysqli_query($db, "select balance from users where u_id='$session' ");
-                                            $rows = mysqli_fetch_array($user);
-                                            ?>
+                                           
                                             <div class="payment-option">
                                                 <ul class=" list-unstyled">
                                                     <div class="cart-totals-title">
@@ -292,24 +288,14 @@ if (empty($_SESSION["user_id"])) {
                                                             <input name="Amrita wallet" id="radioStacked1" checked value="Amrita wallet" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Cash on Delivery (COD)</span>
                                                         </label>
                                                     </li>
-                                                    <div class="cart-totals-fields">
+                                                    <!-- <div class="cart-totals-fields">
                                                         <table class="table">
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>Current Balance</td>
-                                                                    <td> <?php echo "Rs " . $rows["balance"]; ?></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="text-color">Bill Amount</td>
-                                                                    <td class="text-color"><?php echo "- Rs " . $item_total; ?></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="text-color"><strong>After Detection</strong></td>
-                                                                    <td class="text-color"><strong> <?php echo "Rs " . ($rows["balance"] - $item_total); ?></strong></td>
-                                                                </tr>
+                                                               
+                                                                
                                                             </tbody>
                                                         </table>
-                                                    </div>
+                                                    </div> -->
                                                     <!-- <li>
                                                 <label class="custom-control custom-radio  m-b-10">
                                                     <input name="mod"  type="radio" value="paypal" disabled class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Paypal <img src="images/paypal.jpg" alt="" width="90"></span> </label>
