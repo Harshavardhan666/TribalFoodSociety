@@ -17,7 +17,7 @@ session_start();
     <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>+
 <script language="javascript" type="text/javascript">
 var popUpWin=0;
 function popUpWindow(URLStr, left, top, width, height)
@@ -160,9 +160,10 @@ popUpWin = open(URLStr,'popUpWin', 'toolbar=no,location=no,directories=no,status
 													<td><strong>Username:</strong></td>
 												    <td><center><?php echo $rows['username']; ?></center></td>
 													   <td><center>
-													   <a href="javascript:void(0);" onClick="popUpWindow('order_update.php?form_id=<?php echo htmlentities($rows['o_id']);?>');" title="Update order">
-															 <button type="button" class="btn btn-primary">Update Order Status</button></a>
-															 </center>
+                                                       <?php 
+                                                            echo '<a href="order_update.php?form_id=' . $rows['o_id'] . '" > <button type="button" class="btn btn-primary">Update Order Status</button></a>"';
+                                                        ?>
+														</center>
 											 </td>
 												  
 																																					
@@ -171,8 +172,11 @@ popUpWin = open(URLStr,'popUpWin', 'toolbar=no,location=no,directories=no,status
 												<td><strong>Item Name:</strong></td>
 												    <td><center><?php echo $rows['title']; ?></center></td>
 													    <td><center>
-													   <a href="javascript:void(0);" onClick="popUpWindow('userprofile.php?newform_id=<?php echo htmlentities($rows['o_id']);?>');" title="Update order">
-														<button type="button" class="btn btn-primary">View User Detials</button></a>
+                                                    
+
+                                                        <?php 
+                                                            echo '<a href="userprofile.php?user_id=' . $rows['u_id'] . '" > <button type="button" class="btn btn-primary">View User Detials</button></a>"';
+                                                        ?>
 											
 													   </center></td>
 												   																								
