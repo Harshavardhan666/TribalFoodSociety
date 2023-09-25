@@ -247,13 +247,13 @@ if(isset($_POST['submit']))
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Departments Name</label>
-                                                    <input type="text" name="res_name" class="form-control">
+                                                    <input type="text" name="res_name" class="form-control" required>
                                                    </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group has-danger">
                                                     <label class="control-label">Image</label>
-                                                    <input type="file" name="file"  id="lastName" class="form-control form-control-danger" placeholder="12n">
+                                                    <input type="file" name="file"  id="lastName" class="form-control form-control-danger" placeholder="12n" required>
                                                     </div>
                                             </div>
                                             <!-- <div class="col-md-6">
@@ -290,7 +290,7 @@ if(isset($_POST['submit']))
                                             <div class="col-md-12 ">
                                                 <div class="form-group">
                                                     
-                                                    <textarea name="address" type="text" style="height:100px;" class="form-control"></textarea>
+                                                    <textarea name="address" type="text" style="height:100px;" class="form-control" required></textarea>
                                                 </div>
                                             </div>
                                         </div>
