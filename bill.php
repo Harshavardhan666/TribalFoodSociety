@@ -131,14 +131,11 @@
             const companyName = "TFS Products";
             const companyAddress = "Masunagudi Village, Near Ooty";
             const companyEmail = "tribalproducts@gmail.com";
-            const totalAmountPaid = "₹20000";
-            const paymentAccount = "CB.EN.U4CSE20654";
 
             document.getElementById("company-name").textContent = companyName;
             document.getElementById("company-address").textContent = companyAddress;
             document.getElementById("company-email").textContent = companyEmail;
-            document.getElementById("total-amount-paid").textContent = totalAmountPaid;
-            document.getElementById("payment-account").textContent = paymentAccount;
+
         }
 
         // Call the function when the page loads
@@ -254,7 +251,7 @@
 
             <div class="ui card">
                 <div class="content center aligned text segment">
-                    <small class="ui sub header"> Amount Paid: </small>
+                    <small class="ui sub header"> Amount to be Paid: </small>
 
                     <p class="bigfont">Rs
                         <?php echo $totalAmount; ?>
@@ -275,7 +272,7 @@
                     <div class="header">Notes</div>
                 </div>
                 <div class="content center aligned text segment">
-                    Your payment is successful!!!
+                    Your order is successful!!!
                 </div>
             </div>
 
