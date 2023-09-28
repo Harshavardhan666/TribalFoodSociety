@@ -265,61 +265,76 @@ if (empty($_SESSION["user_id"])) {
                                                 </div>
                                                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
 
-                                                <div class="widget widget-cart">
-                                                    <div class="widget-heading">
-                                                        <h3 class="widget-title text-dark">
-                                                            Your Cart
-                                                        </h3>
+                                                    <div class="widget widget-cart">
+                                                        <div class="widget-heading">
+                                                            <h3 class="widget-title text-dark">
+                                                                Your Cart
+                                                            </h3>
 
 
-                                                        <div class="clearfix"></div>
-                                                    </div>
-                                                    <div class="order-row bg-white">
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="order-row bg-white">
+                                                            <div class="widget-body">
+
+
+                                                                <?php
+
+                                                                $item_total = 0;
+
+                                                                foreach ($_SESSION["cart_item"] as $item) {
+                                                                    $user = mysqli_query($db, " select * from dishes where title='$item[title]' ");
+                                                                    $rows = mysqli_fetch_array($user);
+                                                                ?>
+
+                                                                    <div class="title-row">
+                                                                        <?php echo $item["title"]; ?>
+
+                                                                    </div>
+
+                                                                    <div class="form-group row no-gutter">
+                                                                        <div class="col-xs-8">
+                                                                            <input type="text" class="form-control b-r-0" value=<?php echo "Rs" . $item["price"]; ?> readonly id="exampleSelect1">
+                                                                        </div>
+                                                                        <div class="col-xs-4">
+                                                                            <input class="form-control" type="text" readonly value='<?php echo $item["quantity"]; ?>' id="example-number-input">
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                <?php
+                                                                    $item_total += ($item["price"] * $item["quantity"]);
+                                                                }
+                                                                ?>
+
+                                                            </div>
+                                                        </div>
+
+
+
                                                         <div class="widget-body">
-                                                            <?php
-                                                            $item_total = 0;
-
-                                                            foreach ($_SESSION["cart_item"] as $item) {
-                                                                $user = mysqli_query($db, " select * from dishes where title='$item[title]' ");
-                                                                $rows = mysqli_fetch_array($user);
-                                                            ?>
-
-                                                               
-
-                                                                <div class="form-group row no-gutter">
-                                                                    <div class="col-xs-8">
-                                                                        <input type="text" class="form-control b-r-0" value=<?php echo "Rs" . $item["price"]; ?> readonly id="exampleSelect1">
-                                                                    </div>
-                                                                    <div class="col-xs-4">
-                                                                        <input class="form-control" type="text" readonly value='<?php echo $item["quantity"]; ?>' id="example-number-input">
-                                                                    </div>
-                                                                </div>
-
-                                                            <?php
-                                                                $item_total += ($item["price"] * $item["quantity"]);
-                                                            }
-                                                            ?>
-
+                                                            <div class="price-wrap text-xs-center">
+                                                                <!-- <p style="margin-bottom: 0px;">TOTAL CALORIES <br>of items in this cart</p> -->
+                                                                <h3 class="value"></h3>
+                                                                <br>
+                                                                <p style="margin-bottom: 0px;">TOTAL BIll</p>
+                                                                <h3 class="value"><strong><?php echo "Rs " . $item_total; ?></strong></h3>
+                                                            </div>
                                                         </div>
                                                     </div>
 
 
 
-                                                    <div class="widget-body">
-                                                        <div class="price-wrap text-xs-center">
-                                                            <!-- <p style="margin-bottom: 0px;">TOTAL CALORIES <br>of items in this cart</p> -->
-                                                            <h3 class="value"></h3>
-                                                            <br>
-                                                            <p style="margin-bottom: 0px;">TOTAL BIll</p>
-                                                            <h3 class="value"><strong><?php echo "Rs " . $item_total; ?></strong></h3>
-                                                        </div>
-                                                    </div>
+
+
+
+
+
 
 
 
 
                                                 </div>
-                                        </div>
 
 
 
@@ -345,7 +360,7 @@ if (empty($_SESSION["user_id"])) {
                                                     </table>
                                                 </div>
                                             </div>
-                                           
+
                                             <div class="payment-option">
                                                 <ul class=" list-unstyled">
                                                     <div class="cart-totals-title">
