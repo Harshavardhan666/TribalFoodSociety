@@ -79,7 +79,7 @@ if (empty($_SESSION["user_id"])) {
             }
         }
     }
-?>
+    ?>
 
 
     <head>
@@ -179,6 +179,22 @@ if (empty($_SESSION["user_id"])) {
             .dropdown-item:hover {
                 background-color: #abcdef;
             }
+
+            .order-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .order-table th,
+            .order-table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+
+            .order-table th {
+                background-color: #f2f2f2;
+            }
         </style>
     </head>
 
@@ -188,17 +204,24 @@ if (empty($_SESSION["user_id"])) {
             <header id="header" class="header-scroll top-header headrom">
                 <nav class="navbar navbar-dark">
                     <div class="container">
-                        <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#mainNavbarCollapse">&#9776;</button>
-                        <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/tribes.ico" alt="" width="100" height="40"> </a>
+                        <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse"
+                            data-target="#mainNavbarCollapse">&#9776;</button>
+                        <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/tribes.ico" alt=""
+                                width="100" height="40"> </a>
                         <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
                             <ul class="nav navbar-nav">
-                                <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
-                                <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Departments <span class="sr-only"></span></a> </li>
-                                <li class="nav-item"> <a class="nav-link active" href="edit_profile.php">Profile <span class="sr-only"></span></a> </li>
+                                <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span
+                                            class="sr-only">(current)</span></a> </li>
+                                <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Departments <span
+                                            class="sr-only"></span></a> </li>
+                                <li class="nav-item"> <a class="nav-link active" href="edit_profile.php">Profile <span
+                                            class="sr-only"></span></a> </li>
                                 <!-- <li class="nav-item"> <a class="nav-link active" href="">About <span class="sr-only"></span></a> </li> -->
 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        style="color: white;">
                                         About
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -214,8 +237,8 @@ if (empty($_SESSION["user_id"])) {
                                     echo '<li class="nav-item"><a href="edit.php" class="nav-link active">Profile</a> </li>
                                 <li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>';
                                 } else {
-                                    echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">My Orders</a> </li>';
-                                    echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
+                                    echo '<li class="nav-item"><a href="your_orders.php" class="nav-link active">My Orders</a> </li>';
+                                    echo '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
                                 }
 
                                 ?>
@@ -230,9 +253,11 @@ if (empty($_SESSION["user_id"])) {
                     <div class="container">
                         <ul class="row links">
 
-                            <li class="col-xs-12 col-sm-4 link-item"><span>1</span><a href="restaurants.php">Choose Department</a></li>
+                            <li class="col-xs-12 col-sm-4 link-item"><span>1</span><a href="restaurants.php">Choose
+                                    Department</a></li>
                             <li class="col-xs-12 col-sm-4 link-item "><span>2</span><a href="#">Pick Your Product</a></li>
-                            <li class="col-xs-12 col-sm-4 link-item active"><span>3</span><a href="checkout.php">Order and Pay</a></li>
+                            <li class="col-xs-12 col-sm-4 link-item active"><span>3</span><a href="checkout.php">Order and
+                                    Pay</a></li>
                         </ul>
                     </div>
                 </div>
@@ -263,116 +288,104 @@ if (empty($_SESSION["user_id"])) {
                                                 <div class="cart-totals-title">
                                                     <h4>Cart Summary</h4>
                                                 </div>
-                                                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+                                                <!-- <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3"> -->
+                                                <!-- <div class="widget widget-cart"> -->
 
-                                                    <div class="widget widget-cart">
-                                                        <div class="widget-heading">
-                                                            <h3 class="widget-title text-dark">
-                                                                Your Cart
-                                                            </h3>
-
-
-                                                            <div class="clearfix"></div>
-                                                        </div>
-                                                        <div class="order-row bg-white">
-                                                            <div class="widget-body">
-
-
-                                                                <?php
-
-                                                                $item_total = 0;
-
-                                                                foreach ($_SESSION["cart_item"] as $item) {
-                                                                    $user = mysqli_query($db, " select * from dishes where title='$item[title]' ");
-                                                                    $rows = mysqli_fetch_array($user);
-                                                                ?>
-
-                                                                    <div class="title-row">
-                                                                        <?php echo $item["title"]; ?>
-
-                                                                    </div>
-
-                                                                    <div class="form-group row no-gutter">
-                                                                        <div class="col-xs-8">
-                                                                            <input type="text" class="form-control b-r-0" value=<?php echo "Rs" . $item["price"]; ?> readonly id="exampleSelect1">
-                                                                        </div>
-                                                                        <div class="col-xs-4">
-                                                                            <input class="form-control" type="text" readonly value='<?php echo $item["quantity"]; ?>' id="example-number-input">
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                <?php
-                                                                    $item_total += ($item["price"] * $item["quantity"]);
-                                                                }
-                                                                ?>
-
-                                                            </div>
-                                                        </div>
-
-
-
-                                                        <div class="widget-body">
-                                                            <div class="price-wrap text-xs-center">
-                                                                <!-- <p style="margin-bottom: 0px;">TOTAL CALORIES <br>of items in this cart</p> -->
-                                                                <h3 class="value"></h3>
-                                                                <br>
-                                                                <p style="margin-bottom: 0px;">TOTAL BIll</p>
-                                                                <h3 class="value"><strong><?php echo "Rs " . $item_total; ?></strong></h3>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-                                                </div>
-
-
-
-
-
-
-
-
-
-
-                                                <div class="cart-totals-fields">
-                                                    <table class="table">
+                                                <!-- <div class="order-row bg-white"> -->
+                                                <div class="widget-body">
+                                                    <table class="order-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Item</th>
+                                                                <th>Price</th>
+                                                                <th>Quantity</th>
+                                                                <th>Total</th>
+                                                            </tr>
+                                                        </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td>Cart Subtotal</td>
-                                                                <td> <?php echo "Rs " . $item_total; ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-color"><strong>Total</strong></td>
-                                                                <td class="text-color"><strong> <?php echo "Rs " . $item_total; ?></strong></td>
-                                                            </tr>
+                                                            <?php
+                                                            $item_total = 0;
+                                                            foreach ($_SESSION["cart_item"] as $item) {
+                                                                $user = mysqli_query($db, "SELECT * FROM dishes WHERE title='$item[title]'");
+                                                                $rows = mysqli_fetch_array($user);
+                                                                ?>
+                                                                <tr>
+                                                                    <td>
+                                                                        <?php echo $item["title"]; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo "Rs " . $item["price"]; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo $item["quantity"]; ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <?php echo "Rs " . ($item["price"] * $item["quantity"]); ?>
+                                                                    </td>
+                                                                </tr>
+                                                                <?php
+                                                                $item_total += ($item["price"] * $item["quantity"]);
+
+                                                            }
+                                                            ?>
+
                                                         </tbody>
+
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th colspan="3" style="text-align:right">Total
+                                                                    Amount:</th>
+                                                                <th style="text-align:left">
+                                                                    <?php echo "Rs " . $item_total; ?>
+                                                                </th>
+                                                            </tr>
+                                                        </tfoot>
+
+
                                                     </table>
+                                                    <!-- </div> -->
+                                                    <!-- </div> -->
+
                                                 </div>
+                                                <!-- </div> -->
+
+
+
+
+
+
+
+
+
                                             </div>
 
-                                            <div class="payment-option">
-                                                <ul class=" list-unstyled">
-                                                    <div class="cart-totals-title">
-                                                        <h4>Payment Methods</h4>
-                                                    </div>
-                                                    <hr style="width:100%;text-align:left;margin-left:0">
-                                                    <li>
-                                                        <label for="radioStacked1" class="custom-control custom-radio  m-b-20">
-                                                            <input name="Amrita wallet" id="radioStacked1" checked value="Amrita wallet" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Cash on Delivery (COD)</span>
-                                                        </label>
-                                                    </li>
-                                                    <!-- <div class="cart-totals-fields">
+
+
+
+
+
+
+
+
+
+
+                                        </div>
+
+                                        <div class="payment-option">
+                                            <ul class=" list-unstyled">
+                                                <div class="cart-totals-title">
+                                                    <h4>Payment Methods</h4>
+                                                </div>
+                                                <hr style="width:100%;text-align:left;margin-left:0">
+                                                <li>
+                                                    <label for="radioStacked1" class="custom-control custom-radio  m-b-20">
+                                                        <input name="Amrita wallet" id="radioStacked1" checked
+                                                            value="Amrita wallet" type="radio" class="custom-control-input">
+                                                        <span class="custom-control-indicator"></span> <span
+                                                            class="custom-control-description">Cash on Delivery (COD)</span>
+                                                    </label>
+                                                </li>
+                                                <!-- <div class="cart-totals-fields">
                                                         <table class="table">
                                                             <tbody>
                                                                
@@ -380,24 +393,24 @@ if (empty($_SESSION["user_id"])) {
                                                             </tbody>
                                                         </table>
                                                     </div> -->
-                                                    <!-- <li>
+                                                <!-- <li>
                                                 <label class="custom-control custom-radio  m-b-10">
                                                     <input name="mod"  type="radio" value="paypal" disabled class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Paypal <img src="images/paypal.jpg" alt="" width="90"></span> </label>
                                             </li> -->
-                                                </ul>
+                                            </ul>
 
-                                                <!-- <form class="form-horizontal" role="form" action="" method="post" id="myForm">
+                                            <!-- <form class="form-horizontal" role="form" action="" method="post" id="myForm">
                                                     <div class="col-md-4">
                                                         <label class="control-label">E-Wallet PIN:</label>
                                                         <input class="form-control" type="password" value="****" max=4 name="pin" required>
                                                     </div>
                                                 </form> -->
-                                                <br>
-                                                <br>
-                                                <br>
-                                                <br>
-                                                <p class="text-xs-center"> <input type="submit" onclick="return confirm('Do you want to confirm the order?');" name="submit" class="btn btn-success btn-block" value="Order Now"> </p>
-                                            </div>
+
+
+                                            <p class="text-xs-center"> <input type="submit"
+                                                    onclick="return confirm('Do you want to confirm the order?');"
+                                                    name="submit" class="btn btn-success btn-block" value="Order Now"> </p>
+                                        </div>
 
                                 </form>
                             </div>
@@ -413,7 +426,8 @@ if (empty($_SESSION["user_id"])) {
                 <div class="container">
                     <div class="row">
 
-                        <a href="" target="_blank"><img src="images/masinagudi.jpg" class="col-xs-12 col-sm-3 payment-options color-gray"></a>
+                        <a href="" target="_blank"><img src="images/masinagudi.jpg"
+                                class="col-xs-12 col-sm-3 payment-options color-gray"></a>
 
                         <div class="col-xs-12 col-sm-4 address color-gray">
                             <h5>Address</h5>
@@ -422,7 +436,9 @@ if (empty($_SESSION["user_id"])) {
                         <div class="col-xs-12 col-sm-5 additional-info color-gray">
                             <h5>Additional Information</h5>
                             <!-- <p>Join thousands of other restaurants who benefit from having partnered with us.</p> -->
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aliquam quam consequuntur quasi deserunt debitis, similique maiores repudiandae laborum id nulla, veritatis magni incidunt mollitia voluptatum? Perspiciatis pariatur molestiae sunt.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aliquam quam consequuntur
+                                quasi deserunt debitis, similique maiores repudiandae laborum id nulla, veritatis magni
+                                incidunt mollitia voluptatum? Perspiciatis pariatur molestiae sunt.</p>
                         </div>
                     </div>
                 </div>
@@ -442,8 +458,8 @@ if (empty($_SESSION["user_id"])) {
         <script src="js/foodpicky.min.js"></script>
     </body>
 
-</html>
+    </html>
 
-<?php
+    <?php
 }
 ?>
