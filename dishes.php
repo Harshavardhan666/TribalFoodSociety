@@ -257,7 +257,6 @@ include_once 'product-action.php';
                                 <?php
 
                                 $item_total = 0;
-                                $total_cal = 0;
 
                                 foreach ($_SESSION["cart_item"] as $item) {
                                     $user = mysqli_query($db, " select * from dishes where title='$item[title]' ");
@@ -285,7 +284,6 @@ include_once 'product-action.php';
 
                                 <?php
                                     $item_total += ($item["price"] * $item["quantity"]);
-                                    $total_cal += ($rows["calories"] * $item["quantity"]);
                                 }
                                 ?>
 
