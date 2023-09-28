@@ -1,23 +1,66 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css">
     <title>Order Bill</title>
-    <link href="bill.css" rel="stylesheet">
+
     <style>
+        /* h1 {
+            text-align: center;
+        } */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #000;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tfoot th {
+            background-color: #f2f2f2;
+            text-align: right;
+        }
+
+        b {
+            font-weight: bold;
+        }
+
+        p {
+            text-align: center;
+        }
+
         @page {
             size: A4;
             margin: 0;
         }
 
         @media print {
+
             html,
             body {
                 width: 210mm;
                 height: 297mm;
             }
+
             /* ... the rest of the rules ... */
         }
 
@@ -71,44 +114,83 @@
         .pageTitle {
             margin-bottom: -1rem;
         }
+
+        .print-button {
+            text-align: center;
+            margin-top: 20px;
+            margin-left: center;
+        }
     </style>
+
+    <script>
+        function printBillPage() {
+            window.print();
+        }
+
+        function populateInvoiceDetails() {
+            const companyName = "TFS Products";
+            const companyAddress = "Masunagudi Village, Near Ooty";
+            const companyEmail = "tribalproducts@gmail.com";
+            const totalAmountPaid = "₹20000";
+            const paymentAccount = "CB.EN.U4CSE20654";
+
+            document.getElementById("company-name").textContent = companyName;
+            document.getElementById("company-address").textContent = companyAddress;
+            document.getElementById("company-email").textContent = companyEmail;
+            document.getElementById("total-amount-paid").textContent = totalAmountPaid;
+            document.getElementById("payment-account").textContent = paymentAccount;
+        }
+
+        // Call the function when the page loads
+        window.onload = populateInvoiceDetails;
+    </script>
+
 </head>
+
 <body>
-    <?php
-    include("connection/connect.php"); // Include your database connection script
-    error_reporting(0);
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    // Check if the orderID is provided as a query parameter
-    if (isset($_GET['orderID']) && !empty($_GET['orderID'])) {
-        $orderID = $_GET['orderID'];
+    <div class="container invoice">
 
-        // Query the database to get order details based on orderID
-        $query = "SELECT * FROM users_orders WHERE date  = '$orderID'";
-        $result = mysqli_query($db, $query);
 
-        if (mysqli_num_rows($result) > 0) {
-            // Display the order details and calculate the total amount
-            $totalAmount = 0;
-            ?>
-            <div class="invoice">
+        <?php
+        include("connection/connect.php"); // Include your database connection script
+        error_reporting(0);
+
+        // Check if the orderID is provided as a query parameter
+        if (isset($_GET['orderID']) && !empty($_GET['orderID'])) {
+            $orderID = $_GET['orderID'];
+
+            // Query the database to get order details based on orderID
+            $query = "SELECT * FROM users_orders WHERE date  = '$orderID'";
+            $result = mysqli_query($db, $query);
+
+            if (mysqli_num_rows($result) > 0) {
+                // Display the order details and calculate the total amount
+                $totalAmount = 0;
+                ?>
                 <div class="invoice-header">
                     <div class="ui left aligned grid">
                         <div class="row">
                             <div class="left floated left aligned six wide column">
                                 <div class="ui">
-                                    <h1 class="ui header pageTitle">Invoice</h1>
-                                    <h4 class="ui sub header invDetails">Order ID: 554775/R1 | Date: 01/01/2015</h4>
+                                    <h1 class="ui header pageTitle">Order Bill </h1>
+                                    <h4 class="ui sub header invDetails">
+                                        <b>Date: </b>
+                                        <?php echo $orderID; ?>
+                                    </h4>
                                 </div>
                             </div>
                             <div class="right floated left aligned six wide column">
                                 <div class="ui">
                                     <div class="column two wide right floated">
-                                        <img class="logo" src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2019/04/attachment_94168375-e1554226974295.jpg?auto=format&q=60&fit=max&w=930" />
+                                        <img class="logo"
+                                            src="https://png.pngtree.com/png-clipart/20191121/original/pngtree-tribal-logo-vector-png-image_5146122.jpg" />
                                         <ul class="">
-                                            <li><strong>AVVP Foods</strong></li>
-                                            <li>IT Canteen</li>
-                                            <li>Near AB3</li>
-                                            <li>amritafoods@gmail.com</li>
+                                            <li id="company-name"></li>
+                                            <li id="company-address"></li>
+                                            <li id="company-email"></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -117,138 +199,94 @@
                     </div>
                 </div>
                 <div class="ui segment cards">
-                    <div class="ui segment itemscard">
-                        <div class="content">
-                            <table class="ui celled table">
-                                <thead>
-                                    <tr>
-                                        <th>Item / Details</th>
-                                        <th class="text-center colfix">Item Cost</th>
-                                        <th class="text-center colfix">Quantity</th>
-                                        <th class="text-center colfix">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                                        <tr>
-                                            <td><?php echo $row['title']; ?></td>
-                                            <td class="text-right">
-                                                <span class="mono">₹<?php echo $row['price']; ?></span>
-                                            </td>
-                                            <td class="text-right">
-                                                <small class="text-muted"><?php echo $row['quantity']; ?> Units</small>
-                                            </td>
-                                            <td class="text-right">
-                                                <strong class="mono">₹<?php echo $row['price'] * $row['quantity']; ?></strong>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                        $totalAmount += $row['price'] * $row['quantity'];
-                                    }
-                                    ?>
-                                </tbody>
-                                <tfoot class="full-width">
-                                    <tr>
-                                        <th>Total:</th>
-                                        <th colspan="2"></th>
-                                        <th colspan="1">₹<?php echo $totalAmount; ?></th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item / Details</th>
+                                <th>Item Cost</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $row['title']; ?>
+                                    </td>
+                                    <td>Rs
+                                        <?php echo $row['price']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['quantity']; ?>
+                                    </td>
+                                    <td>Rs
+                                        <?php echo $row['price'] * $row['quantity']; ?>
+                                    </td>
+                                </tr>
+                                <?php
+                                $totalAmount += $row['price'] * $row['quantity'];
+                            }
+                            ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="3">Total Amount:</th>
+                                <th style="text-align:left">Rs
+                                    <?php echo $totalAmount; ?>
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <?php
+            } else {
+                echo "<p>Order not found.</p>";
+            }
+        } else {
+            echo "<p>Invalid order ID.</p>";
+        }
+
+        // Close the database connection
+        mysqli_close($db);
+        ?>
+
+
+
+            <div class="ui card">
+                <div class="content center aligned text segment">
+                    <small class="ui sub header"> Amount Paid: </small>
+
+                    <p class="bigfont">Rs
+                        <?php echo $totalAmount; ?>
+                    </p>
                 </div>
             </div>
-            <?php
-        } else {
-            echo "<p>Order not found.</p>";
-        }
-    } else {
-        echo "<p>Invalid order ID.</p>";
-    }
+            <div class="ui card">
+                <div class="content center aligned text segment">
+                    <div class="header">Payment Details</div>
+                </div>
+                <div class="content">
+                    <p> <strong> Account Name: </strong> <span id="payment-account"></span> </p>
 
-    // Close the database connection
-    mysqli_close($db);
-    ?>
-    <div class="print-button">
-        <button onclick="printBillPage()">Print Bill</button>
+                </div>
+            </div>
+            <div class="ui card">
+                <div class="content center aligned text segment">
+                    <div class="header">Notes</div>
+                </div>
+                <div class="content center aligned text segment">
+                    Your payment is successful!!!
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="print-button">
+            <button onclick="printBillPage()">Print Bill</button>
+        </div>
     </div>
+
 </body>
-</html> -->
 
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Bill</title>
-    <link href="bill.css" rel="stylesheet">
-    
-</head>
-<body>
-    <?php
-    include("connection/connect.php"); // Include your database connection script
-    error_reporting(0);
-
-    // Check if the orderID is provided as a query parameter
-    if (isset($_GET['orderID']) && !empty($_GET['orderID'])) {
-        $orderID = $_GET['orderID'];
-
-        // Query the database to get order details based on orderID
-        $query = "SELECT * FROM users_orders WHERE date  = '$orderID'";
-        $result = mysqli_query($db, $query);
-
-        if (mysqli_num_rows($result) > 0) {
-            // Display the order details and calculate the total amount
-            $totalAmount = 0;
-            ?>
-            <h1>Order Bill</h1>
-            <b>Date: </b> <?php echo $orderID; ?>
-            <br><br>
-            <table >
-                <thead>
-                    <tr>
-                        <th>Item / Details</th>
-                        <th>Item Cost</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                        <tr>
-                            <td><?php echo $row['title']; ?></td>
-                            <td>Rs <?php echo $row['price']; ?></td>
-                            <td><?php echo $row['quantity']; ?></td>
-                            <td>Rs <?php echo $row['price'] * $row['quantity']; ?></td>
-                        </tr>
-                        <?php
-                        $totalAmount += $row['price'] * $row['quantity'];
-                    }
-                    ?>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="3">Total Amount:</th>
-                        <th>Rs <?php echo $totalAmount; ?></th>
-                    </tr>
-                </tfoot>
-            </table>
-            <?php
-        } else {
-            echo "<p>Order not found.</p>";
-        }
-    } else {
-        echo "<p>Invalid order ID.</p>";
-    }
-
-    // Close the database connection
-    mysqli_close($db);
-    ?>
-</body>
 </html>
