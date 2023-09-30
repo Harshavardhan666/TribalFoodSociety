@@ -331,7 +331,7 @@ include_once 'product-action.php';
                         <div class="dropdown-menu1">
                             <button class="menu-btn">Sort by < </button>
                                     <div class="menu-content">
-                                        <?php echo '<a class="links-hidden" href="dishes.php?res_id=' . $_GET['rs_id'] . '">Dish Name</a>'; ?>
+                                        <?php echo '<a class="links-hidden" href="dishes.php?res_id=' . $_GET['res_id'] . '">Dish Name</a>'; ?>
 
                                         <!-- <a class="links-hidden" href="#">Visit Us</a>
 
