@@ -26,7 +26,7 @@ include_once 'product-action.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/input-spinner/dist/input-spinner.min.css">
     <script src="https://cdn.jsdelivr.net/npm/input-spinner/dist/input-spinner.min.js"></script>
     <style>
-         .collapsible {
+        .collapsible {
             background-color: #FAFAF8;
             color: white;
             cursor: pointer;
@@ -46,8 +46,8 @@ include_once 'product-action.php';
         }
 
         /* .collapsible .row {
-    background-color: #777;
-} */
+                background-color: #777;
+            } */
         .collapsible:hover {
             background-color: #F1F1F1;
         }
@@ -146,8 +146,8 @@ include_once 'product-action.php';
         /* .dropdown-menu1:hover+.content-below {
             margin-top: 20px;
         } */
-
     </style>
+
 </head>
 
 <body>
@@ -163,11 +163,11 @@ include_once 'product-action.php';
                         <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Departments <span class="sr-only"></span></a> </li>
                         <!-- <li class="nav-item"> <a class="nav-link active" href="">About <span class="sr-only"></span></a> </li> -->
 
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" id="nav">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
                                 About
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu" id="dm" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Tribals</a>
                                 <a class="dropdown-item" href="#">Products</a>
                                 <div class="dropdown-divider"></div>
@@ -199,7 +199,7 @@ include_once 'product-action.php';
                 <ul class="row links">
 
                     <li class="col-xs-12 col-sm-4 link-item"><span>1</span><a href="restaurants.php">Choose Department</a></li>
-                    <li class="col-xs-12 col-sm-4 link-item active"><span>2</span><a href="dishes_sortby_price.php?res_id=<?php echo $_GET['res_id']; ?>">Pick Your Product</a></li>
+                    <li class="col-xs-12 col-sm-4 link-item active"><span>2</span><a href="dishes.php?res_id=<?php echo $_GET['res_id']; ?>">Pick Your Product</a></li>
                     <li class="col-xs-12 col-sm-4 link-item"><span>3</span><a href="#">Order and Pay</a></li>
 
                 </ul>
@@ -256,7 +256,6 @@ include_once 'product-action.php';
                                 <?php
 
                                 $item_total = 0;
-                                $total_cal = 0;
 
                                 foreach ($_SESSION["cart_item"] as $item) {
                                     $user = mysqli_query($db, " select * from dishes where title='$item[title]' ");
@@ -264,7 +263,7 @@ include_once 'product-action.php';
                                 ?>
 
                                     <div class="title-row">
-                                        <?php echo $item["title"]; ?><a href="dishes_sortby_price.php?res_id=<?php echo $_GET['res_id']; ?>&action=remove&id=<?php echo $item["d_id"]; ?>">
+                                        <?php echo $item["title"]; ?><a href="dishes.php?res_id=<?php echo $_GET['res_id']; ?>&action=remove&id=<?php echo $item["d_id"]; ?>">
                                             <i class="fa fa-trash pull-right"></i></a>
 
                                     </div>
@@ -277,14 +276,13 @@ include_once 'product-action.php';
                                             <input class="form-control" type="text" readonly value='<?php echo $item["quantity"]; ?>' id="example-number-input">
                                         </div>
 
-                                        <a href="dishes_sortby_price.php?res_id=<?php echo $_GET['res_id']; ?>&action=decrement&id=<?php echo $item["d_id"]; ?>">
+                                        <a href="dishes.php?res_id=<?php echo $_GET['res_id']; ?>&action=decrement&id=<?php echo $item["d_id"]; ?>">
                                             <i class="fa fa-minus pull-right"></i></a>
 
                                     </div>
 
                                 <?php
                                     $item_total += ($item["price"] * $item["quantity"]);
-                                    $total_cal += ($rows["calories"] * $item["quantity"]);
                                 }
                                 ?>
 
@@ -295,11 +293,13 @@ include_once 'product-action.php';
 
                         <div class="widget-body">
                             <div class="price-wrap text-xs-center">
-                                <p style="margin-bottom: 0px;">TOTAL CALORIES <br>of items in this cart</p>
-                                <h3 class="value"><strong><?php echo $total_cal . " kcal"; ?></strong></h3>
+                                <!-- <p style="margin-bottom: 0px;">TOTAL CALORIES <br>of items in this cart</p> -->
+                                <h3 class="value"></h3>
                                 <br>
                                 <p style="margin-bottom: 0px;">TOTAL BIll</p>
                                 <h3 class="value"><strong><?php echo "Rs " . $item_total; ?></strong></h3>
+
+
                                 <?php
                                 if ($item_total == 0) {
                                 ?>
@@ -325,30 +325,27 @@ include_once 'product-action.php';
                 </div>
 
                 <div class="col-md-8">
-                    <div class="row">
+
+                    <div>
                         <h1>Items</h1>
                         <div class="dropdown-menu1">
                             <button class="menu-btn">Sort by < </button>
                                     <div class="menu-content">
-                                        <?php echo '<a class="links-hidden" href="dishes.php?res_id=' . $rows['rs_id'] . '">Dish Name</a>'; ?>
-
+                                        <?php echo '<a class="links-hidden" href="dishes.php?res_id=' . $_GET['rs_id'] . '">Dish Name</a>'; ?>
 
                                         <!-- <a class="links-hidden" href="#">Visit Us</a>
+
                                         <a class="links-hidden" href="#">About Us</a> -->
                                     </div>
                         </div>
                     </div><br>
 
-
-
                     <?php
-                    $qur = $db->prepare("select * from food_category");
+                    $qur = $db->prepare("select * from food_category where rs_id='$_GET[res_id]'");
                     $qur->execute();
                     $categorys = $qur->get_result();
                     if ($categorys->num_rows > 0) {
                         foreach ($categorys as $category) {
-
-
 
                     ?>
                             <button type="button" class="collapsible" style="text-align: center;"><?php echo $category['fc_name']; ?></button>
@@ -367,13 +364,13 @@ include_once 'product-action.php';
                                                 <div class="food-item">
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-12 col-lg-8">
-                                                            <form method="post" action='dishes_sortby_price.php?res_id=<?php echo $_GET['res_id']; ?>&action=add&id=<?php echo $product['d_id']; ?>'>
+                                                            <form method="post" action='dishes.php?res_id=<?php echo $_GET['res_id']; ?>&action=add&id=<?php echo $product['d_id']; ?>'>
                                                                 <div class="rest-logo pull-left">
                                                                     <a class="restaurant-logo pull-left" href="#"><?php echo '<img src="admin/Res_img/dishes/' . $product['img'] . '" alt="Food logo" >'; ?></a>
                                                                 </div>
 
                                                                 <div class="rest-descr">
-                                                                    <h6><a href="#"><?php echo $product['title']; ?> </a> (<span><?php echo $product['calories']; ?>Kcal)</span></h6>
+                                                                    <h6><a href="#"><?php echo $product['title']; ?> </a> </h6>
                                                                     <p> <?php echo $product['slogan']; ?></p>
                                                                 </div>
 
@@ -418,8 +415,8 @@ include_once 'product-action.php';
                         }
                     } else {
                         ?>
-                        <div style="margin:5px">
-                            <h6>NO Categories</h6>
+                        <div style="margin:5px;text-align:center;">
+                            <h6>No Products</h6>
                         </div>
                     <?php
                     }
@@ -636,6 +633,7 @@ include_once 'product-action.php';
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <script src="js/jquery.min.js"></script>

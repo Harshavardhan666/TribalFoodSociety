@@ -332,7 +332,7 @@ include_once 'product-action.php';
                         <div class="dropdown-menu1">
                             <button class="menu-btn">Sort by < </button>
                                     <div class="menu-content">
-                                        <?php echo '<a class="links-hidden" href="dishes_sortby_price.php?res_id=' . $rows['rs_id'] . '">Price</a>'; ?>
+                                        <?php echo '<a class="links-hidden" href="dishes_sortby_price.php?res_id=' . $_GET['rs_id'] . '">Price</a>'; ?>
 
                                         <!-- <a class="links-hidden" href="#">Visit Us</a>
 
@@ -342,7 +342,7 @@ include_once 'product-action.php';
                     </div><br>
 
                         <?php
-                        $qur = $db->prepare("select * from food_category");
+                        $qur = $db->prepare("select * from food_category where rs_id='$_GET[res_id]'");
                         $qur->execute();
                         $categorys = $qur->get_result();
                         if ($categorys->num_rows > 0) {
@@ -416,8 +416,9 @@ include_once 'product-action.php';
                             }
                         } else {
                             ?>
-                            <div style="margin:5px">
-                                <h6>NO Categories</h6>
+                            <div style="margin:5px;text-align:center;">
+                                <!-- <h6>Currently we dont have products</h6> -->
+                                <h6>No products</h6>
                             </div>
                         <?php
                         }

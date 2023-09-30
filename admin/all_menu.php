@@ -68,9 +68,7 @@ session_start();
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted " style="padding: 0.5rem 0.5rem" href="#"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                                    src="images/bookingSystem/user-icn.png" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted " style="padding: 0.5rem 0.5rem" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/bookingSystem/user-icn.png" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
                                     <li><a href="logout.php"><i class="fa fa-power-off"></i> Logout</a></li>
@@ -92,11 +90,8 @@ session_start();
                         <li class="nav-label">Home</li>
                         <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
                         <li class="nav-label">Log</li>
-                        <li> <a href="all_users.php"> <span><i
-                                        class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i
-                                    class="fa fa-archive f-s-20 color-warning"></i><span
-                                    class="hide-menu">Departments</span></a>
+                        <li> <a href="all_users.php"> <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Departments</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_restaurant.php">All Departments</a></li>
                                 <!-- <li><a href="add_category.php">Add village</a></li> -->
@@ -104,8 +99,7 @@ session_start();
 
                             </ul>
                         </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery"
-                                    aria-hidden="true"></i><span class="hide-menu">Items</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Items</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_menu.php">All Categories</a></li>
                                 <li><a href="add_foodCat.php">Add Item Category</a></li>
@@ -114,10 +108,8 @@ session_start();
 
                             </ul>
                         </li>
-                        <li> <a href="all_orders.php"><i class="fa fa-shopping-cart"
-                                    aria-hidden="true"></i><span>Orders</span></a></li>
-                        <li> <a href="reports.php"><i class="fa fa-file-text-o"
-                                    aria-hidden="true"></i><span>Reports</span></a></li>
+                        <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
+                        <li> <a href="reports.php"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Reports</span></a></li>
 
                         <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items
                                     report</span></a></li>
@@ -142,90 +134,86 @@ session_start();
                                 </div>
 
                                 <div class="table-responsive m-t-40">
-
-
                                     <?php
-
                                     $departments = [];
+                                    $allDepartments = [];
                                     $categories = [];
                                     $categoryPrinted = [];
                                     $categoryCounts = [];
-                                    $sql = "SELECT * FROM dishes order by d_id desc";
+
+                                    $sql = "SELECT rs_id, title FROM restaurant";
+                                    $departmentQuery = mysqli_query($db, $sql);
+                                    while ($departmentRow = mysqli_fetch_array($departmentQuery)) {
+                                        $allDepartments[$departmentRow['rs_id']] = $departmentRow['title'];
+                                    }
+
+                                    $sql = "SELECT dishes.*, restaurant.title AS department_title, food_category.fc_name 
+                                            FROM dishes 
+                                            LEFT JOIN restaurant ON dishes.rs_id = restaurant.rs_id
+                                            LEFT JOIN food_category ON dishes.fc_id = food_category.fc_id
+                                            ORDER BY dishes.d_id DESC";
+
                                     $query = mysqli_query($db, $sql);
-
-                                    if (!mysqli_num_rows($query) > 0) {
-                                        echo '<td colspan="11"><center>No Menu</center></td>';
-                                    } else {
-                                        while ($rows = mysqli_fetch_array($query)) {
-                                            if (!array_key_exists($rows['rs_id'], $departments)) {
-                                                $departments[$rows['rs_id']] = [];
-                                            }
-
-                                            if (!array_key_exists($rows['fc_id'], $categories)) {
-                                                $categories[$rows['fc_id']] = [];
-                                            }
-
-                                            $departments[$rows['rs_id']][$rows['fc_id']][] = $rows;
+                                    while ($rows = mysqli_fetch_array($query)) {
+                                        $rows['department_name'] = $rows['department_title'];
+                                        $departments[$rows['rs_id']][$rows['fc_id']][] = $rows;
+                                        if (!array_key_exists($rows['fc_id'], $categories)) {
+                                            $categories[$rows['fc_id']] = $rows['fc_name'];
                                         }
                                     }
 
                                     $sql = "SELECT fc_id, COUNT(*) AS product_count FROM dishes GROUP BY fc_id";
                                     $query = mysqli_query($db, $sql);
-
                                     while ($row = mysqli_fetch_array($query)) {
                                         $categoryCounts[$row['fc_id']] = $row['product_count'];
                                     }
-                                    // Print all of the tables.
-                                    foreach ($departments as $departmentId => $departmentRows) {
-                                        echo '<h2>Department: ' . $departmentId . '</h2>';
 
+                                    foreach ($allDepartments as $departmentId => $departmentTitle) {
+                                        echo '<h2>' . $departmentTitle . '</h2>';
+                                        echo '<table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">';
+                                        echo '<thead class="thead-dark">
+                                            <tr style="text-align: center;">
+                                                <th>Category</th>
+                                                <th>Item</th>
+                                                <th>Description</th>
+                                                <th>Price</th>
+                                                <th>Image</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>';
 
+                                        if (!isset($departments[$departmentId]) || empty($departments[$departmentId])) {
+                                            echo '<tr><td colspan="6" style="text-align:center;">No products in this department</td></tr>';
+                                        } else {
+                                            foreach ($categories as $categoryId => $categoryName) {
+                                                if (!isset($departments[$departmentId][$categoryId]) || empty($departments[$departmentId][$categoryId])) continue;
 
-                                        foreach ($categories as $categoryId => $categoryRows) {
-                                            // echo '<h3>Category: ' . $categoryId . '</h3>';
-                                    
-                                            echo '  <table id="example23"
-                                            class="display nowrap table table-hover table-striped table-bordered"
-                                            cellspacing="0" width="100%"> ';
-                                            echo '<thead class="thead-dark">
-                                                <tr style="text-align: center;">
-                                                    <th>Category</th>
-                                                    <th>Item</th>
-                                                    <th>Description</th>
-                                                    <th>Price</th>
-    
-                                                    <th>Image</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>';
-                                            echo '<tbody>';
+                                                foreach ($departments[$departmentId][$categoryId] as $row) {
+                                                    echo '<tr>';
+                                                    if (!in_array($categoryId, $categoryPrinted)) {
+                                                        echo '<td style="text-align: center; vertical-align: middle;" rowspan=' . $categoryCounts[$categoryId] . '>' . $categoryName . ' </td>';
+                                                        $categoryPrinted[] = $categoryId;
+                                                    }
 
-                                            foreach ($departmentRows[$categoryId] as $row) {
-                                                echo '<tr>';
-                                                // echo '<td col-span=3>Category: ' . $categoryId . ' </td>';
-                                                if (!in_array($categoryId, $categoryPrinted)) {
-                                                    echo '<td style="text-align: center; vertical-align: middle;" rowspan=' . $categoryCounts[$categoryId] . '>Category: ' . $categoryId . ' </td>';
-
-
-                                                    $categoryPrinted[] = $categoryId;
-                                                }
-                                                echo '<td>' . $row['title'] . '</td>';
-                                                echo '<td>' . $row['slogan'] . '</td>';
-                                                echo '<td>' . $row['price'] . '</td>';
-                                                echo '<td><div class="col-md-3 col-lg-8 m-b-10">
-                                                    <img src="Res_img/dishes/' . $rows['img'] . '" class="img-responsive  radius" style="min-width:150px;min-height:100px;" />';
-                                                echo '<td><a href="delete_menu.php?menu_del=' . $rows['d_id'] . '" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i></a> 
-                                                    <a href="update_menu.php?menu_upd=' . $rows['d_id'] . '" class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fa fa-edit"></i></a>
+                                                    echo '<td>' . $row['title'] . '</td>';
+                                                    echo '<td>' . $row['slogan'] . '</td>';
+                                                    echo '<td>' . $row['price'] . '</td>';
+                                                    echo '<td><div class="col-md-3 col-lg-8 m-b-10">
+                                                    <img src="Res_img/dishes/' . $row['img'] . '" class="img-responsive radius" style="min-width:150px;min-height:100px;" />
+                                                    </div></td>';
+                                                                                        echo '<td><a href="delete_menu.php?menu_del=' . $row['d_id'] . '" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i></a> 
+                                                    <a href="update_menu.php?menu_upd=' . $row['d_id'] . '" class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fa fa-edit"></i></a>
                                                     </td>';
-                                                echo '</tr>';
+                                                    echo '</tr>';
+                                                }
                                             }
-
-                                            echo '</tbody></table>';
                                         }
+                                        echo '</table><br>';
                                     }
                                     ?>
-
                                 </div>
+
+
                             </div>
                         </div>
 
