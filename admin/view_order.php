@@ -6,6 +6,7 @@ error_reporting(0);
 session_start();
 
 ?>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,63 +18,62 @@ session_start();
     <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>+
-<script language="javascript" type="text/javascript">
-var popUpWin=0;
-function popUpWindow(URLStr, left, top, width, height)
-{
- if(popUpWin)
-{
-if(!popUpWin.closed) popUpWin.close();
-}
-popUpWin = open(URLStr,'popUpWin', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=yes,width='+1000+',height='+1000+',left='+left+', top='+top+',screenX='+left+',screenY='+top+'');
-}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>+
+    <script language="javascript" type="text/javascript">
+        var popUpWin = 0;
 
-</script>
+        function popUpWindow(URLStr, left, top, width, height) {
+            if (popUpWin) {
+                if (!popUpWin.closed) popUpWin.close();
+            }
+            popUpWin = open(URLStr, 'popUpWin', 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=yes,width=' + 1000 + ',height=' + 1000 + ',left=' + left + ', top=' + top + ',screenX=' + left + ',screenY=' + top + '');
+        }
+    </script>
 </head>
 
 <body class="fix-header fix-sidebar">
-    
+
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
-			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
     </div>
-   
+
     <div id="main-wrapper">
 
         <div class="header">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
-            <div class="navbar-header">
+                <div class="navbar-header">
                     <a class="navbar-brand" href="dashboard.php">
-                        
+
                         <span><img src="images/icn.png" alt="homepage" class="dark-logo" /></span>
                     </a>
                 </div>
                 <div class="navbar-collapse">
-       
+
                     <ul class="navbar-nav mr-auto mt-md-0">
 
                     </ul>Admin
-     
+
                     <ul class="navbar-nav my-lg-0">
 
-                       
-               
+
+
                         <li class="nav-item dropdown">
-                           
+
                             <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
                                 <ul>
                                     <li>
                                         <div class="drop-title">Notifications</div>
                                     </li>
-                                    
+
                                     <li>
                                         <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
-                 
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted" style="padding: 0.5rem 0.5rem" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/bookingSystem/user-icn.png" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
@@ -88,185 +88,171 @@ popUpWin = open(URLStr,'popUpWin', 'toolbar=no,location=no,directories=no,status
         </div>
 
         <div class="left-sidebar">
-    
+
             <div class="scroll-sidebar">
-           
+
                 <nav class="sidebar-nav">
-                   <ul id="sidebarnav">
+                    <ul id="sidebarnav">
                         <li class="nav-devider"></li>
                         <li class="nav-label">Home</li>
                         <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
                         <li class="nav-label">Log</li>
-                        <li> <a href="all_users.php">  <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li>
+                        <li> <a href="all_users.php"> <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li>
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Departments</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_restaurant.php">All Departments</a></li>
-								<!-- <li><a href="add_category.php">Add village</a></li> -->
+                                <li><a href="all_restaurant.php">All Departments</a></li>
+                                <!-- <li><a href="add_category.php">Add village</a></li> -->
                                 <li><a href="add_restaurant.php">Add new Departments</a></li>
-                                
+
                             </ul>
                         </li>
-                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Items</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Items</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_menu.php">All Categories</a></li>
+                                <li><a href="all_menu.php">All Categories</a></li>
                                 <li><a href="add_foodCat.php">Add Item Category</a></li>
-								<li><a href="add_menu.php">Add Item</a></li>
-                              
-                                
+                                <li><a href="add_menu.php">Add Item</a></li>
+
+
                             </ul>
                         </li>
-						 <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
-                         <li> <a href="reports.php"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Reports</span></a></li>
-                         
-                         <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items report</span></a></li>
+                        <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
+                        <li> <a href="reports.php"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Reports</span></a></li>
+
+                        <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items report</span></a></li>
 
                     </ul>
                 </nav>
-        
+
             </div>
-         
+
         </div>
-    
+
         <div class="page-wrapper">
-        
-            
-    
+
+
+
             <div class="container-fluid">
-     
+
                 <div class="row">
                     <div class="col-12">
-                        
-                   
+
+
                         <div class="col-lg-12">
-                        <div class="card card-outline-primary">
-                            <div class="card-header">
-                                <h4 class="m-b-0 text-white">View Order</h4>
-                            </div>
-                             
-                                <div class="table-responsive m-t-20">
-                                    <table id="myTable" class="table table-bordered table-striped">
-                                       
-                                        <tbody>
-                                           <?php
-											$sql="SELECT users.*, users_orders.* FROM users INNER JOIN users_orders ON users.u_id=users_orders.u_id where o_id='".$_GET['user_upd']."'";
-												$query=mysqli_query($db,$sql);
-												$rows=mysqli_fetch_array($query);
-												
-												
-																		
-												?>
-											
-											<tr>
-													<td><strong>Username:</strong></td>
-												    <td><center><?php echo $rows['username']; ?></center></td>
-													   <td><center>
-                                                       <?php 
-                                                            echo '<a href="order_update.php?form_id=' . $rows['o_id'] . '" > <button type="button" class="btn btn-primary">Update Order Status</button></a>"';
-                                                        ?>
-														</center>
-											 </td>
-												  
-																																					
-											</tr>	
-											<tr>
-												<td><strong>Item Name:</strong></td>
-												    <td><center><?php echo $rows['title']; ?></center></td>
-													    <td><center>
-                                                    
-
-                                                        <?php 
-                                                            echo '<a href="userprofile.php?user_id=' . $rows['u_id'] . '" > <button type="button" class="btn btn-primary">View User Detials</button></a>"';
-                                                        ?>
-											
-													   </center></td>
-												   																								
-											</tr>	
-											<tr>
-													<td><strong>Quantity:</strong></td>
-												    <td><center><?php echo $rows['quantity']; ?></center></td>
-													  
-												   																							
-											</tr>
-											<tr>
-													<td><strong>Price:</strong></td>
-												    <td><center>Rs <?php echo $rows['price']; ?></center></td>
-													   
-												   																							
-											</tr>
-											<tr>
-													<td><strong>Date:</strong></td>
-												     <td><center><?php echo $rows['date']; ?></center></td>
-													  
-												   																							
-											</tr>
-											<tr>
-													<td><strong>Status:</strong></td>
-													<?php 
-																			$status=$rows['status'];
-																			
-																			
-																			?>
-																		   <?php 
-																			  
-																			   if($status=="packing" or $status=="" or $status=="NULL")
-																			 { ?>
-																			<td>   <center><button type="button" class="btn btn-warning"><span class="fa fa-cog fa-spin"  aria-hidden="true" ></span> Packing</button></center></td> 
-																			<?php
-																				}
-                                                                            
-                                                                            if($status=="packed")
-                                                                            {
-																			?>
-																			<td>  <center><button type="button" class="btn btn-info" ><span  class="fa fa-shopping-bag" aria-hidden="true"></span> Ready to pick-up</button></center></td> 
-																			<?php 
-																			} 
-																			
-
-																			if($status=="closed")
-																				{
-																			?>
-																			<td>  <center><button type="button" class="btn btn-primary" ><span  class="fa fa-check-circle" aria-hidden="true"></span> Delivered</button></center></td> 
-																			<?php 
-																			} 
-																			?>
-																			<?php
-																			if($status=="rejected")
-																				{
-																			?>
-																			<td>  <center><button type="button" class="btn btn-danger"> <i class="fa fa-close"></i> Cancelled</button> </center></td> 
-																			<?php 
-																			} 
-																			?>
-													  
-												   																							
-											</tr>
-											
-																				
-																															
-																						
-									
-                                            
-                                           
-                                        </tbody>
-                                    </table>
+                            <div class="card card-outline-primary">
+                                <div class="card-header">
+                                    <h4 class="m-b-0 text-white">View Order</h4>
                                 </div>
-                            </div>
-                        </div>
-						 </div>
-                      
+
+                                <?php
+    // Fetching the user_upd parameter from the URL
+    $order_date = $_GET['user_upd'];
+
+    // Fetching the user's details and orders
+    $sql = "SELECT users.*, users_orders.* FROM users INNER JOIN users_orders ON users.u_id=users_orders.u_id WHERE users_orders.date='$order_date'";
+    $query = mysqli_query($db, $sql);
+
+    // Fetching the first row for user details
+    $rows = mysqli_fetch_array($query);
+    $user_name = $rows['username'];
+    $status = $rows['status'];
+    $user_id = $rows['u_id'];
+
+    // Start rendering
+    echo "<div class='container mt-4'>";  // Bootstrap container
+
+        echo "<div class='row'>";  // Bootstrap row to contain username and status
+
+            // Column for Username
+            echo "<div class='col-md-6'>";
+                echo "<p><strong>Username:</strong> $user_name</p>";
+            echo "</div>";
+
+            // Column for Status (aligned to the right on medium screens and above)
+            echo "<div class='col-md-6 text-md-right'>";
+                echo "<p><strong>Status:</strong> ";
+                switch ($status) {
+                    case "packing":
+                    case "":
+                    case "NULL":
+                        echo "<span class='btn btn-warning btn-sm'>Packing</span>";
+                        break;
+                    case "packed":
+                        echo "<span class='btn btn-info btn-sm'>Ready to pick-up</span>";
+                        break;
+                    case "closed":
+                        echo "<span class='btn btn-primary btn-sm'>Delivered</span>";
+                        break;
+                    case "rejected":
+                        echo "<span class='btn btn-danger btn-sm'>Cancelled</span>";
+                        break;
+                }
+                echo "</p>";
+            echo "</div>";
+
+        echo "</div>";  // Close the Bootstrap row
+
+        echo '<div class="table-responsive m-t-20">
+            <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>';
+
+        $totalAmount = 0;
+        do {
+            $item = $rows['title'];
+            $price = $rows['price'];
+            $quantity = $rows['quantity'];
+            $total = $price * $quantity;
+
+            echo "<tr>
+                <td>$item</td>
+                <td>Rs $price</td>
+                <td>$quantity</td>
+                <td>Rs $total</td>
+            </tr>";
+
+            $totalAmount += $total;
+
+        } while ($rows = mysqli_fetch_array($query));
+
+        echo "<tr>
+            <td colspan='3'><strong>Total Amount:</strong></td>
+            <td>Rs $totalAmount</td>
+        </tr>";
+        echo '</tbody></table></div>';
+
+        echo "<div class='d-flex justify-content-center align-items-center mt-4'>";  // Flex container for centering buttons
+            echo '<a href="order_update.php?form_id=' . $order_date . '" class="btn btn-primary btn-sm mr-2">Update Order Status</a>';
+            echo '<a href="userprofile.php?user_id=' . $user_id . '" class="btn btn-primary btn-sm">View User Details</a>';
+        echo "</div>";  // Close the flex container
+
+    echo "</div>";  // Close the Bootstrap container
+?>
+
+
                             </div>
                         </div>
                     </div>
+
                 </div>
-              
             </div>
-          
-            <footer class="footer"> © 2023 - TribalFoodSociety </footer>
-        
         </div>
-       
     </div>
-    
+
+    </div>
+
+    <footer class="footer"> © 2023 - TribalFoodSociety </footer>
+
+    </div>
+
+    </div>
+
     <script src="js/lib/jquery/jquery.min.js"></script>
     <script src="js/lib/bootstrap/js/popper.min.js"></script>
     <script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
