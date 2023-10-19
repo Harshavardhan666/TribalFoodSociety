@@ -139,118 +139,95 @@ session_start();
                                 <h4 class="m-b-0 text-white">All Orders</h4>
                             </div>
                              
-                                <div class="table-responsive m-t-40">
-                                    <table id="myTable" class="table table-bordered table-striped">
-                                    <thead class="thead-dark">
-                                            <tr  style="text-align:center;">
-                                                <th>User</th>		
-                                                <th>Item Name</th>
-                                                <th>Quantity</th>
-                                                <th>Price</th>
-												<th>Status</th>												
-												 <th>Order-Date</th>
-												  <th>Action</th>
-												 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                           
-											
-											<?php
-												$sql = "SELECT users.*, users_orders.* FROM users 
-                                                INNER JOIN users_orders ON users.u_id = users_orders.u_id 
-                                                ORDER BY users.u_id, users_orders.date DESC, users_orders.o_id";
-                                        
-                                        $query = mysqli_query($db, $sql);
-                                        
-                                        $orders = [];
-                                        
-                                        // Process rows into grouped orders
-                                        while ($row = mysqli_fetch_assoc($query)) {
-                                            $orderId = $row['u_id'] . '-' . $row['date'];  // Combining user and date for a unique order ID
-                                        
-                                            if (!isset($orders[$orderId])) {
-                                                $orders[$orderId] = [
-                                                    'username' => $row['username'],
-                                                    'date' => $row['date'],
-                                                    'items' => []
-                                                ];
-                                            }
-                                        
-                                            $orders[$orderId]['items'][] = $row;
-                                        }
-                                        
-                                        // Display the orders
-                                        foreach ($orders as $order) {
-                                            $itemCount = count($order['items']);
-                                            $firstItem = $order['items'][0];
-                                        
-                                            echo '<tr style="text-align:center;">';
-                                            echo "<td rowspan='$itemCount'>" . $order['username'] . "</td>";
-                                        
-                                            // Display the first item
-                                            echo "<td>{$firstItem['title']}</td>";
-                                            echo "<td>{$firstItem['quantity']}</td>";
-                                            echo "<td>Rs {$firstItem['price']}</td>";
-                                        
-                                            $status = $firstItem['status'];
-                                            echo "<td>";
-                                            switch ($status) {
-                                                case "packing":
-                                                    echo '<button type="button" class="btn btn-warning"><span class="fa fa-cog fa-spin"  aria-hidden="true" ></span> Packing</button>';
-                                                    break;
-                                                case "packed":
-                                                    echo '<button type="button" class="btn btn-info"><span class="fa fa-shopping-bag" aria-hidden="true"></span> Ready to pick-up</button>';
-                                                    break;
-                                                case "closed":
-                                                    echo '<button type="button" class="btn btn-primary"><span class="fa fa-check-circle" aria-hidden="true"></span> Delivered</button>';
-                                                    break;
-                                                case "rejected":
-                                                    echo '<button type="button" class="btn btn-danger"><i class="fa fa-close"></i> Cancelled</button>';
-                                                    break;
-                                            }
-                                            echo "</td>";
-                                        
-                                            echo "<td rowspan='$itemCount'>" . $order['date'] . "</td>";
-                                            echo "<td rowspan='$itemCount'><a href='view_order.php?user_upd={$firstItem['date']}' class='btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5'><i class='fa fa-edit'></i></a></td>";
-                                            echo '</tr>';
-                                        
-                                            // Display the remaining items in this order
-                                            for ($i = 1; $i < $itemCount; $i++) {
-                                                $item = $order['items'][$i];
-                                                echo '<tr style="text-align:center;">';
-                                                echo "<td>{$item['title']}</td>";
-                                                echo "<td>{$item['quantity']}</td>";
-                                                echo "<td>Rs {$item['price']}</td>";
-                                                
-                                                $status = $item['status'];
-                                                echo "<td style='text-align: middle;'>";
-                                                switch ($status) {
-                                                    case "packing":
-                                                        echo '<button type="button" class="btn btn-warning"><span class="fa fa-cog fa-spin"  aria-hidden="true" ></span> Packing</button>';
-                                                        break;
-                                                    case "packed":
-                                                        echo '<button type="button" class="btn btn-info"><span class="fa fa-shopping-bag" aria-hidden="true"></span> Ready to pick-up</button>';
-                                                        break;
-                                                    case "closed":
-                                                        echo '<button type="button" class="btn btn-primary"><span class="fa fa-check-circle" aria-hidden="true"></span> Delivered</button>';
-                                                        break;
-                                                    case "rejected":
-                                                        echo '<button type="button" class="btn btn-danger"><i class="fa fa-close"></i> Cancelled</button>';
-                                                        break;
-                                                }
-                                                echo "</td>";
-                                                echo '</tr>';
-                                            }
-                                        }
-                                        
-											?>
-                                             
-                                            
-                                           
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div class="table-responsive m-t-40">
+    <table id="myTable" class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr style="text-align:center;">
+                <th>User</th>		
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Order-Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $sql = "SELECT users.*, users_orders.* FROM users 
+                INNER JOIN users_orders ON users.u_id = users_orders.u_id 
+                ORDER BY users.u_id, users_orders.date DESC, users_orders.o_id";
+
+            $query = mysqli_query($db, $sql);
+            $orders = [];
+
+            // Process rows into grouped orders
+            while ($row = mysqli_fetch_assoc($query)) {
+                $orderId = $row['u_id'] . '-' . $row['date'];  // Combining user and date for a unique order ID
+
+                if (!isset($orders[$orderId])) {
+                    $orders[$orderId] = [
+                        'username' => $row['username'],
+                        'status' => $row['status'],
+                        'date' => $row['date'],
+                        'items' => []
+                    ];
+                }
+
+                $orders[$orderId]['items'][] = $row;
+            }
+
+            // Display the orders
+            foreach ($orders as $order) {
+                $itemCount = count($order['items']);
+
+                echo '<tr style="text-align:center;">';
+                echo "<td rowspan='$itemCount'>" . $order['username'] . "</td>";
+
+                // Display the first item
+                $firstItem = $order['items'][0];
+                echo "<td>{$firstItem['title']}</td>";
+                echo "<td>{$firstItem['quantity']}</td>";
+                echo "<td>Rs {$firstItem['price']}</td>";
+
+                $status = $firstItem['status'];
+                echo "<td rowspan='$itemCount' >";
+                switch ($status) {
+                    case "packing":
+                        echo '<button type="button" class="btn btn-warning"><span class="fa fa-cog fa-spin"  aria-hidden="true" ></span> Packing</button>';
+                        break;
+                    case "packed":
+                        echo '<button type="button" class="btn btn-info"><span class="fa fa-shopping-bag" aria-hidden="true"></span> Ready to pick-up</button>';
+                        break;
+                    case "closed":
+                        echo '<button type="button" class="btn btn-primary"><span class="fa fa-check-circle" aria-hidden="true"></span> Delivered</button>';
+                        break;
+                    case "rejected":
+                        echo '<button type="button" class="btn btn-danger"><i class="fa fa-close"></i> Cancelled</button>';
+                        break;
+                }
+                echo "</td>";
+
+                echo "<td rowspan='$itemCount'>" . $order['date'] . "</td>";
+                echo "<td rowspan='$itemCount'><a href='view_order.php?user_upd={$firstItem['date']}' class='btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5'><i class='fa fa-edit'></i></a></td>";
+                echo '</tr>';
+
+                // Display the remaining items in this order
+                for ($i = 1; $i < $itemCount; $i++) {
+                    $item = $order['items'][$i];
+                    echo '<tr style="text-align:center;">';
+                    echo "<td>{$item['title']}</td>";
+                    echo "<td>{$item['quantity']}</td>";
+                    echo "<td>Rs {$item['price']}</td>";
+                    
+                    echo '</tr>';
+                }
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+
                             </div>
                         </div>
 						 </div>

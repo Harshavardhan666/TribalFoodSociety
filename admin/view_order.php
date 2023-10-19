@@ -144,96 +144,108 @@ session_start();
                                 </div>
 
                                 <?php
-    // Fetching the user_upd parameter from the URL
-    $order_date = $_GET['user_upd'];
+                                    // Fetching the user_upd parameter from the URL
+                                    $order_date = $_GET['user_upd'];
 
-    // Fetching the user's details and orders
-    $sql = "SELECT users.*, users_orders.* FROM users INNER JOIN users_orders ON users.u_id=users_orders.u_id WHERE users_orders.date='$order_date'";
-    $query = mysqli_query($db, $sql);
+                                    // Fetching the user's details and orders
+                                    $sql = "SELECT users.*, users_orders.* FROM users INNER JOIN users_orders ON users.u_id=users_orders.u_id WHERE users_orders.date='$order_date'";
+                                    $query = mysqli_query($db, $sql);
 
-    // Fetching the first row for user details
-    $rows = mysqli_fetch_array($query);
-    $user_name = $rows['username'];
-    $status = $rows['status'];
-    $user_id = $rows['u_id'];
+                                    // Fetching the first row for user details
+                                    $rows = mysqli_fetch_array($query);
+                                    $user_name = $rows['username'];
+                                    $status = $rows['status'];
+                                    $user_id = $rows['u_id'];
 
-    // Start rendering
-    echo "<div class='container mt-4'>";  // Bootstrap container
+                                    // Start rendering
+                                    echo "<div class='container mt-4'>";  // Bootstrap container
 
-        echo "<div class='row'>";  // Bootstrap row to contain username and status
+                                        echo "<div class='row'>";  // Bootstrap row to contain username and status
 
-            // Column for Username
-            echo "<div class='col-md-6'>";
-                echo "<p><strong>Username:</strong> $user_name</p>";
-            echo "</div>";
+                                            // Column for Username
+                                            echo "<div class='col-md-6'>";
+                                                echo "<p><strong>Username:</strong> $user_name</p>";
+                                            echo "</div>";
 
-            // Column for Status (aligned to the right on medium screens and above)
-            echo "<div class='col-md-6 text-md-right'>";
-                echo "<p><strong>Status:</strong> ";
-                switch ($status) {
-                    case "packing":
-                    case "":
-                    case "NULL":
-                        echo "<span class='btn btn-warning btn-sm'>Packing</span>";
-                        break;
-                    case "packed":
-                        echo "<span class='btn btn-info btn-sm'>Ready to pick-up</span>";
-                        break;
-                    case "closed":
-                        echo "<span class='btn btn-primary btn-sm'>Delivered</span>";
-                        break;
-                    case "rejected":
-                        echo "<span class='btn btn-danger btn-sm'>Cancelled</span>";
-                        break;
-                }
-                echo "</p>";
-            echo "</div>";
+                                            // Column for Status (aligned to the right on medium screens and above)
+                                            echo "<div class='col-md-6 text-md-right'>";
+                                                echo "<p><strong>Status:</strong> ";
+                                                switch ($status) {
+                                                    case "packing":
+                                                    case "":
+                                                    case "NULL":
+                                                        echo "<span class='btn btn-warning btn-sm'>Packing</span>";
+                                                        break;
+                                                    case "packed":
+                                                        echo "<span class='btn btn-info btn-sm'>Ready to pick-up</span>";
+                                                        break;
+                                                    case "closed":
+                                                        echo "<span class='btn btn-primary btn-sm'>Delivered</span>";
+                                                        break;
+                                                    case "rejected":
+                                                        echo "<span class='btn btn-danger btn-sm'>Cancelled</span>";
+                                                        break;
+                                                }
+                                                echo "</p>";
+                                            echo "</div>";
 
-        echo "</div>";  // Close the Bootstrap row
+                                        echo "</div>";  // Close the Bootstrap row
 
-        echo '<div class="table-responsive m-t-20">
-            <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>';
+                                        echo '<div class="table-responsive m-t-20">
+                                            <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Item</th>
+                                                    <th>Price</th>
+                                                    <th>Quantity</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>';
 
-        $totalAmount = 0;
-        do {
-            $item = $rows['title'];
-            $price = $rows['price'];
-            $quantity = $rows['quantity'];
-            $total = $price * $quantity;
+                                        $totalAmount = 0;
+                                        do {
+                                            $item = $rows['title'];
+                                            $price = $rows['price'];
+                                            $quantity = $rows['quantity'];
+                                            $total = $price * $quantity;
 
-            echo "<tr>
-                <td>$item</td>
-                <td>Rs $price</td>
-                <td>$quantity</td>
-                <td>Rs $total</td>
-            </tr>";
+                                            echo "<tr>
+                                                <td>$item</td>
+                                                <td>Rs $price</td>
+                                                <td>$quantity</td>
+                                                <td>Rs $total</td>
+                                            </tr>";
 
-            $totalAmount += $total;
+                                            $totalAmount += $total;
 
-        } while ($rows = mysqli_fetch_array($query));
+                                        } while ($rows = mysqli_fetch_array($query));
 
-        echo "<tr>
-            <td colspan='3'><strong>Total Amount:</strong></td>
-            <td>Rs $totalAmount</td>
-        </tr>";
-        echo '</tbody></table></div>';
+                                        echo "<tr>
+                                            <td colspan='3'><strong>Total Amount:</strong></td>
+                                            <td>Rs $totalAmount</td>
+                                        </tr>";
+                                        echo '</tbody></table></div>';
 
-        echo "<div class='d-flex justify-content-center align-items-center mt-4'>";  // Flex container for centering buttons
-            echo '<a href="order_update.php?form_id=' . $order_date . '" class="btn btn-primary btn-sm mr-2">Update Order Status</a>';
-            echo '<a href="userprofile.php?user_id=' . $user_id . '" class="btn btn-primary btn-sm">View User Details</a>';
-        echo "</div>";  // Close the flex container
+                                        
+                                        // ... Your existing PHP code ...
+                                        
+                                        echo "<div class='container mt-4'>";  // Bootstrap container
+                                        
+                                        // ... Your existing PHP code ...
+                                        
+                                        echo '<div class="d-flex justify-content-center align-items-center mt-4">';  // Flex container for centering buttons
+                                        echo '<a href="order_update.php?form_id=' . $order_date . '" class="btn btn-primary btn-sm mr-2">Update Order Status</a>';
+                                        echo '<a href="userprofile.php?user_id=' . $user_id . '" class="btn btn-primary btn-sm">View User Details</a>';
+                                        echo '<a href="all_orders.php" class="btn btn-danger btn-sm ml-2">Back</a>'; // Add the "Back" button
+                                        echo '</div>';  // Close the flex container
+                                        
+                                        echo "</div>";  // Close the Bootstrap container
+                                        
+                                        
 
-    echo "</div>";  // Close the Bootstrap container
-?>
+                                    echo "</div>";  // Close the Bootstrap container
+                                ?>
 
 
                             </div>

@@ -202,14 +202,11 @@ if (!(isset($_GET['user_id'])) ){
 
           $row = mysqli_fetch_array($ret2)
           ?>
-              <tr>
-                  <td colspan="2"><b><?php echo $row['f_name']; ?>'s profile</b></td>
+              <tr >
+                  <td colspan="2" style="text-align: center;"><b><?php echo $row['f_name']; ?>'s profile</b></td>
 
               </tr>
-              <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-              </tr>
+              
               <tr height="50">
                   <td><b>Reg Date:</b></td>
                   <td><?php echo htmlentities($row['date']); ?></td>
@@ -247,7 +244,6 @@ if (!(isset($_GET['user_id'])) ){
               </tr>
 
               <tr>
-
                   <td colspan="2">
                       <input name="Submit2" type="submit" class="btn btn-danger" value="Back" onclick="goBack()" style="cursor: pointer;" />
                   </td>

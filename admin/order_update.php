@@ -10,7 +10,7 @@ if (isset($_POST['update'])) {
   $status = $_POST['status'];
   $remark = $_POST['remark'];
   $query = mysqli_query($db, "insert into remark(frm_id,status,remark) values('$form_id','$status','$remark')");
-  $sql = mysqli_query($db, "update users_orders set status='$status' where o_id='$form_id'");
+  $sql = mysqli_query($db, "update users_orders set status='$status' where date='$form_id'");
   header('Location: all_orders.php');
   exit;
   echo '<script>showModal("User Status Updated Successfully"); redirectToPage(1000);</script>';
@@ -64,13 +64,6 @@ if (isset($_POST['update'])) {
       font-weight: 600;
       color: #777;
     }
-
-
-
-
-
-
-
 
     table {
       width: 650px;
@@ -281,14 +274,10 @@ if (isset($_POST['update'])) {
 
               <table border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td><b>Form Number</b></td>
+                  <td><b>Ordered Date</b></td>
                   <td><?php echo htmlentities($_GET['form_id']); ?></td>
                 </tr>
-                <tr>
-                  <td>&nbsp;</td>
-
-                  <td>&nbsp;</td>
-                </tr>
+                
 
                 <tr>
                   <td><b>Status</b></td>
@@ -305,16 +294,20 @@ if (isset($_POST['update'])) {
 
                 <tr>
                   <td><b>Message</b></td>
-                  <td><textarea name="remark" cols="50" rows="10" required="required"></textarea></td>
+                  <td><textarea name="remark" cols="50" rows="10" ></textarea></td>
                 </tr>
 
 
 
                 <tr>
                   <td><b>Action</b></td>
-                  <td><input type="submit" name="update" class="btn btn-primary" value="Submit">
+                  <td>
+                  <a href="view_order.php?user_upd=<?php echo $_GET['form_id']; ?>">
+                    <input type="button" class="btn btn-danger" value="Back" style="cursor: pointer;" />
+                  </a>
+                  <input type="submit" name="update" class="btn btn-primary" value="Submit">
 
-                  <input type="button" class="btn btn-danger" value="Back" onclick="goBack()" style="cursor: pointer;" />
+                  
                   </td>
                 </tr>
 
