@@ -9,7 +9,7 @@ if (isset($_POST['update'])) {
   $form_id = $_GET['form_id'];
   $status = $_POST['status'];
   $remark = $_POST['remark'];
-  $query = mysqli_query($db, "insert into remark(frm_id,status,remark) values('$form_id','$status','$remark')");
+  $query = mysqli_query($db, "insert into remark(date,status,remark) values('$form_id','$status','$remark')");
   $sql = mysqli_query($db, "update users_orders set status='$status' where date='$form_id'");
   header('Location: all_orders.php');
   exit;
