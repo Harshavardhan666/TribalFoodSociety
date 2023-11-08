@@ -21,16 +21,17 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        #donutGraph {
-            width: 400px;
-            height: 400px;
-            margin: 0 auto;
-        }
-        .chart-container {
+    #donutGraph {
+        width: 400px;
+        height: 400px;
+        margin: 0 auto;
+    }
+
+    .chart-container {
         display: flex;
         justify-content: space-around;
         margin: 10px;
-      }
+    }
     </style>
 </head>
 
@@ -74,14 +75,17 @@ session_start();
                                     </li>
 
                                     <li>
-                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all
+                                                notifications</strong> <i class="fa fa-angle-right"></i> </a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted " style="padding: 0.5rem 0.5rem" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/bookingSystem/user-icn.png" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted " style="padding: 0.5rem 0.5rem" href="#"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                    src="images/bookingSystem/user-icn.png" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
                                     <li><a href="logout.php"><i class="fa fa-power-off"></i> Logout</a></li>
@@ -103,8 +107,11 @@ session_start();
                         <li class="nav-label">Home</li>
                         <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
                         <li class="nav-label">Log</li>
-                        <li> <a href="all_users.php"> <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Departments</span></a>
+                        <li> <a href="all_users.php"> <span><i
+                                        class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i
+                                    class="fa fa-archive f-s-20 color-warning"></i><span
+                                    class="hide-menu">Departments</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_restaurant.php">All Departments</a></li>
                                 <!-- <li><a href="add_category.php">Add Canteen Category</a></li> -->
@@ -112,7 +119,8 @@ session_start();
 
                             </ul>
                         </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Items</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery"
+                                    aria-hidden="true"></i><span class="hide-menu">Items</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_menu.php">All Categories</a></li>
                                 <li><a href="add_foodCat.php">Add Item Category</a></li>
@@ -121,10 +129,13 @@ session_start();
 
                             </ul>
                         </li>
-                        <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
-                        <li> <a href="reports.php"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Reports</span></a></li>
+                        <li> <a href="all_orders.php"><i class="fa fa-shopping-cart"
+                                    aria-hidden="true"></i><span>Orders</span></a></li>
+                        <li> <a href="reports.php"><i class="fa fa-file-text-o"
+                                    aria-hidden="true"></i><span>Reports</span></a></li>
 
-                        <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items report</span></a></li>
+                        <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items
+                                    report</span></a></li>
 
                     </ul>
                 </nav>
@@ -145,327 +156,121 @@ session_start();
                                     <h4 class="m-b-0 text-white">Reports</h4>
                                 </div>
                                 <button onClick="window.print()">Print Report</button>
-                                
+
                                 <br>
+
                                 <!-- LINE Chart -->
+
                                 <div>
-                                    <h2>Sales Trend Over Time </h2>
+                                    <h2>Sales Trend Over Time (All Items)</h2>
                                     <?php
-                                            // Assuming you have established a database connection
-                                            $servername = "localhost";
-                                            $username = "root";
-                                            $password = "";
-                                            $dbname = "onlinefoodphp";
+                                    // Assuming you have established a database connection
+                                    $servername = "localhost";
+                                    $username = "root";
+                                    $password = "";
+                                    $dbname = "tribalfoodphp";
 
-                                        // Create a new connection
-                                        $db = new mysqli($servername, $username, $password, $dbname);
+                                    // Create a new connection
+                                    $db = new mysqli($servername, $username, $password, $dbname);
 
-                                        // Check the connection
-                                        if ($db->connect_error) {
-                                            die("Connection failed: " . $db->connect_error);
+                                    // Check the connection
+                                    if ($db->connect_error) {
+                                        die("Connection failed: " . $db->connect_error);
+                                    }
+
+                                    // SQL query to retrieve the data for all items, grouped by date
+                                    $sql = "
+        SELECT DATE(uo.date) AS date, SUM(uo.price * uo.quantity) AS total_earnings
+        FROM users_orders uo
+        WHERE uo.status = 'closed'
+        GROUP BY date;
+    ";
+
+                                    // Execute the query
+                                    $result = $db->query($sql);
+
+                                    // Fetch the query results and store them in $data variable
+                                    $data = [];
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            $data[] = $row;
                                         }
-                                        // SQL query to retrieve the data
-                                        $sql = "
-                                        SELECT date,
-                                            MAX(CASE WHEN title = 'Main Canteen' THEN earnings END) AS `main`,
-                                            MAX(CASE WHEN title = 'IT Canteen' THEN earnings END) AS `it`,
-                                            MAX(CASE WHEN title = 'MBA Canteen' THEN earnings END) AS `mba`
-                                        FROM (
-                                            SELECT DATE(uo.date) AS date, r.title, SUM(uo.price * uo.quantity) AS earnings
-                                            FROM users_orders uo
-                                            JOIN restaurant r ON uo.rs_id = r.rs_id
-                                            WHERE uo.status = 'closed'
-                                            GROUP BY date, r.title
-                                        ) AS subquery
-                                        GROUP BY date;
-                                        ";
+                                    }
 
-                                        // Execute the query
-                                        $result = $db->query($sql);
+                                    // Close the database connection
+                                    $db->close();
 
-                                        // Fetch the query results and store them in $data variable
-                                        $data = [];
-                                        if ($result->num_rows > 0) {
-                                            while ($row = $result->fetch_assoc()) {
-                                                $data[] = $row;
-                                            }
-                                        }
+                                    // Extracting the dates from the query results
+                                    $dates = array_column($data, 'date');
 
-                                        // Close the database connection
-                                        $db->close();
+                                    // Extracting the total earnings for all items from the query results
+                                    $totalEarnings = array_column($data, 'total_earnings');
 
-                                        // Extracting the dates from the query results
-                                        $dates = array_column($data, 'date');
-
-                                        // Extracting the earnings for each canteen from the query results
-                                        $mainEarnings = array_column($data, 'main');
-                                        $itEarnings = array_column($data, 'it');
-                                        $mbaEarnings = array_column($data, 'mba');
-
-                                        // Creating the dataset for the line plot
-                                        $dataset = [
-                                            'labels' => $dates,
-                                            'datasets' => [
-                                                [
-                                                    'label' => 'Main Canteen',
-                                                    'data' => $mainEarnings,
-                                                    'borderColor' => 'rgba(255, 99, 132, 1)',
-                                                    'backgroundColor' => 'rgba(255, 99, 132, 0.2)',
-                                                ],
-                                                [
-                                                    'label' => 'IT Canteen',
-                                                    'data' => $itEarnings,
-                                                    'borderColor' => 'rgba(54, 162, 235, 1)',
-                                                    'backgroundColor' => 'rgba(54, 162, 235, 0.2)',
-                                                ],
-                                                [
-                                                    'label' => 'MBA Canteen',
-                                                    'data' => $mbaEarnings,
-                                                    'borderColor' => 'rgba(75, 192, 192, 1)',
-                                                    'backgroundColor' => 'rgba(75, 192, 192, 0.2)',
-                                                ],
+                                    // Creating the dataset for the line plot
+                                    $dataset = [
+                                        'labels' => $dates,
+                                        'datasets' => [
+                                            [
+                                                'label' => 'Total Earnings (All Items)',
+                                                'data' => $totalEarnings,
+                                                'borderColor' => 'rgba(255, 99, 132, 1)',
+                                                'backgroundColor' => 'rgba(255, 99, 132, 0.2)',
                                             ],
-                                        ];
+                                        ],
+                                    ];
 
-                                        // Converting the dataset to JSON format
-                                        $datasetJson = json_encode($dataset);
+                                    // Converting the dataset to JSON format
+                                    $datasetJson = json_encode($dataset);
                                     ?>
                                     <div style="width: 800px; height: 400px;">
                                         <canvas id="linePlot"></canvas>
                                     </div>
                                     <script>
-                                        // Parsing the dataset JSON
-                                        var dataset = <?php echo $datasetJson; ?>;
+                                    // Parsing the dataset JSON
+                                    var dataset = <?php echo $datasetJson; ?>;
 
-                                        // Creating the line plot
-                                        var ctx = document.getElementById('linePlot').getContext('2d');
-                                        new Chart(ctx, {
-                                            type: 'line',
-                                            data: dataset,
-                                            options: {
-                                                responsive: true,
-                                                scales: {
-                                                    x: {
+                                    // Creating the line plot
+                                    var ctx = document.getElementById('linePlot').getContext('2d');
+                                    new Chart(ctx, {
+                                        type: 'line',
+                                        data: dataset,
+                                        options: {
+                                            responsive: true,
+                                            scales: {
+                                                x: {
+                                                    display: true,
+                                                    title: {
                                                         display: true,
-                                                        title: {
-                                                            display: true,
-                                                            text: 'Date'
-                                                        }
-                                                    },
-                                                    y: {
+                                                        text: 'Date'
+                                                    }
+                                                },
+                                                y: {
+                                                    display: true,
+                                                    title: {
                                                         display: true,
-                                                        title: {
-                                                            display: true,
-                                                            text: 'Earnings'
-                                                        }
+                                                        text: 'Total Earnings'
                                                     }
                                                 }
                                             }
-                                        });
+                                        }
+                                    });
                                     </script>
                                 </div>
 
                                 <br>
+
                                 <!-- bar plots -->
-                                <div>
-                                    <h2>Sales Comparison btw canteens</h2>
-                                        <?php
-                                            $servername = "localhost";
-                                            $username = "root";
-                                            $password = "";
-                                            $dbname = "onlinefoodphp";
-                                            $con = new mysqli($servername, $username, $password, $dbname);
-
-                                            
-
-                                            // Query 2
-                                            $query2 = $con->query("
-                                            SELECT r.title AS res_title, SUM(uo.price * uo.quantity) AS total_earnings
-                                            FROM restaurant AS r
-                                            INNER JOIN users_orders AS uo ON r.rs_id = uo.rs_id
-                                            WHERE uo.status = 'closed'
-                                            GROUP BY r.title;
-                                            ");
-
-                                            $title2 = [];
-                                            $earnings2 = [];
-
-                                            foreach ($query2 as $data) {
-                                            $title2[] = $data['res_title'];
-                                            $earnings2[] = $data['total_earnings'];
-                                            }
-
-                                            // Query 5
-                                            $query5 = $con->query("
-                                            SELECT r.title AS restaurant_title, SUM(uo.price * uo.quantity) AS total_earnings
-                                            FROM users_orders uo
-                                            JOIN restaurant r ON uo.rs_id = r.rs_id
-                                            WHERE uo.date BETWEEN (
-                                                SELECT MAX(date) - INTERVAL 7 DAY
-                                                FROM users_orders
-                                            ) AND (
-                                                SELECT MAX(date)
-                                                FROM users_orders
-                                            )
-                                            AND uo.status = 'closed'
-                                            GROUP BY r.title;
-                                            ");
-
-                                            $title5 = [];
-                                            $earnings5 = [];
-
-                                            foreach ($query5 as $data) {
-                                            $title5[] = $data['restaurant_title'];
-                                            $earnings5[] = $data['total_earnings'];
-                                            }
-
-                                            // Query 6
-                                            $query6 = $con->query("
-                                            SELECT r.title AS restaurant_title, SUM(uo.price * uo.quantity) AS total_earnings
-                                            FROM users_orders uo
-                                            JOIN restaurant r ON uo.rs_id = r.rs_id
-                                            WHERE uo.date BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE()
-                                            AND uo.status = 'closed'
-                                            GROUP BY r.title;
-
-                                            ");
-
-                                            $title6 = [];
-                                            $earnings6 = [];
-
-                                            foreach ($query6 as $data) {
-                                            $title6[] = $data['restaurant_title'];
-                                            $earnings6[] = $data['total_earnings'];
-                                            }
-
-                                            $con->close();
-                                        ?>
-                                        <div class="chart-container">
-                                            <div>
-                                                <canvas id="myChart2" style="height: 300px; width: 600px;"></canvas>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="chart-container">
-                                            <div>
-                                                <canvas id="myChart5" style="height: 300px; width: 600px;"></canvas>
-                                           </div>
-                                        </div>
-                                        <div class="chart-container">
-                                            <div>
-                                                <canvas id="myChart6" style="height: 300px; width: 600px;"></canvas>
-                                            </div>
-                                        </div> -->
-
-                                        <script>
-                                            
-                                            // Chart 2
-                                            const labels2 = <?php echo json_encode($title2) ?>;
-                                            const data2 = {
-                                                labels: labels2,
-                                                datasets: [
-                                                {
-                                                    label: 'Canteen vs Earnings',
-                                                    data: <?php echo json_encode($earnings2) ?>,
-                                                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                                                    borderColor: 'rgb(255, 159, 64)',
-                                                    borderWidth: 1
-                                                }
-                                                ]
-                                            };
-
-                                            const config2 = {
-                                                type: 'bar',
-                                                data: data2,
-                                                options: {
-                                                scales: {
-                                                    y: {
-                                                    beginAtZero: true
-                                                    }
-                                                }
-                                                }
-                                            };
-
-                                            var myChart2 = new Chart(
-                                                document.getElementById('myChart2'),
-                                                config2
-                                            );
-
-                                            // Chart 5
-                                            const labels5 = <?php echo json_encode($title5) ?>;
-                                            const data5 = {
-                                                labels: labels5,
-                                                datasets: [
-                                                {
-                                                    label: 'Canteen vs Earnings (Last 7 Days)',
-                                                    data: <?php echo json_encode($earnings5) ?>,
-                                                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                                                    borderColor: 'rgb(153, 102, 255)',
-                                                    borderWidth: 1
-                                                }
-                                                ]
-                                            };
-
-                                            const config5 = {
-                                                type: 'bar',
-                                                data: data5,
-                                                options: {
-                                                scales: {
-                                                    y: {
-                                                    beginAtZero: true
-                                                    }
-                                                }
-                                                }
-                                            };
-
-                                            var myChart5 = new Chart(
-                                                document.getElementById('myChart5'),
-                                                config5
-                                            );
-
-                                            // Chart 6
-                                            const labels6 = <?php echo json_encode($title6) ?>;
-                                            const data6 = {
-                                                labels: labels6,
-                                                datasets: [
-                                                {
-                                                    label: 'Canteen vs Earnings (Last Month)',
-                                                    data: <?php echo json_encode($earnings6) ?>,
-                                                    backgroundColor: 'rgba(255, 205, 86, 0.2)',
-                                                    borderColor: 'rgb(255, 205, 86)',
-                                                    borderWidth: 1
-                                                }
-                                                ]
-                                            };
-
-                                            const config6 = {
-                                                type: 'bar',
-                                                data: data6,
-                                                options: {
-                                                scales: {
-                                                    y: {
-                                                    beginAtZero: true
-                                                    }
-                                                }
-                                                }
-                                            };
-
-                                            var myChart6 = new Chart(
-                                                document.getElementById('myChart6'),
-                                                config6
-                                            );
-                                        </script>
-                                </div>
 
                                 <br>
                                 <!-- donut chart -->
-                                <div >
+                                <div>
                                     <h2> Distribution of Orders - Delivered vs. Canceled</h2>
                                     <?php
                                     // Assuming you have established a database connection
-                                        $servername = "localhost";
-                                        $username = "root";
-                                        $password = "";
-                                        $dbname = "onlinefoodphp";
+                                    $servername = "localhost";
+                                    $username = "root";
+                                    $password = "";
+                                    $dbname = "tribalfoodphp";
 
                                     // Create a new connection
                                     $db = new mysqli($servername, $username, $password, $dbname);
@@ -477,7 +282,7 @@ session_start();
                                     $sql = "
                                     SELECT status, COUNT(*) AS order_count
                                     FROM users_orders
-                                    WHERE status IN ('closed', 'rejected')
+                                    WHERE status IN ('packed','packing','closed', 'rejected')
                                     GROUP BY status;
                                     ";
 
@@ -532,23 +337,23 @@ session_start();
                                     <canvas id="donutGraph"></canvas>
 
                                     <script>
-                                        // Parsing the dataset JSON
-                                        var dataset = <?php echo $datasetJson; ?>;
+                                    // Parsing the dataset JSON
+                                    var dataset = <?php echo $datasetJson; ?>;
 
-                                        // Creating the donut graph
-                                        var ctx = document.getElementById('donutGraph').getContext('2d');
-                                        new Chart(ctx, {
-                                            type: 'doughnut',
-                                            data: dataset,
-                                            options: {
-                                                responsive: true,
-                                                plugins: {
-                                                    legend: {
-                                                        position: 'bottom',
-                                                    },
+                                    // Creating the donut graph
+                                    var ctx = document.getElementById('donutGraph').getContext('2d');
+                                    new Chart(ctx, {
+                                        type: 'doughnut',
+                                        data: dataset,
+                                        options: {
+                                            responsive: true,
+                                            plugins: {
+                                                legend: {
+                                                    position: 'bottom',
                                                 },
                                             },
-                                        });
+                                        },
+                                    });
                                     </script>
                                 </div>
                             </div>
