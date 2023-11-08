@@ -9,8 +9,10 @@ if (isset($_POST['update'])) {
   $form_id = $_GET['form_id'];
   $status = $_POST['status'];
   $remark = $_POST['remark'];
-  $query = mysqli_query($db, "insert into remark(date,status,remark) values('$form_id','$status','$remark')");
-  $sql = mysqli_query($db, "update users_orders set status='$status' where date='$form_id'");
+  date_default_timezone_set('Asia/Kolkata');
+  $currentTimestamp = date('Y-m-d H:i:s');
+  $query = mysqli_query($db, "insert into remark(date,status,remark,remarkDate) values('$form_id','$status','$remark','$currentTimestamp')");
+  $sql = mysqli_query($db, "update users_orders set status='$status' , date='$form_id' where date='$form_id'");
   header('Location: all_orders.php');
   exit;
   echo '<script>showModal("User Status Updated Successfully"); redirectToPage(1000);</script>';

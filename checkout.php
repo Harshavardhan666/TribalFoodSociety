@@ -16,13 +16,16 @@ function function_alert()
 if (empty($_SESSION["user_id"])) {
     header('location:login.php');
 } else {
+    date_default_timezone_set('Asia/Kolkata');
+    $currentTimestamp = date('Y-m-d H:i:s');
     foreach ($_SESSION["cart_item"] as $item) {
 
         $item_total += ($item["price"] * $item["quantity"]);
 
         if ($_POST['submit']) {
             $session = $_SESSION["user_id"];
-            $SQL = "insert into users_orders(u_id,title,quantity,price) values('" . $_SESSION["user_id"] . "','" . $item["title"] . "','" . $item["quantity"] . "','" . $item["price"] . "')";
+            
+            $SQL = "insert into users_orders(u_id,title,quantity,price,date) values('" . $_SESSION["user_id"] . "','" . $item["title"] . "','" . $item["quantity"] . "','" . $item["price"] . "','$currentTimestamp')";
             mysqli_query($db, $SQL);
             unset($_SESSION["cart_item"]);
             unset($item["title"]);
