@@ -20,6 +20,8 @@ session_start();
     <link href="css/style.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
     #donutGraph {
         width: 400px;
@@ -180,10 +182,18 @@ session_start();
 
                                     // SQL query to retrieve the data for all items, grouped by date
                                     $sql = "
-        SELECT DATE(uo.date) AS date, SUM(uo.price * uo.quantity) AS total_earnings
-        FROM users_orders uo
-        WHERE uo.status = 'closed'
-        GROUP BY date;
+                                    SELECT
+                                    MAX(rm.remarkDate) AS remarkDate,
+                                        SUM(uo.quantity*uo.price) AS total_earnings
+                                        
+                                    FROM
+                                        users_orders uo
+                                    JOIN
+                                        remark rm ON uo.date = rm.date
+                                    WHERE
+                                        uo.status = 'closed'
+                                    GROUP BY
+                                        uo.date;
     ";
 
                                     // Execute the query
@@ -201,7 +211,7 @@ session_start();
                                     $db->close();
 
                                     // Extracting the dates from the query results
-                                    $dates = array_column($data, 'date');
+                                    $dates = array_column($data, 'remarkDate');
 
                                     // Extracting the total earnings for all items from the query results
                                     $totalEarnings = array_column($data, 'total_earnings');
@@ -258,8 +268,104 @@ session_start();
                                 </div>
 
                                 <br>
-
                                 <!-- bar plots -->
+                                <div>
+                                    <h2>Sales Comparison between Departments</h2>
+                                    <?php
+                                    $servername = "localhost";
+                                    $username = "root";
+                                    $password = "";
+                                    $dbname = "tribalfoodphp";
+                                    $con = new mysqli($servername, $username, $password, $dbname);
+
+                                    // Check the connection
+                                    if ($con->connect_error) {
+                                        die("Connection failed: " . $con->connect_error);
+                                    }
+
+                                    // Create a list of all department names
+                                    $allDepartmentsQuery = $con->query("SELECT title FROM restaurant");
+                                    $allDepartments = [];
+                                    foreach ($allDepartmentsQuery as $data) {
+                                        $allDepartments[] = $data['title'];
+                                    }
+
+                                    // Query to get sales for each department (rs_id) based on the 'closed' status in the 'users_orders' table
+                                    $query = $con->query("
+        SELECT
+            r.title AS department_name,
+            COALESCE(SUM(uo.quantity * uo.price), 0) AS total_earnings
+        FROM
+            restaurant AS r
+        INNER JOIN
+            dishes AS d ON r.rs_id = d.rs_id
+        INNER JOIN
+            users_orders AS uo ON d.title = uo.title
+        INNER JOIN
+            remark AS rm ON uo.date = rm.date AND rm.status = 'closed'
+        GROUP BY
+            r.rs_id;
+    ");
+
+                                    $departmentNames = [];
+                                    $departmentEarnings = [];
+
+                                    // Merge the result with the list of all department names
+                                    foreach ($allDepartments as $department) {
+                                        $departmentNames[] = $department;
+                                        $departmentEarnings[] = 0; // Default earnings to 0
+                                    
+                                        foreach ($query as $data) {
+                                            if ($data['department_name'] === $department) {
+                                                $departmentEarnings[count($departmentEarnings) - 1] = $data['total_earnings'];
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    $con->close();
+                                    ?>
+                                    <div class="chart-container">
+                                        <div>
+                                            <canvas id="myChart" style="height: 300px; width: 600px;"></canvas>
+                                        </div>
+                                    </div>
+
+                                    <script>
+                                    // Chart
+                                    const departmentData = {
+                                        labels: <?php echo json_encode($departmentNames) ?>,
+                                        datasets: [{
+                                            label: 'Department vs Earnings',
+                                            data: <?php echo json_encode($departmentEarnings) ?>,
+                                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                            borderColor: 'rgb(75, 192, 192)',
+                                            borderWidth: 1
+                                        }]
+                                    };
+
+                                    const departmentConfig = {
+                                        type: 'bar',
+                                        data: departmentData,
+                                        options: {
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    };
+
+                                    var myChart = new Chart(
+                                        document.getElementById('myChart'),
+                                        departmentConfig
+                                    );
+                                    </script>
+                                </div>
+                                <br>
+
+
+                                <br>
 
                                 <br>
                                 <!-- donut chart -->
