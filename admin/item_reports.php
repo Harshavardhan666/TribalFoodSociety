@@ -20,11 +20,11 @@ session_start();
     <title>Items Report</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-    .chart-container {
-        display: flex;
-        justify-content: space-around;
-        margin: 50px;
-    }
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 50px;
+        }
     </style>
 </head>
 
@@ -76,9 +76,7 @@ session_start();
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted " style="padding: 0.5rem 0.5rem" href="#"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                                    src="images/bookingSystem/user-icn.png" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted " style="padding: 0.5rem 0.5rem" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/bookingSystem/user-icn.png" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
                                     <li><a href="logout.php"><i class="fa fa-power-off"></i> Logout</a></li>
@@ -100,11 +98,8 @@ session_start();
                         <li class="nav-label">Home</li>
                         <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
                         <li class="nav-label">Log</li>
-                        <li> <a href="all_users.php"> <span><i
-                                        class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i
-                                    class="fa fa-archive f-s-20 color-warning"></i><span
-                                    class="hide-menu">Departments</span></a>
+                        <li> <a href="all_users.php"> <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Departments</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_restaurant.php">All Departments</a></li>
                                 <!-- <li><a href="add_category.php">Add village</a></li> -->
@@ -112,8 +107,7 @@ session_start();
 
                             </ul>
                         </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery"
-                                    aria-hidden="true"></i><span class="hide-menu">Items</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Items</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_menu.php">All Categories</a></li>
                                 <li><a href="add_foodCat.php">Add Item Category</a></li>
@@ -122,10 +116,8 @@ session_start();
 
                             </ul>
                         </li>
-                        <li> <a href="all_orders.php"><i class="fa fa-shopping-cart"
-                                    aria-hidden="true"></i><span>Orders</span></a></li>
-                        <li> <a href="reports.php"><i class="fa fa-file-text-o"
-                                    aria-hidden="true"></i><span>Reports</span></a></li>
+                        <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
+                        <li> <a href="reports.php"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Reports</span></a></li>
 
                         <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items
                                     report</span></a></li>
@@ -153,135 +145,114 @@ session_start();
                                 <div>
                                     <h2>Sales Comparison between Departments</h2>
                                     <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "tribalfoodphp";
-        $con = new mysqli($servername, $username, $password, $dbname);
+                                    $servername = "localhost";
+                                    $username = "root";
+                                    $password = "";
+                                    $dbname = "tribalfoodphp";
+                                    $con = new mysqli($servername, $username, $password, $dbname);
 
-        // Check the connection
-        if ($con->connect_error) {
-            die("Connection failed: " . $con->connect_error);
-        }
+                                    // Check the connection
+                                    if ($con->connect_error) {
+                                        die("Connection failed: " . $con->connect_error);
+                                    }
 
-        // Create a list of all department rs_ids and their corresponding titles
-        $allDepartmentsQuery = $con->query("SELECT rs_id, title FROM restaurant");
-        $departmentTitles = [];
-        foreach ($allDepartmentsQuery as $data) {
-            $departmentTitles[$data['rs_id']] = $data['title'];
-        }
+                                    // Function to fetch dish title
+                                    function fetchDishTitle($con, $d_id)
+                                    {
+                                        $titleQuery = $con->query("SELECT title FROM dishes WHERE d_id = '$d_id'");
+                                        if ($titleRow = $titleQuery->fetch_assoc()) {
+                                            return $titleRow['title'];
+                                        }
+                                        return "Unknown";
+                                    }
 
-        // Initialize arrays to store data for each department
-        $departmentData = [];
+                                    // Create a list of all department rs_ids and their corresponding titles
+                                    $allDepartmentsQuery = $con->query("SELECT rs_id, title FROM restaurant");
+                                    $departmentTitles = [];
+                                    foreach ($allDepartmentsQuery as $data) {
+                                        $departmentTitles[$data['rs_id']] = $data['title'];
+                                    }
 
-        // Loop through each department and fetch data
-        foreach ($departmentTitles as $rs_id => $title) {
-            $query = $con->query("
-                SELECT
-                    d.d_id,
-                    COALESCE(SUM(uo.quantity), 0) AS total_quantity
-                FROM
-                    dishes AS d
-                INNER JOIN
-                    users_orders AS uo ON d.title = uo.title AND uo.status = 'closed'
-                WHERE
-                    d.rs_id = '$rs_id'
-                GROUP BY
-                    d.d_id
-            ");
+                                    // Initialize arrays to store data for each department
+                                    $departmentData = [];
 
-            $departmentData[$rs_id]['title'] = $title;
-            $departmentData[$rs_id]['labels'] = [];
-            $departmentData[$rs_id]['quantities'] = [];
+                                    // Loop through each department and fetch data
+                                    foreach ($departmentTitles as $rs_id => $title) {
+                                        $query = $con->query("
+                                            SELECT
+                                                d.d_id,
+                                                COALESCE(SUM(uo.quantity), 0) AS total_quantity
+                                            FROM
+                                                dishes AS d
+                                            INNER JOIN
+                                                users_orders AS uo ON d.title = uo.title AND uo.status = 'closed'
+                                            WHERE
+                                                d.rs_id = '$rs_id'
+                                            GROUP BY
+                                                d.d_id
+                                        ");
 
-            foreach ($query as $data) {
-                $departmentData[$rs_id]['labels'][] = $data['d_id'];
-                $departmentData[$rs_id]['quantities'][] = $data['total_quantity'];
-            }
-        }
+                                        $departmentData[$rs_id]['title'] = $title;
+                                        $departmentData[$rs_id]['labels'] = [];
+                                        $departmentData[$rs_id]['quantities'] = [];
 
-        $con->close();
-        ?>
+                                        foreach ($query as $data) {
+                                            $dishTitle = fetchDishTitle($con, $data['d_id']);
+                                            $departmentData[$rs_id]['labels'][] = $dishTitle;
+                                            $departmentData[$rs_id]['quantities'][] = $data['total_quantity'];
+                                        }
+                                    }
 
-                                    <?php foreach ($departmentTitles as $rs_id => $title): ?>
-                                    <div class="chart-container">
-                                        <h3>
-                                            <?= $title ?>
-                                        </h3>
-                                        <div>
-                                            <canvas id="myChart<?= $rs_id ?>"
-                                                style="height: 300px; width: 600px;"></canvas>
+                                    $con->close();
+                                    ?>
+
+                                    <?php foreach ($departmentTitles as $rs_id => $title) : ?>
+                                        <div class="chart-container">
+                                            <h3><?= $title ?></h3>
+                                            <div>
+                                                <canvas id="myChart<?= $rs_id ?>" style="height: 300px; width: 600px;"></canvas>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <script>
-                                    // Chart for Department <?= $title ?>
-                                    <?php if (!empty($departmentData[$rs_id]['labels'])): ?>
-                                    console.log('Data for <?= $title ?>:', <?= json_encode($departmentData[$rs_id]) ?>);
+                                        <script>
+                                            // Chart for Department <?= $title ?>
+                                            <?php if (!empty($departmentData[$rs_id]['labels'])) : ?>
+                                                console.log('Data for <?= $title ?>:', <?= json_encode($departmentData[$rs_id]) ?>);
 
-                                    // Fetch dish titles based on d_ids
-                                    const titleQuery<?= $rs_id ?> =
-                                        <?= json_encode($departmentData[$rs_id]['labels']) ?>;
-                                    const titles<?= $rs_id ?> = [];
+                                                const data<?= $rs_id ?> = {
+                                                    labels: <?= json_encode($departmentData[$rs_id]['labels']) ?>,
+                                                    datasets: [{
+                                                        label: 'Item vs Quantity (<?= $title ?>)',
+                                                        data: <?= json_encode($departmentData[$rs_id]['quantities']) ?>,
+                                                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                                        borderColor: 'rgb(75, 192, 192)',
+                                                        borderWidth: 1
+                                                    }]
+                                                };
 
-                                    // Fetch the corresponding titles based on d_ids
-                                    <?= $con->connect_error ? 'console.error("Database connection error");' : '' ?>
-                                    <?= $con->connect_error ? '' : 'const titleFetchPromises = titleQuery'.$rs_id.'.map(d_id => fetchDishTitle(d_id));' ?>
-
-                                    Promise.all(titleFetchPromises)
-                                        .then(titles => {
-                                            const data<?= $rs_id ?> = {
-                                                labels: titles,
-                                                datasets: [{
-                                                    label: 'Item vs Quantity (<?= $title ?>)',
-                                                    data: <?= json_encode($departmentData[$rs_id]['quantities']) ?>,
-                                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                                    borderColor: 'rgb(75, 192, 192)',
-                                                    borderWidth: 1
-                                                }]
-                                            };
-
-                                            const config<?= $rs_id ?> = {
-                                                type: 'bar',
-                                                data: data<?= $rs_id ?>,
-                                                options: {
-                                                    scales: {
-                                                        y: {
-                                                            beginAtZero: true
+                                                const config<?= $rs_id ?> = {
+                                                    type: 'bar',
+                                                    data: data<?= $rs_id ?>,
+                                                    options: {
+                                                        scales: {
+                                                            y: {
+                                                                beginAtZero: true
+                                                            }
                                                         }
                                                     }
-                                                }
-                                            };
+                                                };
 
-                                            var myChart<?= $rs_id ?> = new Chart(
-                                                document.getElementById('myChart<?= $rs_id ?>'),
-                                                config<?= $rs_id ?>
-                                            );
-                                        })
-                                        .catch(error => console.error('Error fetching dish titles:', error));
-
-                                    <?php else: ?>
-                                    // Create an empty chart if there is no data
-                                    console.log('No data for <?= $title ?>');
-                                    var myChart<?= $rs_id ?> = new Chart(
-                                        document.getElementById('myChart<?= $rs_id ?>'), {
-                                            type: 'bar',
-                                            data: {
-                                                labels: [],
-                                                datasets: []
-                                            },
-                                            options: {
-                                                scales: {
-                                                    y: {
-                                                        beginAtZero: true
-                                                    }
-                                                }
-                                            }
-                                        });
-                                    <?php endif; ?>
-                                    </script>
+                                                var myChart<?= $rs_id ?> = new Chart(
+                                                    document.getElementById('myChart<?= $rs_id ?>'),
+                                                    config<?= $rs_id ?>
+                                                );
+                                            <?php else : ?>
+                                                console.log('No data for <?= $title ?>');
+                                            <?php endif; ?>
+                                        </script>
                                     <?php endforeach; ?>
                                 </div>
+
 
                                 <br>
 
