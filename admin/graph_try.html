@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php
+include("../connection/connect.php");
+error_reporting(0);
+session_start();
+?>
+
+    <head>
+        <!-- Your existing head content -->
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+            .chart-container {
+                display: flex;
+                justify-content: space-around;
+                margin: 50px;
+            }
+        </style>
+
+        <script>
+            async function fetchDishTitle(d_id) {
+                try {
+                    const response = await fetch('fetchDishTitle.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            d_id
+                        }),
+                    });
+                    const data = await response.json();
+                    return data.title;
+                } catch (error) {
+                    console.error('Error fetching dish title:', error);
+                    return '';
+                }
+            }
+        </script>
+    </head>
+
+    <body class="fix-header fix-sidebar">
+        <!-- Your existing body content -->
+
+        <div>
+            <h2>Sales Comparison between Departments</h2>
+            <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "tribalfoodphp";
+        $con = new mysqli($servername, $username, $password, $dbname);
+
+        // Check the connection
+        if ($con->connect_error) {
+            die("Connection failed: " . $con->connect_error);
+        }
+
+        // Create a list of all department rs_ids and their corresponding titles
+        $allDepartmentsQuery = $con->query("SELECT rs_id, title FROM restaurant");
+        $departmentTitles = [];
+        foreach ($allDepartmentsQuery as $data) {
+            $departmentTitles[$data['rs_id']] = $data['title'];
+        }
+
+        // Initialize arrays to store data for each department
+        $departmentData = [];
+
+        // Loop through each department and fetch data
+        foreach ($departmentTitles as $rs_id => $title) {
+            $query = $con->query("
+                SELECT
+                    d.d_id,
+                    COALESCE(SUM(uo.quantity), 0) AS total_quantity
+                FROM
+                    dishes AS d
+                INNER JOIN
+                    users_orders AS uo ON d.title = uo.title AND uo.status = 'closed'
+                WHERE
+                    d.rs_id = '$rs_id'
+                GROUP BY
+                    d.d_id
+            ");
+
+            $departmentData[$rs_id]['title'] = $title;
+            $departmentData[$rs_id]['labels'] = [];
+            $departmentData[$rs_id]['quantities'] = [];
+
+            foreach ($query as $data) {
+                $departmentData[$rs_id]['labels'][] = $data['d_id'];
+                $departmentData[$rs_id]['quantities'][] = $data['total_quantity'];
+            }
+        }
+
+        $con->close();
+        ?>
+
+                <?php foreach ($departmentTitles as $rs_id => $title): ?>
+                <div class="chart-container">
+                    <h3>
+                        <?= $title ?>
+                    </h3>
+                    <div>
+                        <canvas id="myChart<?= $rs_id ?>" style="height: 300px; width: 600px;"></canvas>
+                    </div>
+                </div>
+
+                <script>
+                    // Chart for Department <?= $title ?>
+                    <?php if (!empty($departmentData[$rs_id]['labels'])): ?>
+                    console.log('Data for <?= $title ?>:', <?= json_encode($departmentData[$rs_id]) ?>);
+
+                    // Fetch dish titles based on d_ids
+                    const titleQuery <?= $rs_id ?> = <?= json_encode($departmentData[$rs_id]['labels']) ?>;
+                    const titles <?= $rs_id ?> = [];
+
+                    // Fetch the corresponding titles based on d_ids
+                    <?= $con->connect_error ? 'console.error("Database connection error");' : '' ?>
+                    <?= $con->connect_error ? '' : 'const titleFetchPromises = titleQuery'.$rs_id.'.map(d_id => fetchDishTitle(d_id));' ?>
+
+                    Promise.all(titleFetchPromises)
+                        .then(titles => {
+                            const data <?= $rs_id ?> = {
+                                labels: titles,
+                                datasets: [{
+                                    label: 'Item vs Quantity (<?= $title ?>)',
+                                    data: <?= json_encode($departmentData[$rs_id]['quantities']) ?>,
+                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                    borderColor: 'rgb(75, 192, 192)',
+                                    borderWidth: 1
+                                }]
+                            };
+
+                            const config <?= $rs_id ?> = {
+                                type: 'bar',
+                                data: data <?= $rs_id ?>,
+                                options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            };
+
+                            var myChart <?= $rs_id ?> = new Chart(
+                                document.getElementById('myChart<?= $rs_id ?>'),
+                                config <?= $rs_id ?>
+                            );
+                        })
+                        .catch(error => console.error('Error fetching dish titles:', error));
+
+                    <?php else: ?>
+                    // Create an empty chart if there is no data
+                    console.log('No data for <?= $title ?>');
+                    var myChart <?= $rs_id ?> = new Chart(
+                        document.getElementById('myChart<?= $rs_id ?>'), {
+                            type: 'bar',
+                            data: {
+                                labels: [],
+                                datasets: []
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    <?php endif; ?>
+                </script>
+                <?php endforeach; ?>
+        </div>
+
+        <!-- Your existing footer content -->
+    </body>
+
+</html>
