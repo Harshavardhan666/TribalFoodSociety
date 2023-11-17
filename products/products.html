@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Products Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /* Base Styles */
+        
+        html,
+        body,
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: "Lato", sans-serif;
+        }
+        
+        .mySlides {
+            display: none;
+        }
+        
+        .w3-tag,
+        .fa {
+            cursor: pointer;
+        }
+        
+        .w3-tag {
+            height: 15px;
+            width: 15px;
+            padding: 0;
+            margin-top: 6px;
+        }
+        /* Responsive Styles */
+        /* Add this CSS for responsive tables */
+        
+        @media screen and (max-width: 768px) {
+            /* Adjust the max-width as needed */
+            /* Center-align text in table cells */
+            table td {
+                text-align: center;
+            }
+            /* Stack images on top of text */
+            table img {
+                display: block;
+                margin: 0 auto;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            /* Adjust max-width as needed for your design */
+            .w3-content {
+                max-width: 100%;
+                margin-bottom: 80px;
+            }
+            .w3-container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            table {
+                width: 100%;
+            }
+            table td {
+                width: 50%;
+            }
+        }
+        /* Add more media queries as needed for specific elements or sections */
+    </style>
+</head>
+
+<body>
+
+    <!-- Content -->
+    <div class="w3-content" style="max-width:1100px;margin-bottom:80px">
+
+        <div class="w3-panel">
+            <center>
+                <h1><b>TRIBAL PRODUCTS</b></h1>
+            </center>
+        </div>
+
+        <!-- Slideshow -->
+        <div class="w3-container">
+
+            <div class="w3-display-container mySlides">
+                <img src="p1.jpg" style="width:100%">
+                <div class="w3-display-middle w3-container w3-padding-32">
+                    <span class="w3-white w3-padding-large w3-animate-bottom">Metal Craft</span>
+                </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+                <img src="p2.jpg" style="width:100%">
+                <div class="w3-display-middle w3-container w3-padding-32">
+                    <span class="w3-white w3-padding-large w3-animate-bottom">Tribal Textile</span>
+                </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+                <img src="p3.jpeg.jpg" style="width:100%">
+                <div class="w3-display-middle w3-container w3-padding-32">
+                    <span class="w3-white w3-padding-large w3-animate-bottom">Tribal Jewellery</span>
+                </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+                <img src="p4.jpg" style="width:100%">
+                <div class="w3-display-middle w3-container w3-padding-32">
+                    <span class="w3-white w3-padding-large w3-animate-bottom">Tribal Painting</span>
+                </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+                <img src="p5.jpg" style="width:100%">
+                <div class="w3-display-middle w3-container w3-padding-32">
+                    <span class="w3-white w3-padding-large w3-animate-bottom">Cane & Bamboo</span>
+                </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+                <img src="p6.jpg" style="width:100%">
+                <div class="w3-display-middle w3-container w3-padding-32">
+                    <span class="w3-white w3-padding-large w3-animate-bottom">Terracotta & Stone Pottery</span>
+                </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+                <img src="p7.jpg" style="width:100%">
+                <div class="w3-display-middle w3-container w3-padding-32">
+                    <span class="w3-white w3-padding-large w3-animate-bottom">Gift & Novelties</span>
+                </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+                <img src="p8.jpg" style="width:100%">
+                <div class="w3-display-middle w3-container w3-padding-32">
+                    <span class="w3-white w3-padding-large w3-animate-bottom">Organic & Natural Food Products</span>
+                </div>
+            </div>
+
+            <!-- Slideshow next/previous buttons -->
+            <div class="w3-container w3-dark-grey w3-padding w3-xlarge">
+                <div class="w3-left" onclick="plusDivs(-1)"><i class="fa fa-arrow-circle-left w3-hover-text-teal"></i></div>
+                <div class="w3-right" onclick="plusDivs(1)"><i class="fa fa-arrow-circle-right w3-hover-text-teal"></i></div>
+
+                <div class="w3-center">
+                    <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+                    <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+                    <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+                    <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(4)"></span>
+                    <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(5)"></span>
+                    <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(6)"></span>
+                    <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(7)"></span>
+                    <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(8)"></span>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <table border="0" style=" text-align: center; padding: 5px; margin: 0 auto; ">
+            <tr>
+                <td style="width: 50%; background-color:#F1F1F1;">
+                    <h4>Metal Craft</h4>
+                </td>
+                <td style="background-color:#9E9E9E;">
+                    <h4>Tribal Textile</h4>
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#616161;">
+                    <h4>Tribal Jewellery</h4>
+                </td>
+                <td style="background-color:#000000; color:white">
+                    <h4>Tribal Painting</h4>
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#F1F1F1;">
+                    <h4>Cane & Bamboo</h4>
+                </td>
+                <td style="background-color:#9E9E9E;">
+                    <h4>Terracotta & Stone Pottery</h4>
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#616161;">
+                    <h4>Gift & Novelties</h4>
+                </td>
+                <td style="background-color:#000000; color:white">
+                    <h4>Organic & Natural Food Products</h4>
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <hr>
+
+        <table border=" 0 " style="background-color:#F1F1F1; ">
+            <tr>
+                <td rowspan="2 ">
+                    <h1 style="text-align: center; ">METAL CRAFT</h1>
+                    <p>Traditionally the Gadwas, Gonds and Dhurwas tribes of Chhattisgarh practice the Dokra art with lost wax technique or hollow casting. It involves patterning a clay core intricately with wax ribbons and then coating it carefully with
+                        a mix of clay and hay. The wax is subsequently melted off, and the cavity formed is filled with molten metal - an alloy of copper and tin. When this solidifies, the craftsman reveals the beauty of his creation by cautiously breaking
+                        open the outer clay shell. Inspiration for casting unique pieces of art comes from the abundant environment, be it the village ghotul, myriad of trees, birds and animals, mythology or rituals. Tribes offers a breathtaking range
+                        of metal craft created by the deft hands of the tribal artisans of Chattisgarh, Madhya Pradesh, Odisha & West Bengal.
+                    </p>
+                    <p>The wax is subsequently melted off, and the cavity formed is filled with molten metal - an alloy of copper and tin. When this solidifies, the craftsman reveals the beauty of his creation by cautiously breaking open the outer clay shell.
+                        Inspiration for casting unique pieces of art comes from the abundant environment, be it the village ghotul, myriad of trees, birds and animals, mythology or rituals. Tribes offers a breathtaking range of metal craft created by
+                        the deft hands of the tribal artisans of Chattisgarh, Madhya Pradesh, Odisha & West Bengal.</p>
+                </td>
+                <!-- <td><img src="tp1.jpg " style="width:250px; "></td> -->
+                <td colspan="2 "><img src="mc4.jpg " style="width:500px; "></td>
+
+            </tr>
+            <tr>
+                <td><img src="mc2.jpg " style="width:250px; "></td>
+                <td><img src="mc3.jpg " style="width:250px; "></td>
+            </tr>
+
+        </table>
+        <hr>
+        <hr>
+
+        <table border="0 ">
+            <tr>
+                <td colspan="2 ">
+                    <img src="tt3.jpg " style="width:500px; "></td>
+                <td rowspan="2 ">
+                    <h1 style="text-align: center; ">TRIBAL TEXTILE</h1>
+                    <p>The tribal textile industry in India has been in existence since time immemorial and is a huge global commodity for India. Conquering all boundaries of time and space, the timeless brilliance of tribal artists have seamlessly adopted
+                        age-old traditions into contemporary styles. The indigenous crafts have also received much international acclaim. Tribes India hosts a wide variety of apparel ranging from drapes to t-shirts that have been created out of tribal
+                        textiles. Fusing tradition with modernity, it isn’t surprising that they have received immense popularity among all. Hand woven woollen products such as shawls, stoles and mufflers are made out of Sheep and Angora or rabbit wool
+                        by the Bhutia tribes of Uttarakhand and by Bodh and Lahula tribes of Himachal Pradesh. Puranic Gods and Goddesses and legends prevalent in the region are depicted.</p>
+                    <p>Textiles such as Muga and Eri silk in the North East and Tassar silk in Jharkhand are some other very rich fabrics used to make sarees, shawls and stoles through weaving. Menswear clothing line ranging from kurtas to bandhgala jackets
+                        are all also a part of the textile category. A wide range of home furnishings comprising of bed covers, cushion covers, table cloths are available. The timeless brilliance of tribal artists shatters all boundaries of time and space;
+                        centuries old traditions have seamlessly adapted into contemporary styles.</p>
+                </td>
+            </tr>
+            <tr>
+
+                <!-- <td><img src="tp1.jpg " style="width:250px; "></td> -->
+                <td><img src="tt2.jpg " style="width:250px; "></td>
+                <td><img src="tt4.jpg " style="width:250px; "></td>
+
+            </tr>
+
+        </table>
+        <hr>
+        <hr>
+
+        <table border="0 " style="background-color:#F1F1F1; ">
+            <tr>
+                <td rowspan="2 ">
+                    <h1 style="text-align: center; ">TRIBAL PAINTINGS</h1>
+                    <p>Tribal communities have expressed their sensitivity and creativity through their arts and crafts. Their art exemplifies a level where life and creativity are inseparable. The tribal people possess an intense awareness different from
+                        the settled and urbanised people. Vivid, mysterious and colourful, the art reflects the communities' myth, legends, epics and multitudinous Gods.</p>
+                    <p>An expression of tribal life and its myriad aspects, tribal paintings depict a world of passion and mystique. Home to more than 2500 tribes and ethnic groups, there are different rich art styles when it comes to tribal paintings. Some
+                        noted tribal art forms, which can be found at Tribes India outlets and the website include Warli, Saura, Gond, Pithora and Patachitra. Made with natural colours and pigments, they are a vibrant and colourful representation of seasons,
+                        festivals, regular activities such as hunting, fishing, dancing and religious beliefs. Puranic Gods and Goddesses and legends prevalent in the region are depicted.</p>
+                </td>
+                <!-- <td><img src="tp1.jpg " style="width:250px; "></td> -->
+                <td><img src="tp3.jpg " style="width:250px; "></td>
+                <td><img src="tp4.jpg " style="width:250px; "></td>
+
+            </tr>
+            <tr>
+                <td colspan="2 "><img src="tp2.jpg " style="width:500px; "></td>
+            </tr>
+        </table>
+        <hr>
+        <hr>
+
+
+        <table border="0 ">
+            <tr>
+                <td colspan="2 ">
+                    <img src="tj3.jpg " style="width:500px; "></td>
+                <td rowspan="2 ">
+                    <h1 style="text-align: center; ">TRIBAL JEWELLERY</h1>
+                    <p>The finest pieces of jewellery are made by the tribes of Nagaland, Manipur, Arunachal Pradesh in the North East, states of Odisha, Himachal Pradesh and Jharkhand. Tribal jewellery from the North East of India has an exceptional range
+                        of variety. With an unmatched combination of natural resources and innovation these artistic creations are made with animal bones, corals, glass beads and shells.</p>
+                    <p>There is a collection of special ornaments that includes original bead necklaces from the Wancho tribe of Arunachal Pradesh; sea shell, glass bead and coral necklace from Konyak tribe of Nagaland; necklaces made with beads with two
+                        brass heads and fish tails which are considered as fertility symbols worn by the Naga tribes and necklaces with figures of heads strung on them. Dokra jewellery crafted by the Bhattada section of the famous Gond tribes of Odisha
+                        is another beautiful form of jewellery which gives an antique look and augments well with traditional as well as contemporary styles.</p>
+                </td>
+            </tr>
+            <tr>
+
+                <!-- <td><img src="tp1.jpg " style="width:250px; "></td> -->
+                <td><img src="tj2.jpg " style="width:250px; "></td>
+                <td><img src="tj4.jpg " style="width:250px; "></td>
+
+            </tr>
+
+        </table>
+        <hr>
+        <hr>
+
+        <table border="0 " style="background-color:#F1F1F1; ">
+            <tr>
+                <td rowspan="2 ">
+                    <h1 style="text-align: center; ">Cane & Bamboo</h1>
+                    <p>Cane and Bamboo is abundantly found in almost all the North Eastern States of India. The tribal inhabitants make utility products like basketry, which are woven in various patterns, shapes and sizes. The baskets are traditionally Conical,
+                        Flat bottomed or Flat Cylindrical and are used for carrying firewood, water, storing grains or straining rice beer beside other variety of fishing utility baskets. Cane and Bamboo is also used in making other utility items like
+                        trays, lamps, fruit baskets, key rings, walking sticks, Office bags, pen stands & a range of furniture products. Sofa Sets, chairs, dinning/conference table, laundry baskets, waste baskets etc. are many forms of intricately carved
+                        cane & Bamboo products that can handle lot of usage without getting damaged.</p>
+                    <p>It is eco friendly as the same is made from a renewable forest resource. The manufacturing process of cane furniture starts with the preparation of requisite amount of bamboo slips. Canes of various diameters are also reduced into
+                        slips of various sizes according to adaptability. The artisans then prepare a rough structure of the furniture by joining the different bamboo parts with the help of nails. In case of round-cane furniture, thin iron rods are used
+                        to get the round cane bend to the required shape. The actual weaving or coiling of the structure so made is done with fine slips of flexible cane. Cane & Bamboo is one of the main source of income for Chakma, Dimasa, Nagas, Mizos,
+                        Khasi, Garo Jaintias, Riyang Apatani, tribes from Assam, Nagaland, Meghalaya, Mizoram, Arunachal & Tripura.</p>
+                </td>
+                <!-- <td><img src="tp1.jpg " style="width:250px; "></td> -->
+                <td><img src="b3.jpg " style="width:250px; "></td>
+                <td><img src="b4.jpg " style="width:250px; "></td>
+
+            </tr>
+            <tr>
+                <td colspan="2 "><img src="b2.jpg " style="width:500px; "></td>
+            </tr>
+        </table>
+        <hr>
+        <hr>
+
+        <table border="0 ">
+            <tr>
+                <td colspan="2 ">
+                    <img src="st.jpg " style="width:500px; "></td>
+                <td rowspan="2 ">
+                    <h1 style="text-align: center; ">Terracotta & Stone Pottery</h1>
+                    <p>Longpi pottery, also known as Longpi Ham, is not only a testament to the rich cultural heritage of the Tangkhul Naga tribe but also a thriving art form that has gained recognition worldwide. The exquisite black stone pottery produced
+                        in Longpi is steeped in tradition and carries with it the stories and skills passed down through generations. The process of crafting Longpi pottery is a labor-intensive and time-honored tradition. Skilled artisans from the Tangkhul
+                        Naga tribe have honed their craft over years of practice, creating functional and aesthetically pleasing pieces. Unlike conventional pottery, Longpi pottery doesn't rely on a potter's wheel. Instead, it relies on the dexterity
+                        of the potter's hands and the use of molds to shape the clay.</p>
+                    <p>The raw materials for Longpi pottery are derived from the local soil, which contains a unique combination of weathered rock and serpentine, giving the pottery its distinctive gray-black color. This natural clay mixture is eco-friendly
+                        and sustainable, making Longpi pottery an environmentally conscious choice for those who appreciate handmade artistry. The Longpi pottery repertoire has expanded over time to include a diverse range of products. Beyond the classic
+                        cooking pots, kettles, bowls, and mugs, artisans have embraced innovation by creating contemporary pieces like table lamps, candlestick holders, and office collectibles. These new additions not only showcase the versatility of
+                        the craft but also cater to a global audience seeking unique and artistic home decor. What truly sets Longpi pottery apart is its minimalistic yet elegant design. The pieces often feature a sleek black background with understated
+                        motifs. This aesthetic not only makes them practical for everyday use but also seamlessly integrates the cultural and artistic heritage of the Tangkhul Naga tribe into modern living spaces.</p>
+                    <p>In recent years, Longpi pottery has transcended geographical boundaries. It has found appreciative audiences in countries like Australia, Sweden, Germany, and the United States, where people value its craftsmanship and the cultural
+                        story it carries. The global recognition of Longpi pottery not only supports the livelihoods of the artisans but also helps preserve a unique heritage that might otherwise be lost in the annals of time.</p>
+                </td>
+            </tr>
+            <tr>
+
+                <!-- <td><img src="tp1.jpg " style="width:250px; "></td> -->
+                <td><img src="p6.jpg " style="width:250px; "></td>
+                <td><img src="p7.jpg " style="width:250px; "></td>
+
+            </tr>
+
+        </table>
+        <hr>
+        <hr>
+
+        <table border="0 " style="background-color:#F1F1F1; ">
+            <tr>
+                <td rowspan="2 ">
+                    <h1 style="text-align: center; ">Gifts & Novelties</h1>
+                    <p>Gifts and novelties hold a special place in our lives as they have the extraordinary ability to evoke joy and capture moments, transforming them into cherished memories. These tokens of affection and thoughtfulness are a testament
+                        to the bonds we share with our loved ones. At Tribes India, we understand the significance of gifting and the impact it can have on people's lives. Our collection of exotic gift items, souvenirs, and assortments are not just ordinary
+                        offerings; they are crafted with precision and care by skilled Tribal artisans who infuse their culture, heritage, and craftsmanship into each piece. This unique blend of tradition and artistry ensures that every item we offer
+                        is a work of art, a piece of history, and a reflection of the rich diversity of India's tribal communities..</p>
+                    <p>Tribes India is more than just a store; it's a celebration of India's tribal heritage and the talents of these indigenous artisans. Our outlets and e-commerce platforms serve as a window to the world of tribal craftsmanship, allowing
+                        you to explore and appreciate the beauty of handcrafted items that narrate stories of resilience, tradition, and innovation. When you choose a gift from Tribes India, you're not merely purchasing an object; you're investing in
+                        a piece of someone's heritage and livelihood. It's a gesture of support for the talented artisans who work tirelessly to preserve their age-old traditions and provide for their families.</p>
+                </td>
+                <!-- <td><img src="tp1.jpg " style="width:250px; "></td> -->
+                <td><img src="gif4.jpg " style="width:250px; "></td>
+                <td><img src="gif2.jpg " style="width:250px; "></td>
+
+            </tr>
+            <tr>
+                <td colspan="2 "><img src="gif3.jpg " style="width:500px; "></td>
+            </tr>
+        </table>
+        <hr>
+        <hr>
+
+        <table border="0 ">
+            <tr>
+                <td colspan="2 ">
+                    <img src="fp3.jpg " style="width:500px; "></td>
+                <td rowspan="2 ">
+                    <h1 style="text-align: center; ">Organic & Natural Products</h1>
+                    <p>In a world where processed and artificial products often dominate our choices, there's a growing appreciation for the beauty and goodness of nature in its unadulterated form. Tribes understands this deep connection with nature and
+                        brings you a selection of organic and natural products that allow you to savor food and other essentials just as nature intended them to be—pure and unspoiled. Our commitment to offering organic food means that you can enjoy food
+                        products free from the harmful effects of chemicals, synthetic fertilizers, insecticides, and artificial additives. These products are a testament to the sustainable and eco-friendly farming practices adopted by communities across
+                        India who prioritize the health of the land, the well-being of consumers, and the preservation of traditional agricultural wisdom.</p>
+                    <p>When you choose Tribes' organic and natural products, you are not only making a choice for your own well-being but also supporting the livelihoods of indigenous communities who have been the stewards of these lands for generations.
+                        Your choice empowers them to continue practicing traditional farming methods, preserving biodiversity, and promoting sustainable agriculture. Our diverse range of organic offerings spans various categories, ensuring that you have
+                        access to a wide array of natural treasures. From the sweet purity of honey to the aromatic richness of tea and spices, and from the wholesome goodness of dry fruits to the freshness of sustainably sourced fish, our selection mirrors
+                        the incredible diversity of India's natural bounty.</p>
+                </td>
+            </tr>
+            <tr>
+
+                <!-- <td><img src="tp1.jpg " style="width:250px; "></td> -->
+                <td><img src="fp2.jpg " style="width:250px; "></td>
+                <td><img src="fp4.jpg " style="width:250px; "></td>
+
+            </tr>
+
+        </table>
+        <hr>
+        <hr>
+
+        <!-- Grid -->
+        <div class="w3-row w3-container ">
+            <div class="w3-center w3-padding-64 ">
+                <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16 ">What We Offer</span>
+            </div>
+            <div class="w3-col l3 m6 w3-light-grey w3-container w3-padding-16 ">
+                <h3>Design</h3>
+                <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+            </div>
+
+            <div class="w3-col l3 m6 w3-grey w3-container w3-padding-16 ">
+                <h3>Branding</h3>
+                <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+            </div>
+
+            <div class="w3-col l3 m6 w3-dark-grey w3-container w3-padding-16 ">
+                <h3>Consultation</h3>
+                <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+            </div>
+
+            <div class="w3-col l3 m6 w3-black w3-container w3-padding-16 ">
+                <h3>Promises</h3>
+                <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+            </div>
+        </div>
+
+
+
+
+
+
+        <script>
+            // Slideshow
+            var slideIndex = 1;
+            showDivs(slideIndex);
+
+            function plusDivs(n) {
+                showDivs(slideIndex += n);
+            }
+
+            function currentDiv(n) {
+                showDivs(slideIndex = n);
+            }
+
+            function showDivs(n) {
+                var i;
+                var x = document.getElementsByClassName("mySlides ");
+                var dots = document.getElementsByClassName("demodots ");
+                if (n > x.length) {
+                    slideIndex = 1
+                }
+                if (n < 1) {
+                    slideIndex = x.length
+                };
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none ";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" w3-white ", " ");
+                }
+                x[slideIndex - 1].style.display = "block ";
+                dots[slideIndex - 1].className += " w3-white ";
+            }
+        </script>
+
+</body>
+
+</html>

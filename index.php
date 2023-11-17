@@ -24,62 +24,62 @@ session_start();
 
 
     <style>
-        ul li a:visited {
-            text-decoration: none;
-        }
+    ul li a:visited {
+        text-decoration: none;
+    }
 
-        .nav-item.dropdown:hover .dropdown-menu {
-            display: block;
-        }
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+    }
 
-        .dropdown-item:hover {
-            background-color: #abcdef;
-        }
+    .dropdown-item:hover {
+        background-color: #abcdef;
+    }
 
-        .hero {
-            position: relative;
-            background-size: cover;
-        }
+    .hero {
+        position: relative;
+        background-size: cover;
+    }
 
-        .hero.bg-image {
-            backdrop-filter: blur(5px);
-        }
+    .hero.bg-image {
+        backdrop-filter: blur(5px);
+    }
 
-        .hero-text {
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            /* Black shadow */
-        }
+    .hero-text {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        /* Black shadow */
+    }
 
-        .hero.bg-image {
-            background-image: url('images/tom.avif');
-            position: relative;
-        }
+    .hero.bg-image {
+        background-image: url('images/tom.avif');
+        position: relative;
+    }
 
-        .hero.bg-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            /* Black overlay with 50% transparency */
-            transition: opacity 1s;
-        }
+    .hero.bg-image::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Black overlay with 50% transparency */
+        transition: opacity 1s;
+    }
 
-        .bg-image.second {
-            z-index: -1;
-        }
+    .bg-image.second {
+        z-index: -1;
+    }
 
-        .hero-inner {
-            position: relative;
-            /* This ensures the text is displayed above the overlay */
-        }
+    .hero-inner {
+        position: relative;
+        /* This ensures the text is displayed above the overlay */
+    }
 
-        .container .bottom-footer .row {
-            display: flex;
-            justify-content: space-between;
-        }
+    .container .bottom-footer .row {
+        display: flex;
+        justify-content: space-between;
+    }
     </style>
 </head>
 
@@ -106,10 +106,11 @@ session_start();
                                 About
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Tribals</a>
-                                <a class="dropdown-item" href="#">Products</a>
+                                <a class="dropdown-item" href="about_tribal/abouttribal.html"
+                                    target="_blank">Tribals</a>
+                                <a class="dropdown-item" href="products/products.html" target="_blank">Products</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Developers</a>
+                                <a class="dropdown-item" href="approval_page/4.html" target="_blank">Developers</a>
                             </div>
                         </li>
 
@@ -217,8 +218,8 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.4.4/vegas.min.js"></script>
     <script>
-        $('.hero').vegas({
-            slides: [{
+    $('.hero').vegas({
+        slides: [{
                 src: 'images/tom.avif'
             },
             {
@@ -233,10 +234,10 @@ session_start();
             {
                 src: 'images/tom4.jpeg'
             }
-            ],
-            transition: 'slideLeft2',
-            delay: 3000
-        });
+        ],
+        transition: 'slideLeft2',
+        delay: 3000
+    });
     </script>
 
 
@@ -358,7 +359,7 @@ session_start();
                         $length = 95;
                         $suffix = "...";
 
-                        
+
 
                         if (strlen($rows['address']) > ($length - 3)) {
                             $print_stat = substr(strip_tags($rows['address']), $start_position, $length) . $suffix;
