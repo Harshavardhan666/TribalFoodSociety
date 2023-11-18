@@ -246,7 +246,7 @@ if (isset($_POST['submit'])) {
         </div>
 
 
-
+            <br><br>
         <footer class="footer">
             <div class="container">
 

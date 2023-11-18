@@ -267,6 +267,7 @@ if (empty($_SESSION["user_id"])) {
             </form>
         </div>
 
+        <br><br><br>
         <footer class="footer">
             <div class="row bottom-footer">
                 <div class="container">

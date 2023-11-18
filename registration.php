@@ -212,7 +212,7 @@ if (isset($_POST['submit'])) {
                 </div>
             </section>
 
-
+            <br><br>
             <footer class="footer">
                 <div class="container">
 
