@@ -10,7 +10,7 @@ $dbname = "tribalfoodphp";  //database
 $db = mysqli_connect($servername, $username, $password, $dbname); // connecting 
 // Check connection
 if (!$db) {       //checking connection to DB	
-    die("Connection failed: " . mysqli_connect_error());
+    die("Connection Failed: " . mysqli_connect_error());
 }
 
 ?>

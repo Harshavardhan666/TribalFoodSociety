@@ -14,7 +14,9 @@ function function_alert()
 }
 
 if (empty($_SESSION["user_id"])) {
+    $_SESSION['redirect_url'] = 'checkout.php';
     header('location:login.php');
+    exit();
 } else {
     date_default_timezone_set('Asia/Kolkata');
     $currentTimestamp = date('Y-m-d H:i:s');
@@ -153,8 +155,8 @@ if (empty($_SESSION["user_id"])) {
                     <div class="container">
                         <ul class="row links">
 
-                            <li class="col-xs-12 col-sm-4 link-item"><span>1</span><a href="restaurants.php">Choose Canteen</a></li>
-                            <li class="col-xs-12 col-sm-4 link-item "><span>2</span><a href="#">Pick Your favorite food</a></li>
+                            <li class="col-xs-12 col-sm-4 link-item"><span>1</span><a href="restaurants.php">Choose Department</a></li>
+                            <li class="col-xs-12 col-sm-4 link-item "><span>2</span><a href="#">Pick Your Product</a></li>
                             <li class="col-xs-12 col-sm-4 link-item active"><span>3</span><a href="checkout.php">Order and Pay</a></li>
                         </ul>
                     </div>

@@ -174,7 +174,7 @@ if (isset($_POST['submit'])) {
                                                 <input type="text" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                                             </div>
                                             <div class="form-group col-sm-6">
-                                                <label for="exampleInputEmail1">Phone number</label>
+                                                <label for="exampleInputEmail1">Mobile Number</label>
                                                 <input class="form-control" type="text" name="phone" id="example-tel-input-3" required>
                                             </div>
                                             <div class="form-group col-sm-6">
@@ -182,7 +182,7 @@ if (isset($_POST['submit'])) {
                                                 <input type="password" class="form-control" name="password" id="exampleInputPassword1" required>
                                             </div>
                                             <div class="form-group col-sm-6">
-                                                <label for="exampleInputPassword1">Confirm password</label>
+                                                <label for="exampleInputPassword1">Confirm Password</label>
                                                 <input type="password" class="form-control" name="cpassword" id="exampleInputPassword2" required>
                                             </div>
                                             <!-- <div class="form-group col-sm-12">

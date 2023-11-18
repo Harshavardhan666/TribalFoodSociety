@@ -9,6 +9,10 @@ include_once 'product-action.php';
 
 ?>
 
+<?php
+
+?>
+
 
 <head>
     <meta charset="utf-8">

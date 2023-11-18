@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php ob_start();
+
+<?php
+ob_start();
 $message = "";
 $success = "";
 $count = 0;
 include("connection/connect.php");
-// error_reporting(0);
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
+
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     if (!empty($_POST["submit"])) {
-        $loginquery = "SELECT * FROM users WHERE username='$username' && password='" . md5($password) . "'"; //selecting matching records
-        $result = mysqli_query($db, $loginquery); //executing
+        $loginquery = "SELECT * FROM users WHERE username='$username' && password='" . md5($password) . "'";
+        $result = mysqli_query($db, $loginquery);
         $row = mysqli_fetch_array($result);
 
         if (is_array($row)) {
             $_SESSION["user_id"] = $row['u_id'];
-            // header("refresh:0, url=index.php");
-            header("Location: index.php");
+
+            // Check if there's a redirect URL in the session
+            if (isset($_SESSION['redirect_url'])) {
+                $redirect_url = $_SESSION['redirect_url'];
+                unset($_SESSION['redirect_url']); // Remove the stored URL
+                header("Location: $redirect_url");
+            } else {
+                // If no redirect URL, go to the home page or any other default page
+                header("Location: index.php");
+            }
+
             ob_end_flush();
             exit();
         } else {
@@ -29,7 +40,9 @@ if (isset($_POST['submit'])) {
             $message = "Invalid Username or Password!";
         }
     }
-} ?>
+}
+?>
+
 
 <head>
     <meta charset="UTF-8">
@@ -47,11 +60,11 @@ if (isset($_POST['submit'])) {
             color: #bbbbbb;
         }
 
-        .faicons a:hover{
+        .faicons a:hover {
             color: #0000FF;
         }
 
-        .icon{
+        .icon {
             font-size: 20px;
         }
 

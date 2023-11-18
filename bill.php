@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -153,6 +154,7 @@
 
         <?php
         include("connection/connect.php"); // Include your database connection script
+        session_start();
         error_reporting(0);
 
         // Check if the orderID is provided as a query parameter
@@ -268,12 +270,58 @@
             <div class="ui card">
                 <div class="content center aligned text segment">
                     <div class="header">Payment Details</div>
-                </div>
-                <div class="content">
-                    <p> <strong> Account Name: </strong> <span id="payment-account"></span> </p>
+                </div><?php
+                include("connection/connect.php");
+                session_start();
+                // var_dump($_SESSION);
 
-                </div>
-            </div>
+                // Check if user_id is set in the session
+                if (isset($_SESSION['user_id'])) {
+                    $user_id = $_SESSION['user_id'];
+
+                    // Prepare the SQL query
+                    $query = "SELECT username FROM users WHERE u_id = ?";
+                    $stmt = $db->prepare($query);
+
+                    // Check if the statement is prepared successfully
+                    if ($stmt) {
+                        // Bind the parameter
+                        $stmt->bind_param('i', $user_id);
+
+                        // Execute the statement
+                        $stmt->execute();
+
+                        // Check for errors during execution
+                        if ($stmt->errno) {
+                            echo "Error Executing Statement: " . $stmt->error;
+                        } else {
+                            // Bind the result
+                            $stmt->bind_result($username);
+
+                            // Fetch the result
+                            $stmt->fetch();
+
+                            // Close the statement
+                            $stmt->close();
+
+                            // Check if the username is not null
+                            if ($username !== null) {
+                                // Display the username in your HTML
+                                echo '<div class="content">';
+                                echo '<p> <strong> Account Name: </strong> <span id="payment-account">' . htmlspecialchars($username) . '</span> </p>';
+                                echo '</div>';
+                            } else {
+                                echo "User Not Found.";
+                            }
+                        }
+                    } else {
+                        echo "Error Preparing Statement: " . $db->error;
+                    }
+                } else {
+                    // Handle the case where user_id is not set
+                    echo "User ID Not Set in the Session.";
+                }
+                ?></div>
             <div class="ui card">
                 <div class="content center aligned text segment">
                     <div class="header">Notes</div>
