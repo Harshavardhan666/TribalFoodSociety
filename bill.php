@@ -128,8 +128,8 @@
         }
 
         function populateInvoiceDetails() {
-            const companyName = "TFS Products";
-            const companyAddress = "Masunagudi Village, Near Ooty";
+            const companyName = "Native Nest";
+            const companyAddress = "Masunagudi Village, Tribal Cooperative Society building, Near Ooty Main Town";
             const companyEmail = "tribalproducts@gmail.com";
 
             document.getElementById("company-name").textContent = companyName;
@@ -166,7 +166,7 @@
             if (mysqli_num_rows($result) > 0) {
                 // Display the order details and calculate the total amount
                 $totalAmount = 0;
-                ?>
+        ?>
                 <div class="invoice-header">
                     <div class="ui left aligned grid">
                         <div class="row">
@@ -179,11 +179,14 @@
                                     </h4>
                                 </div>
                             </div>
-                            <div class="right floated left aligned six wide column">
-                                <div class="ui">
-                                    <div class="column two wide right floated">
-                                        <img class="logo"
-                                            src="https://png.pngtree.com/png-clipart/20191121/original/pngtree-tribal-logo-vector-png-image_5146122.jpg" />
+
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img class="logo" src="images/Logo.jpeg" style="max-width: 20%; height: auto; margin-left: 530px; margin-right: 20px;" />
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="ui" style="margin-bottom: 20px; margin-top: 0px;">
                                         <ul class="">
                                             <li id="company-name"></li>
                                             <li id="company-address"></li>
@@ -192,6 +195,10 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
+
                         </div>
                     </div>
                 </div>
@@ -221,7 +228,7 @@
                                         <?php echo $row['price'] * $row['quantity']; ?>
                                     </td>
                                 </tr>
-                                <?php
+                            <?php
                                 $totalAmount += $row['price'] * $row['quantity'];
                             }
                             ?>
@@ -235,7 +242,7 @@
                             </tr>
                         </tfoot>
                     </table>
-                    <?php
+            <?php
             } else {
                 echo "<p>Order not found.</p>";
             }
@@ -245,7 +252,7 @@
 
         // Close the database connection
         mysqli_close($db);
-        ?>
+            ?>
 
 
 
@@ -272,16 +279,16 @@
                     <div class="header">Notes</div>
                 </div>
                 <div class="content center aligned text segment">
-                    Your order is successful!!!
+                    Your Order is Successful !!!
                 </div>
             </div>
 
 
 
-        </div>
-        <div class="print-button">
-            <button onclick="printBillPage()">Print Bill</button>
-        </div>
+                </div>
+                <div class="print-button">
+                    <button onclick="printBillPage()">Print Bill</button>
+                </div>
     </div>
 
 </body>

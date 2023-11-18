@@ -19,12 +19,11 @@ if (empty($_SESSION["user_id"])) {
     date_default_timezone_set('Asia/Kolkata');
     $currentTimestamp = date('Y-m-d H:i:s');
     foreach ($_SESSION["cart_item"] as $item) {
-
         $item_total += ($item["price"] * $item["quantity"]);
 
         if ($_POST['submit']) {
             $session = $_SESSION["user_id"];
-            
+
             $SQL = "insert into users_orders(u_id,title,quantity,price,date) values('" . $_SESSION["user_id"] . "','" . $item["title"] . "','" . $item["quantity"] . "','" . $item["price"] . "','$currentTimestamp')";
             mysqli_query($db, $SQL);
             unset($_SESSION["cart_item"]);
@@ -52,7 +51,43 @@ if (empty($_SESSION["user_id"])) {
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <style>
-                        .order-table {
+            .faicons a {
+                transition: all 0.3s ease;
+                padding: 8px;
+                text-decoration: none;
+                color: #bbbbbb;
+            }
+
+            .faicons a:hover {
+                color: #0000FF;
+            }
+
+            .icon {
+                font-size: 20px;
+            }
+
+            .rowss {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .col-xs-12,
+            .col-sm-3,
+            .col-sm-4,
+            .col-sm-5,
+            .col-sm-1 {
+                box-sizing: border-box;
+                flex: 1;
+                padding: 10px;
+            }
+
+            .address,
+            .additional-info {
+                text-align: center;
+            }
+
+            .order-table {
                 width: 100%;
                 border-collapse: collapse;
             }
@@ -66,7 +101,7 @@ if (empty($_SESSION["user_id"])) {
 
             .order-table th {
                 background-color: #f2f2f2;
-            } 
+            }
         </style>
     </head>
 
@@ -77,7 +112,7 @@ if (empty($_SESSION["user_id"])) {
                 <nav class="navbar navbar-dark">
                     <div class="container">
                         <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#mainNavbarCollapse">&#9776;</button>
-                        <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/tribes.ico" alt="" width="100" height="40"> </a>
+                        <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/Logo.jpeg" alt="" width="115" height="40"> </a>
                         <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
                             <ul class="nav navbar-nav">
                                 <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
@@ -165,7 +200,7 @@ if (empty($_SESSION["user_id"])) {
                                                             foreach ($_SESSION["cart_item"] as $item) {
                                                                 $user = mysqli_query($db, "SELECT * FROM dishes WHERE title='$item[title]'");
                                                                 $rows = mysqli_fetch_array($user);
-                                                                ?>
+                                                            ?>
                                                                 <tr>
                                                                     <td>
                                                                         <?php echo $item["title"]; ?>
@@ -180,9 +215,8 @@ if (empty($_SESSION["user_id"])) {
                                                                         <?php echo "Rs " . ($item["price"] * $item["quantity"]); ?>
                                                                     </td>
                                                                 </tr>
-                                                                <?php
+                                                            <?php
                                                                 $item_total += ($item["price"] * $item["quantity"]);
-
                                                             }
                                                             ?>
 
@@ -234,21 +268,32 @@ if (empty($_SESSION["user_id"])) {
         <footer class="footer">
             <div class="row bottom-footer">
                 <div class="container">
-                    <div class="row">
+                    <div class="rowss">
 
-                        <a href="" target="_blank"><img src="images/masinagudi.jpg" class="col-xs-12 col-sm-3 payment-options color-gray"></a>
 
-                        <div class="col-xs-12 col-sm-4 address color-gray">
-                            <h5>Address</h5>
-                            <p>Masinagudi Village, Tribal Cooperative Society building, Near Ooty Main Town, PIN: 643223</p>
+                        <a href="" target="_blank"><img src="images/masinagudi.jpg" class="col-xs-12 col-sm-3 payment-options color-gray" style="width: 100%; height: 190px;"></a>
+
+                        <div class="col-xs-12 col-sm-1 address color-gray">
+                            <h5 style="text-align: center; margin-top: 0;">Address</h5>
+                            <p style="text-align: center; margin-top: 0;">Masinagudi Village, Tribal Cooperative Society building, Near Ooty Main Town, PIN: 643223</p>
                         </div>
-                        <div class="col-xs-12 col-sm-5 additional-info color-gray">
-                            <h5>Additional Information</h5>
+                        <div class="col-xs-12 col-sm-2 additional-info color-gray">
+                            <h5 style="text-align: center; margin-top: 0;">Contact</h5>
                             <!-- <p>Join thousands of other restaurants who benefit from having partnered with us.</p> -->
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aliquam quam consequuntur
-                                quasi deserunt debitis, similique maiores repudiandae laborum id nulla, veritatis magni
-                                incidunt mollitia voluptatum? Perspiciatis pariatur molestiae sunt.</p>
+                            <p style="text-align: center; margin-top: 0;">Tribal Research Center, Nanjanad Road, Muttorai Palada, Ooty, Tamil Nadu, 634004, India</p>
+
+
+                            <div class="faicons">
+                                <a href="#" class="fa fa-facebook icon"></a>
+                                <a href="#" class="fa fa-twitter icon"></a>
+                                <a href="#" class="fa fa-instagram icon"></a>
+                                <a href="#" class="fa fa-linkedin icon"></a>
+                                <a href="#" class="fa fa-youtube icon"></a>
+                            </div>
+
                         </div>
+                        <a href="" target="_blank"><img src="images/TRC.jpg" alt="TRC" style="width: 100%; height: 165px; margin-top: 10px;"></a>
+
                     </div>
                 </div>
             </div>

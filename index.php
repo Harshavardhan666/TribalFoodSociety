@@ -90,7 +90,7 @@ session_start();
             <div class="container">
                 <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse"
                     data-target="#mainNavbarCollapse">&#9776;</button>
-                <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/tribes.ico" width="100"
+                <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/Logo.jpeg" width="115"
                         height="40" alt=""> </a>
                 <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
                     <ul class="nav navbar-nav">

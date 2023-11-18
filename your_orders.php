@@ -24,11 +24,44 @@ if (empty($_SESSION['user_id'])) {
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <style>
-        .no-hover:hover {
-            /* Disable hover effects */
-            background-color: transparent !important; /* You can set this to any desired style */
-            /* Add any other style adjustments as needed */
-        }
+            a {
+                transition: all 0.3s ease;
+                padding: 8px;
+                text-decoration: none;
+                color: #bbbbbb;
+            }
+
+            a:hover {
+                color: #0000FF;
+            }
+
+            .rowss {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .col-xs-12,
+            .col-sm-3,
+            .col-sm-4,
+            .col-sm-5,
+            .col-sm-1 {
+                box-sizing: border-box;
+                flex: 1;
+                padding: 10px;
+            }
+
+            .address,
+            .additional-info {
+                text-align: center;
+            }
+
+            .no-hover:hover {
+                /* Disable hover effects */
+                background-color: transparent !important;
+                /* You can set this to any desired style */
+                /* Add any other style adjustments as needed */
+            }
         </style>
         <style type="text/css" rel="stylesheet">
             .nav-item.dropdown:hover .dropdown-menu {
@@ -53,6 +86,10 @@ if (empty($_SESSION['user_id'])) {
 
             .datepicker-dropdown {
                 z-index: 200 !important;
+            }
+
+            .icon {
+                font-size: 20px;
             }
 
             .panel-body {
@@ -164,7 +201,7 @@ td, th {
             <nav class="navbar navbar-dark">
                 <div class="container">
                     <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#mainNavbarCollapse">&#9776;</button>
-                    <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/tribes.ico" width="100" height="40" alt=""> </a>
+                    <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/Logo.jpeg" width="115" height="40" alt=""> </a>
                     <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
                         <ul class="nav navbar-nav">
                             <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
@@ -227,7 +264,7 @@ td, th {
                             <div class="bg-gray">
                                 <div class="row">
 
-                                <!-- <table class="table table-bordered table-hover" >
+                                    <!-- <table class="table table-bordered table-hover" >
                                     <thead style="background: #404040; color:white;" >
                                         <tr>
                                             <th>Date</th>
@@ -304,71 +341,71 @@ td, th {
                                         ?>
                                     </tbody>
                                 </table> -->
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover">
-                                        <thead style="background: #404040; color:white;">
-                                            <tr>
-                                                <th>Item</th>
-                                                <th>Quantity</th>
-                                                <th>Price</th>
-                                                <th>Status</th>
-                                                <!-- <th>Date</th> -->
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $query_res = mysqli_query($db, "select * from users_orders where u_id='" . $_SESSION['user_id'] . "'");
-                                            $prevDate = null; // Initialize previous date
-                                            $orderCounter = 0; // Initialize order counter
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover">
+                                            <thead style="background: #404040; color:white;">
+                                                <tr>
+                                                    <th>Item</th>
+                                                    <th>Quantity</th>
+                                                    <th>Price</th>
+                                                    <th>Status</th>
+                                                    <!-- <th>Date</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $query_res = mysqli_query($db, "select * from users_orders where u_id='" . $_SESSION['user_id'] . "'");
+                                                $prevDate = null; // Initialize previous date
+                                                $orderCounter = 0; // Initialize order counter
 
-                                            while ($row = mysqli_fetch_array($query_res)) {
-                                                $date = $row['date'];
-                                                $status = $row['status'];
+                                                while ($row = mysqli_fetch_array($query_res)) {
+                                                    $date = $row['date'];
+                                                    $status = $row['status'];
 
-                                                // Check if the date is different from the previous row
-                                                if ($date != $prevDate) {
-                                                    // Increment the order counter for each new date
-                                                    $orderCounter++;
-                                                    // Display date with order number
-                                                    echo '<tr>';
-                                                    echo '<td colspan="5"><a href="bill.php?orderID=' . $date . '" target="_blank"> Order-' . $orderCounter . ' on Date: ' . $date . '</a></td>';
+                                                    // Check if the date is different from the previous row
+                                                    if ($date != $prevDate) {
+                                                        // Increment the order counter for each new date
+                                                        $orderCounter++;
+                                                        // Display date with order number
+                                                        echo '<tr>';
+                                                        echo '<td colspan="5"><a href="bill.php?orderID=' . $date . '" target="_blank"> Order-' . $orderCounter . ' on Date: ' . $date . '</a></td>';
+                                                        echo '</tr>';
+                                                        $prevDate = $date; // Update previous date
+                                                    }
+
+                                                    // Display order details
+                                                    echo '<tr class="no-hover">';
+                                                    echo '<td data-column="Item">' . $row['title'] . '</td>';
+                                                    echo '<td data-column="Quantity">' . $row['quantity'] . '</td>';
+                                                    echo '<td data-column="price">Rs ' . $row['price'] . '</td>';
+                                                    echo '<td data-column="status">';
+
+                                                    // Display status buttons
+                                                    if ($status == "packing" || $status == "" || $status == "NULL") {
+                                                        echo '<button type="button" class="btn btn-warning"><span class="fa fa-cog fa-spin" aria-hidden="true"></span> Preparing</button>';
+                                                    } elseif ($status == "packed") {
+                                                        echo '<button type="button" class="btn btn-info"><span class="fa fa-shopping-bag" aria-hidden="true"></span> Ready for pick-up</button>';
+                                                    } elseif ($status == "closed") {
+                                                        echo '<button type="button" class="btn btn-success"><span class="fa fa-check-circle" aria-hidden="true"></span> Delivered</button>';
+                                                    } elseif ($status == "rejected") {
+                                                        echo '<button type="button" class="btn btn-danger"><i class="fa fa-close"></i> Cancelled</button>';
+                                                    }
+
+                                                    echo '</td>';
+                                                    // Display the date as "Order-x date"
+                                                    // echo '<td data-column="Date">Order-' . $orderCounter . ' date: ' . $row['date'] . '</td>';
                                                     echo '</tr>';
-                                                    $prevDate = $date; // Update previous date
                                                 }
-                                                
-                                                // Display order details
-                                                echo '<tr class="no-hover">';
-                                                echo '<td data-column="Item">' . $row['title'] . '</td>';
-                                                echo '<td data-column="Quantity">' . $row['quantity'] . '</td>';
-                                                echo '<td data-column="price">Rs ' . $row['price'] . '</td>';
-                                                echo '<td data-column="status">';
-
-                                                // Display status buttons
-                                                if ($status == "packing" || $status == "" || $status == "NULL") {
-                                                    echo '<button type="button" class="btn btn-warning"><span class="fa fa-cog fa-spin" aria-hidden="true"></span> Preparing</button>';
-                                                } elseif ($status == "packed") {
-                                                    echo '<button type="button" class="btn btn-info"><span class="fa fa-shopping-bag" aria-hidden="true"></span> Ready for pick-up</button>';
-                                                } elseif ($status == "closed") {
-                                                    echo '<button type="button" class="btn btn-success"><span class="fa fa-check-circle" aria-hidden="true"></span> Delivered</button>';
-                                                } elseif ($status == "rejected") {
-                                                    echo '<button type="button" class="btn btn-danger"><i class="fa fa-close"></i> Cancelled</button>';
+                                                if (!mysqli_num_rows($query_res) > 0) {
+                                                    echo '<tr>';
+                                                    echo '<td colspan="5"><center>You have No orders Placed yet.</center></td>';
+                                                    echo '</tr>';
                                                 }
 
-                                                echo '</td>';
-                                                // Display the date as "Order-x date"
-                                                // echo '<td data-column="Date">Order-' . $orderCounter . ' date: ' . $row['date'] . '</td>';
-                                                echo '</tr>';
-                                            }
-                                            if (!mysqli_num_rows($query_res) > 0) {
-                                                echo '<tr>';
-                                                echo '<td colspan="5"><center>You have No orders Placed yet.</center></td>';
-                                                echo '</tr>';
-                                            }
-                                            
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
 
 
@@ -399,7 +436,7 @@ td, th {
         <footer class="footer">
             <div class="row bottom-footer">
                 <div class="container">
-                    <div class="row">
+                    <div class="rowss">
                         <!-- <div class="col-xs-12 col-sm-3 payment-options color-gray">
                                     <h5>Payment Options</h5>
                                     <ul>
@@ -420,17 +457,28 @@ td, th {
                                         </li>
                                     </ul>
                                 </div> -->
-                        <a href="" target="_blank"><img src="images/masinagudi.jpg" class="col-xs-12 col-sm-3 payment-options color-gray" style="height: 190px;"></a>
+                        <a href="" target="_blank"><img src="images/masinagudi.jpg" class="col-xs-12 col-sm-3 payment-options color-gray" style="width: 100%; height: 190px;"></a>
 
-                        <div class="col-xs-12 col-sm-4 address color-gray">
-                            <h5>Address</h5>
-                            <p>Masinagudi Village, Tribal Cooperative Society building, Near Ooty Main Town, PIN: 643223</p>
+                        <div class="col-xs-12 col-sm-1 address color-gray">
+                            <h5 style="text-align: center; margin-top: 0;">Address</h5>
+                            <p style="text-align: center; margin-top: 0;">Masinagudi Village, Tribal Cooperative Society building, Near Ooty Main Town, PIN: 643223</p>
                         </div>
-                        <div class="col-xs-12 col-sm-5 additional-info color-gray">
-                            <h5>Addition informations</h5>
+                        <div class="col-xs-12 col-sm-2 additional-info color-gray">
+                            <h5 style="text-align: center; margin-top: 0;">Contact</h5>
                             <!-- <p>Join thousands of other restaurants who benefit from having partnered with us.</p> -->
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aliquam quam consequuntur quasi deserunt debitis, similique maiores repudiandae laborum id nulla, veritatis magni incidunt mollitia voluptatum? Perspiciatis pariatur molestiae sunt.</p>
+                            <p style="text-align: center; margin-top: 0;">Tribal Research Center, Nanjanad Road, Muttorai Palada, Ooty, Tamil Nadu, 634004, India</p>
+
+                            <div class="faicons">
+                                <a href="#" class="fa fa-facebook icon"></a>
+                                <a href="#" class="fa fa-twitter icon"></a>
+                                <a href="#" class="fa fa-instagram icon"></a>
+                                <a href="#" class="fa fa-linkedin icon"></a>
+                                <a href="#" class="fa fa-youtube icon"></a>
+                            </div>
+
+
                         </div>
+                        <a href="" target="_blank"><img src="images/TRC.jpg" alt="TRC" style="width: 100%; height: 165px; margin-top: 10px;"></a>
                     </div>
                 </div>
             </div>
