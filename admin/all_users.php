@@ -32,8 +32,7 @@ session_start();
             <div class="navbar-header">
                     <a class="navbar-brand" href="dashboard.php">
                         
-                        <span><img src="images/tribes.ico" alt="homepage" class="dark-logo img-rounded"  width="75"
-                        height="45" /></span>
+                        <span><img src="images/Logo.jpeg" alt="homepage" class="dark-logo"  width="115" height="50"/></span>
                     </a>
                 </div>
                 <div class="navbar-collapse">
@@ -103,7 +102,7 @@ session_start();
                  <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
                  <li> <a href="reports.php"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Reports</span></a></li>
                  
-                 <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items report</span></a></li>
+                 <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items Report</span></a></li>
 
             </ul>
         </nav>
@@ -132,7 +131,7 @@ session_start();
                                                 <th>FirstName</th>
                                                 <th>LastName</th>
                                                 <th>Email</th>
-                                                <th>Phone</th>
+                                                <th>Mobile Number</th>
 												<!-- <th>Address</th>												 -->
                                                  <!-- <th>Balance</th> -->
                                             </tr>
@@ -179,7 +178,7 @@ session_start();
                 </div>
              
             </div>
-            <footer class="footer"> © 2023 - TribalFoodSociety</footer>
+            <footer class="footer"> © 2023 - Native Nest </footer>
            
         </div>
      

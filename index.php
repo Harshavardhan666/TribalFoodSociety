@@ -24,6 +24,38 @@ session_start();
 
 
     <style>
+        a {
+            transition: all 0.3s ease;
+            padding: 8px;
+            text-decoration: none;
+            color: #bbbbbb;
+        }
+
+        a:hover {
+            color: #0000FF;
+        }
+
+        .rowss {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .col-xs-12,
+        .col-sm-3,
+        .col-sm-4,
+        .col-sm-5,
+        .col-sm-1 {
+            box-sizing: border-box;
+            flex: 1;
+            padding: 10px;
+        }
+
+        .address,
+        .additional-info {
+            text-align: center;
+        }
+
         ul li a:visited {
             text-decoration: none;
         }
@@ -65,6 +97,10 @@ session_start();
             background-color: rgba(0, 0, 0, 0.5);
             /* Black overlay with 50% transparency */
             transition: opacity 1s;
+        }
+
+        .icon {
+            font-size: 20px;
         }
 
         .bg-image.second {
@@ -150,7 +186,7 @@ session_start();
     <section class="hero bg-image" data-image-src="images/tom.avif">
         <div class="hero-inner">
             <div class="container text-center hero-text font-white">
-                <h1>Order Products in Prior & <br> Enjoy a Stress-Free Experience </h1>
+                <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight:normal;">Order Products in Prior & <br> Enjoy a Stress-Free Experience </h1>
 
                 <div class="banner-form">
                     <form class="form-inline">
@@ -402,7 +438,7 @@ session_start();
 
 
 
-    <footer class="footer">
+    <!-- <footer class="footer">
         <div class="container">
             <div class="bottom-footer">
                 <div class="row">
@@ -456,9 +492,71 @@ session_start();
         <div id="footer-bottom">
             Copyright © 2023 Native Nest All Rights Reserved
         </div>
+    </footer> -->
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-3" style="margin-left: 0px;">
+                    <a href="#" target="_blank">
+                        <img src="images/masinagudi.jpg" class="img-responsive" alt="Masinagudi Image" style="height: 180px; width: 100%; margin-bottom: 10px;">
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-8">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 address">
+                            <h5 class="text-center">Address</h5>
+                            <p class="text-center">Masinagudi Village, Tribal Cooperative Society building, Near Ooty Main Town, PIN: 643223</p>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-5 additional-info">
+                            <h5 class="text-center">Contact</h5>
+                            <p class="text-center">Tribal Research Center, Nanjanad Road, Muttorai Palada, Ooty, Tamil Nadu, 634004, India</p>
+
+                            <div class="faicons text-center">
+                                <a href="#" class="fa fa-facebook icon"></a>
+                                <a href="#" class="fa fa-twitter icon"></a>
+                                <a href="#" class="fa fa-instagram icon"></a>
+                                <a href="#" class="fa fa-linkedin icon"></a>
+                                <a href="#" class="fa fa-youtube icon"></a>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-3">
+                            <a href="#" target="_blank">
+                                <img src="images/TRC.jpg" class="img-responsive" alt="TRC Image" style="height: 165px; width: 100%;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer-bottom">
+            Copyright © 2023 Native Nest All Rights Reserved
+        </div>
     </footer>
 
+    <style>
+        /* Adjust styles for smaller screens */
+        @media (max-width: 767px) {
 
+            .address,
+            .additional-info,
+            .faicons {
+                margin-top: 10px;
+            }
+
+            .faicons a {
+                font-size: 24px;
+                /* Adjust icon size for better visibility */
+                margin-right: 10px;
+                /* Add space between icons */
+            }
+        }
+    </style>
 
 
 

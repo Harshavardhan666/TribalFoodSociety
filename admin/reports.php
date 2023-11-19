@@ -52,7 +52,7 @@ session_start();
                 <div class="navbar-header">
                     <a class="navbar-brand" href="dashboard.php">
 
-                        <span><img src="images/icn.png" alt="homepage" class="dark-logo" /></span>
+                        <span><img src="images/Logo.jpeg" alt="homepage" class="dark-logo" width="115" height="50" /></span>
                     </a>
                 </div>
                 <div class="navbar-collapse">
@@ -137,7 +137,7 @@ session_start();
                                     aria-hidden="true"></i><span>Reports</span></a></li>
 
                         <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items
-                                    report</span></a></li>
+                                    Report</span></a></li>
 
                     </ul>
                 </nav>
@@ -370,7 +370,7 @@ session_start();
                                 <br>
                                 <!-- donut chart -->
                                 <div>
-                                    <h2> Distribution of Orders - Delivered vs. Canceled</h2>
+                                    <h2> Distribution of Orders - Delivered vs. Cancelled</h2>
                                     <?php
                                     // Assuming you have established a database connection
                                     $servername = "localhost";
@@ -490,7 +490,7 @@ session_start();
 
     </div>
 
-    <footer class="footer"> © 2023 - TribalFoodSociety </footer>
+    <footer class="footer"> © 2023 - Native Nest </footer>
 
     </div>
 

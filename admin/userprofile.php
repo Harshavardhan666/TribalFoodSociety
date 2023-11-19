@@ -104,7 +104,7 @@ if (!(isset($_GET['user_id'])) ){
         <div class="navbar-header">
           <a class="navbar-brand" href="dashboard.php">
 
-            <span><img src="images/icn.png" alt="homepage" class="dark-logo" /></span>
+            <span><img src="images/Logo.jpeg" alt="homepage" class="dark-logo" width="115" height="50" /></span>
           </a>
         </div>
         <div class="navbar-collapse">
@@ -176,7 +176,7 @@ if (!(isset($_GET['user_id'])) ){
             <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
             <li> <a href="reports.php"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Reports</span></a></li>
 
-            <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items report</span></a></li>
+            <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items Report</span></a></li>
 
           </ul>
         </nav>
@@ -258,7 +258,7 @@ if (!(isset($_GET['user_id'])) ){
 
   </div>
 
-  <footer class="footer"> © 2023 - TribalFoodSociety </footer>
+  <footer class="footer"> © 2023 - Native Nest </footer>
 
   </div>
 
