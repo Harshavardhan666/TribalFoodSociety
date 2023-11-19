@@ -19,8 +19,6 @@ session_start();
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
     #donutGraph {
@@ -65,8 +63,6 @@ session_start();
                     </ul>Admin
 
                     <ul class="navbar-nav my-lg-0">
-
-
 
                         <li class="nav-item dropdown">
 
@@ -166,21 +162,6 @@ session_start();
                                 <div>
                                     <h2>Sales Trend Over Time (All Items)</h2>
                                     <?php
-                                    // Assuming you have established a database connection
-                                    $servername = "localhost";
-                                    $username = "root";
-                                    $password = "";
-                                    $dbname = "tribalfoodphp";
-
-                                    // Create a new connection
-                                    $db = new mysqli($servername, $username, $password, $dbname);
-
-                                    // Check the connection
-                                    if ($db->connect_error) {
-                                        die("Connection failed: " . $db->connect_error);
-                                    }
-
-                                    // SQL query to retrieve the data for all items, grouped by date
                                     $sql = "
                                     SELECT
                                     MAX(rm.remarkDate) AS remarkDate,
@@ -194,7 +175,7 @@ session_start();
                                         uo.status = 'closed'
                                     GROUP BY
                                         uo.date;
-    ";
+                                    ";
 
                                     // Execute the query
                                     $result = $db->query($sql);
@@ -208,7 +189,7 @@ session_start();
                                     }
 
                                     // Close the database connection
-                                    $db->close();
+                                   
 
                                     // Extracting the dates from the query results
                                     $dates = array_column($data, 'remarkDate');
@@ -272,40 +253,30 @@ session_start();
                                 <div>
                                     <h2>Sales Comparison between Departments</h2>
                                     <?php
-                                    $servername = "localhost";
-                                    $username = "root";
-                                    $password = "";
-                                    $dbname = "tribalfoodphp";
-                                    $con = new mysqli($servername, $username, $password, $dbname);
-
-                                    // Check the connection
-                                    if ($con->connect_error) {
-                                        die("Connection failed: " . $con->connect_error);
-                                    }
-
+                                    
                                     // Create a list of all department names
-                                    $allDepartmentsQuery = $con->query("SELECT title FROM restaurant");
+                                    $allDepartmentsQuery = $db->query("SELECT title FROM restaurant");
                                     $allDepartments = [];
                                     foreach ($allDepartmentsQuery as $data) {
                                         $allDepartments[] = $data['title'];
                                     }
 
                                     // Query to get sales for each department (rs_id) based on the 'closed' status in the 'users_orders' table
-                                    $query = $con->query("
-        SELECT
-            r.title AS department_name,
-            COALESCE(SUM(uo.quantity * uo.price), 0) AS total_earnings
-        FROM
-            restaurant AS r
-        INNER JOIN
-            dishes AS d ON r.rs_id = d.rs_id
-        INNER JOIN
-            users_orders AS uo ON d.title = uo.title
-        INNER JOIN
-            remark AS rm ON uo.date = rm.date AND rm.status = 'closed'
-        GROUP BY
-            r.rs_id;
-    ");
+                                    $query = $db->query("
+                                        SELECT
+                                            r.title AS department_name,
+                                            COALESCE(SUM(uo.quantity * uo.price), 0) AS total_earnings
+                                        FROM
+                                            restaurant AS r
+                                        INNER JOIN
+                                            dishes AS d ON r.rs_id = d.rs_id
+                                        INNER JOIN
+                                            users_orders AS uo ON d.title = uo.title
+                                        INNER JOIN
+                                            remark AS rm ON uo.date = rm.date AND rm.status = 'closed'
+                                        GROUP BY
+                                            r.rs_id;
+                                    ");
 
                                     $departmentNames = [];
                                     $departmentEarnings = [];
@@ -323,7 +294,6 @@ session_start();
                                         }
                                     }
 
-                                    $con->close();
                                     ?>
                                     <div class="chart-container">
                                         <div>
@@ -373,18 +343,7 @@ session_start();
                                     <h2> Distribution of Orders - Delivered vs. Cancelled</h2>
                                     <?php
                                     // Assuming you have established a database connection
-                                    $servername = "localhost";
-                                    $username = "root";
-                                    $password = "";
-                                    $dbname = "tribalfoodphp";
 
-                                    // Create a new connection
-                                    $db = new mysqli($servername, $username, $password, $dbname);
-
-                                    // Check the connection
-                                    if ($db->connect_error) {
-                                        die("Connection failed: " . $db->connect_error);
-                                    }
                                     $sql = "
                                     SELECT status, COUNT(*) AS order_count
                                     FROM users_orders

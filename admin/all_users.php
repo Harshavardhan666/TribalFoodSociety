@@ -132,7 +132,7 @@ session_start();
                                                 <th>LastName</th>
                                                 <th>Email</th>
                                                 <th>Mobile Number</th>
-												<!-- <th>Address</th>												 -->
+												<th>Edit</th>												
                                                  <!-- <th>Balance</th> -->
                                             </tr>
                                         </thead>
@@ -151,17 +151,15 @@ session_start();
 														{				
 																	while($rows=mysqli_fetch_array($query))
 																		{
-																					
-																				
-																				
-																					echo ' <tr  style="text-align:center;">
-                                                                                                
-                                                                                                <td>'.$rows['username'].'</td>
-																								<td>'.$rows['f_name'].'</td>
-																								<td>'.$rows['l_name'].'</td>
-																								<td>'.$rows['email'].'</td>
-																								<td>'.$rows['phone'].'</td>
-                                                                                                </tr>';
+                                                                            echo '<tr style="text-align:center;">
+                                                                            <td>' . $rows['username'] . '</td>
+                                                                            <td>' . $rows['f_name'] . '</td>
+                                                                            <td>' . $rows['l_name'] . '</td>
+                                                                            <td>' . $rows['email'] . '</td>
+                                                                            <td>' . $rows['phone'] . '</td>
+                                                                            <td><a href="update_users.php?user_upd=' . $rows['u_id'] . '" class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fa fa-edit"></i></a></td>
+                                                                          </tr>';
+                                                                    
 																		}	
 														}
 											?>

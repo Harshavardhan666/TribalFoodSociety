@@ -19,6 +19,8 @@ session_start();
     <link href="css/style.css" rel="stylesheet">
     <title>Items Report</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
     <style>
         .chart-container {
             display: flex;
@@ -43,7 +45,7 @@ session_start();
                 <div class="navbar-header">
                     <a class="navbar-brand" href="dashboard.php">
 
-                        <span><img src="images/Logo.jpeg" alt="homepage" class="dark-logo" width="115" height="50"/></span>
+                        <span><img src="images/Logo.jpeg" alt="homepage" class="dark-logo" width="115" height="50" /></span>
                     </a>
                 </div>
                 <div class="navbar-collapse">
@@ -142,24 +144,15 @@ session_start();
                                 </div>
                                 <button onClick="window.print()">Print Report</button>
 
+                            
                                 <div>
                                     <h2>Sales Comparison between Departments</h2>
                                     <?php
-                                    $servername = "localhost";
-                                    $username = "root";
-                                    $password = "";
-                                    $dbname = "tribalfoodphp";
-                                    $con = new mysqli($servername, $username, $password, $dbname);
-
-                                    // Check the connection
-                                    if ($con->connect_error) {
-                                        die("Connection failed: " . $con->connect_error);
-                                    }
 
                                     // Function to fetch dish title
-                                    function fetchDishTitle($con, $d_id)
+                                    function fetchDishTitle($db, $d_id)
                                     {
-                                        $titleQuery = $con->query("SELECT title FROM dishes WHERE d_id = '$d_id'");
+                                        $titleQuery = $db->query("SELECT title FROM dishes WHERE d_id = '$d_id'");
                                         if ($titleRow = $titleQuery->fetch_assoc()) {
                                             return $titleRow['title'];
                                         }
@@ -167,7 +160,7 @@ session_start();
                                     }
 
                                     // Create a list of all department rs_ids and their corresponding titles
-                                    $allDepartmentsQuery = $con->query("SELECT rs_id, title FROM restaurant");
+                                    $allDepartmentsQuery = $db->query("SELECT rs_id, title FROM restaurant");
                                     $departmentTitles = [];
                                     foreach ($allDepartmentsQuery as $data) {
                                         $departmentTitles[$data['rs_id']] = $data['title'];
@@ -178,7 +171,7 @@ session_start();
 
                                     // Loop through each department and fetch data
                                     foreach ($departmentTitles as $rs_id => $title) {
-                                        $query = $con->query("
+                                        $query = $db->query("
                                             SELECT
                                                 d.d_id,
                                                 COALESCE(SUM(uo.quantity), 0) AS total_quantity
@@ -197,13 +190,13 @@ session_start();
                                         $departmentData[$rs_id]['quantities'] = [];
 
                                         foreach ($query as $data) {
-                                            $dishTitle = fetchDishTitle($con, $data['d_id']);
+                                            $dishTitle = fetchDishTitle($db, $data['d_id']);
                                             $departmentData[$rs_id]['labels'][] = $dishTitle;
                                             $departmentData[$rs_id]['quantities'][] = $data['total_quantity'];
                                         }
                                     }
 
-                                    $con->close();
+                                    $db->close();
                                     ?>
 
                                     <?php foreach ($departmentTitles as $rs_id => $title) : ?>
@@ -231,13 +224,15 @@ session_start();
                                                 };
 
                                                 const config<?= $rs_id ?> = {
-                                                    type: 'bar',
+                                                    type: 'horizontalBar', // Changed to horizontalBar
                                                     data: data<?= $rs_id ?>,
                                                     options: {
                                                         scales: {
-                                                            y: {
-                                                                beginAtZero: true
-                                                            }
+                                                            xAxes: [{
+                                                                ticks: {
+                                                                    beginAtZero: true
+                                                                }
+                                                            }]
                                                         }
                                                     }
                                                 };
@@ -252,6 +247,9 @@ session_start();
                                         </script>
                                     <?php endforeach; ?>
                                 </div>
+
+
+
 
 
                                 <br>
