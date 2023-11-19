@@ -292,6 +292,22 @@ session_start();
         .dropdown-item:hover {
             background-color: #abcdef;
         }
+
+        #footer-bottom {
+            background: #343A40;
+            color: #686868;
+            height: 50px;
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            padding-top: 15px;
+        }
+
+        #footer-bottom {
+            display: block;
+        }
     </style>
 </head>
 
@@ -504,6 +520,9 @@ session_start();
                         </div>
                     </div>
                 </div>
+            </div>
+            <div id="footer-bottom">
+                Copyright © 2023 Native Nest All Rights Reserved
             </div>
         </footer>
 

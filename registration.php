@@ -107,6 +107,22 @@ if (isset($_POST['submit'])) {
         .additional-info {
             text-align: center;
         }
+
+        #footer-bottom {
+            background: #343A40;
+            color: #686868;
+            height: 50px;
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            padding-top: 15px;
+        }
+
+        #footer-bottom {
+            display: block;
+        }
     </style>
 </head>
 
@@ -251,6 +267,9 @@ if (isset($_POST['submit'])) {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div id="footer-bottom">
+                    Copyright © 2023 Native Nest All Rights Reserved
                 </div>
             </footer>
 

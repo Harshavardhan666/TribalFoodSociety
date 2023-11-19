@@ -179,6 +179,22 @@ include_once 'product-action.php';
             background-color: #abcdef;
         }
 
+        #footer-bottom {
+            background: #343A40;
+            color: #686868;
+            height: 50px;
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            padding-top: 15px;
+        }
+
+        #footer-bottom {
+            display: block;
+        }
+
         /* .dropdown-menu1:hover+.content-below {
             margin-top: 20px;
         } */
@@ -518,6 +534,9 @@ include_once 'product-action.php';
                         </div>
                     </div>
                 </div>
+            </div>
+            <div id="footer-bottom">
+                Copyright © 2023 Native Nest All Rights Reserved
             </div>
         </footer>
 
