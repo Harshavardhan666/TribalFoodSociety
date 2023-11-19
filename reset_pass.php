@@ -329,10 +329,10 @@ session_start();
                                 About
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Tribals</a>
-                                <a class="dropdown-item" href="#">Products</a>
+                                <a class="dropdown-item" href="about_tribal/abouttribal.html" target="_blank">Tribals</a>
+                                <a class="dropdown-item" href="products/products.html" target="_blank">Products</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Developers</a>
+                                <a class="dropdown-item" href="approval_page/app.html" target="_blank">Developers</a>
                             </div>
                         </li>
 
@@ -693,4 +693,5 @@ session_start();
     ?>
 
 </body>
+
 </html>

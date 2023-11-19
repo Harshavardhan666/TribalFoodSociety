@@ -120,7 +120,7 @@ session_start();
                                 <a class="dropdown-item" href="about_tribal/abouttribal.html" target="_blank">Tribals</a>
                                 <a class="dropdown-item" href="products/products.html" target="_blank">Products</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="approval_page/4.html" target="_blank">Developers</a>
+                                <a class="dropdown-item" href="approval_page/app.html" target="_blank">Developers</a>
                             </div>
                         </li>
 
