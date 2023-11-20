@@ -7,7 +7,7 @@ error_reporting(0);
 session_start();
 
 if (isset($_GET['not_poss'])) {
-    echo "<script>alert('Delete is not possible!');</script>";
+    echo "<script>alert('First delete all products under this Category');</script>";
 }
 
 
@@ -41,7 +41,7 @@ if(isset($_POST['submit'] ))
 	mysqli_query($db, $mql);
 			$success = 	'<div class="alert alert-success alert-dismissible fade show">
 																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-																New Food Category Added Successfully.</br></div>';
+																 Added Successfully.</br></div>';
 	
     }
 	}
@@ -122,7 +122,7 @@ if(isset($_POST['submit'] ))
                      <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Items</span></a>
                             <ul aria-expanded="false" class="collapse">
 								<li><a href="all_menu.php">All Categories</a></li>
-                                <li><a href="add_foodCat.php">Add Item Category</a></li>
+                                <li><a href="add_foodCat.php">Edit Item Category</a></li>
 								<li><a href="add_menu.php">Add Item</a></li>
                               
                                 
@@ -166,7 +166,7 @@ if(isset($_POST['submit'] ))
                             <div class="col-lg-12">
                         <div class="card card-outline-primary">
                             <div class="card-header">
-                                <h4 class="m-b-0 text-white">Add Item Category</h4>
+                                <h4 class="m-b-0 text-white">Edit Item Category</h4>
                             </div>
                                 <form action='' method='post' >
                                     <div class="form-body">

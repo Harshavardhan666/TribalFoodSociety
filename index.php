@@ -381,7 +381,7 @@ session_start();
             <div class="row">
                 <div class="col-sm-4">
                     <div class="title-block pull-left">
-                        <h4>Featured Categories</h4>
+                        <h4>Featured Departments</h4>
                     </div>
                 </div>
             </div>

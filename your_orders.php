@@ -358,7 +358,7 @@ td, th {
                                         ?>
                                     </tbody>
                                 </table> -->
-                                    <div class="table-responsive">
+                                    <div class="table-responsive" >
                                         <table class="table table-bordered table-hover">
                                             <thead style="background: #404040; color:white;">
                                                 <tr>
@@ -385,7 +385,7 @@ td, th {
                                                         $orderCounter++;
                                                         // Display date with order number
                                                         echo '<tr>';
-                                                        echo '<td colspan="5"><a href="bill.php?orderID=' . $date . '" target="_blank"> Order-' . $orderCounter . ' on Date: ' . $date . '</a></td>';
+                                                        echo '<td colspan="5"><a href="bill.php?orderID=' . $date . '" target="_blank" style="color: #0000FF;text-decoration: underline;"> Order-' . $orderCounter . ' on Date: ' . $date . '</a></td>';
                                                         echo '</tr>';
                                                         $prevDate = $date; // Update previous date
                                                     }

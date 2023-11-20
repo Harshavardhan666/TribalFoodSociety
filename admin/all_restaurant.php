@@ -5,7 +5,7 @@ include("../connection/connect.php");
 error_reporting(0);
 session_start();
 if (isset($_GET['not_poss'])) {
-    echo "<script>alert('Delete is not possible!');</script>";
+    echo "<script>alert('First Please delete all Categoies from this department');</script>";
 }
 
 ?>
@@ -103,7 +103,7 @@ if (isset($_GET['not_poss'])) {
                      <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Items</span></a>
                             <ul aria-expanded="false" class="collapse">
 								<li><a href="all_menu.php">All Categories</a></li>
-                                <li><a href="add_foodCat.php">Add Item Category</a></li>
+                                <li><a href="add_foodCat.php">Edit Item Category</a></li>
 								<li><a href="add_menu.php">Add Item</a></li>
                               
                                 

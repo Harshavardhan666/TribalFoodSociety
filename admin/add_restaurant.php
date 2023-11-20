@@ -174,7 +174,7 @@ if (isset($_POST['submit'])) {
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Items</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_menu.php">All Categories</a></li>
-                                <li><a href="add_foodCat.php">Add Item Category</a></li>
+                                <li><a href="add_foodCat.php">Edit Item Category</a></li>
                                 <li><a href="add_menu.php">Add Item</a></li>
 
 
