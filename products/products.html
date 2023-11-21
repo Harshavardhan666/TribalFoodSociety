@@ -68,11 +68,31 @@
                 width: 50%;
             }
         }
+
+        
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 40px; /* Adjust the font size as needed */
+            color: #333; /* Set the default color */
+            transition: color 0.3s; /* Add a smooth transition effect for color change */
+        }
+
+        button:hover {
+            color: grey; /* Change the color on hover */
+        }
         /* Add more media queries as needed for specific elements or sections */
     </style>
+
 </head>
 
 <body>
+    <a href="javascript:history.go(-1)"><button>&#8592</button></a>
+
+    <!-- Rest of your existing body content here -->
+
+    
 
     <!-- Content -->
     <div class="w3-content" style="max-width:1100px;margin-bottom:80px">

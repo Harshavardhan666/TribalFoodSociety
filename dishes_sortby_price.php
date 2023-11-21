@@ -220,10 +220,10 @@ include_once 'product-action.php';
                                 About
                             </a>
                             <div class="dropdown-menu" id="dm" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="about_tribal/abouttribal.html" target="_blank">Tribals</a>
-                                <a class="dropdown-item" href="products/products.html" target="_blank">Products</a>
+                                <a class="dropdown-item" href="about_tribal/abouttribal.html">Tribals</a>
+                                <a class="dropdown-item" href="products/products.html">Products</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="approval_page/app.html" target="_blank">Developers</a>
+                                <a class="dropdown-item" href="approval_page/app.html">Developers</a>
                             </div>
                         </li>
 

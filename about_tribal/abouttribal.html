@@ -53,12 +53,29 @@
             width: 100%;
             max-width: 1200px;
         }
+
+        .back-button {
+            font-size: 40px;
+            color: #704214; /* Brown color */
+            text-decoration: none;
+            transition: opacity 0.3s ease-in-out; /* Smooth transition on hover */
+            margin-right: 10px; /* Move the button to the left */
+        }
+
+        .back-button:hover {
+            color: #d2aa84; /* Light brown color on hover */
+            opacity: 0.7; /* Reduce opacity on hover */
+        }
     </style>
 </head>
 
 <body>
 
+    
     <div class="container mt-5">
+        <!-- Add a back button with a brown left arrow -->
+        <a href="javascript:history.go(-1)" class="back-button">&#x2190;</a>
+
         <h1 class="text-center mb-5">Discover the Irula and Kurumba Tribes</h1>
 
         <!-- Bootstrap Carousel -->
