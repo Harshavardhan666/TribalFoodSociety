@@ -186,7 +186,7 @@ session_start();
     <section class="hero bg-image" data-image-src="images/tom.avif">
         <div class="hero-inner">
             <div class="container text-center hero-text font-white">
-                <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight:normal;">Order Productsss in Prior & <br> Enjoy a Stress-Free Experience </h1>
+                <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-weight:normal;">Order Products in Prior & <br> Enjoy a Stress-Free Experience </h1>
 
                 <div class="banner-form">
                     <form class="form-inline">
