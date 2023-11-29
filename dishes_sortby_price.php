@@ -113,10 +113,6 @@ include_once 'product-action.php';
             /* Hover background color */
         }
 
-        .dropdown-menu {
-            position: inherit;
-            display: inline-block;
-        }
 
         .dropdown-menu1 {
             position: relative;
@@ -376,7 +372,7 @@ include_once 'product-action.php';
                     </div>
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9">
 
                     <div>
                         <h1>Items</h1>
@@ -430,7 +426,7 @@ include_once 'product-action.php';
 
                                                         <div class="col-xs-12 col-sm-12 col-lg-3  item-cart-info">
                                                             <span class="price ">Rs <?php echo $product['price']; ?></span>
-                                                            <input class="b-r-0" type="number" name="quantity" style="margin-left:20px;width:40%; padding: 2px 0 2px 4px ;display: inline-block;border: 1px solid #ccc;border-radius: 4px;box-sizing: border-box;" value="0" size="1" min="0" />
+                                                            <input class="b-r-0" type="number" name="quantity" style="margin-left:20px;width:40%; padding: 2px 0 2px 4px ;display: inline-block;border: 1px solid #ccc;border-radius: 4px;box-sizing: border-box;" value="1" size="1" min="0" />
 
                                                             <input type="submit" class="btn theme-btn" style="margin-left:40px;margin-top:10px;" value="Add To Cart" />
                                                         </div>
