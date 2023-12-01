@@ -123,7 +123,124 @@ if (isset($_POST['submit'])) {
         #footer-bottom {
             display: block;
         }
+
+        .password-container {
+            position: relative;
+        }
+
+        #password {
+            padding-right: 30px;
+        }
+
+        .toggle-password1,
+        .toggle-password2 {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        /* #password-match-text {
+            color: green;
+        } */
     </style>
+
+    <script>
+        function togglePasswordVisibility(fieldId, buttonId) {
+            const passwordField = document.querySelector(`input[name="${fieldId}"]`);
+            const toggleButton = document.querySelector(`.${buttonId}`);
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleButton.textContent = '👁️';
+            } else {
+                passwordField.type = 'password';
+                toggleButton.textContent = '👁️‍🗨️';
+            }
+        }
+    </script>
+
+    <script>
+        function checkPasswordStrength(password) {
+            var strengthText = document.getElementById("password-strength");
+            var strengthIndicator = document.createElement("span");
+
+            if (password.length === 0) {
+                strengthText.innerHTML = "";
+                return;
+            }
+
+            var strength = 0;
+            if (password.length >= 6) {
+                strength += 1;
+            }
+            if (password.match(/[a-z]/)) {
+                strength += 1;
+            }
+            if (password.match(/[A-Z]/)) {
+                strength += 1;
+            }
+            if (password.match(/[0-9]/)) {
+                strength += 1;
+            }
+            if (password.match(/[$@#&!]/)) {
+                strength += 1;
+            }
+
+            switch (strength) {
+                case 0:
+                    strengthIndicator.innerHTML = "Weak";
+                    strengthIndicator.style.color = "red";
+
+                    break;
+                case 1:
+                    strengthIndicator.innerHTML = "Weak";
+                    strengthIndicator.style.color = "red";
+                    break;
+                case 2:
+                    strengthIndicator.innerHTML = "Medium";
+                    strengthIndicator.style.color = "orange";
+                    break;
+                case 3:
+                    strengthIndicator.innerHTML = "Strong";
+                    strengthIndicator.style.color = "green";
+                    break;
+                case 4:
+                    strengthIndicator.innerHTML = "Very Strong";
+                    strengthIndicator.style.color = "darkgreen";
+                    break;
+                case 5:
+                    strengthIndicator.innerHTML = "Excellent";
+                    strengthIndicator.style.color = "darkgreen";
+                    break;
+            }
+
+            strengthText.innerHTML = "<strong>Password Strength: </strong>";
+            strengthText.appendChild(strengthIndicator);
+        }
+    </script>
+
+    <script>
+        function checkPasswordMatch() {
+            const password = document.getElementById('exampleInputPassword1').value;
+            const confirmPassword = document.getElementById('exampleInputPassword2').value;
+            const matchText = document.getElementById('password-match-text');
+
+            if (password !== '' && confirmPassword !== '') {
+                if (password === confirmPassword) {
+                    matchText.textContent = 'Passwords Match!';
+                    matchText.style.color = 'green';
+                } else {
+                    matchText.textContent = "Passwords Don't Match";
+                    matchText.style.color = 'red';
+                }
+            } else {
+                matchText.textContent = '';
+            }
+        }
+    </script>
+
 </head>
 
 <body>
@@ -193,14 +310,43 @@ if (isset($_POST['submit'])) {
                                                 <label for="exampleInputEmail1">Mobile Number</label>
                                                 <input class="form-control" type="text" name="phone" id="example-tel-input-3" required>
                                             </div>
+                                            <!-- <div class="form-group col-sm-6">
+                                                <label for="exampleInputPassword1">Password</label>
+                                                <div class="password-container">
+                                                    <input type="password" class="form-control" name="password" id="exampleInputPassword1" required>
+                                                    <span class="toggle-password1" onclick="togglePasswordVisibility('password', 'toggle-Password1')">👁️‍🗨️</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="exampleInputPassword2">Confirm Password</label>
+                                                <div class="password-container">
+                                                    <input type="password" class="form-control" name="cpassword" id="exampleInputPassword2" required>
+                                                    <span class="toggle-password2" onclick="togglePasswordVisibility('cpassword', 'toggle-Password2')">👁️‍🗨️</span>
+                                                </div>
+                                            </div> -->
+
                                             <div class="form-group col-sm-6">
                                                 <label for="exampleInputPassword1">Password</label>
-                                                <input type="password" class="form-control" name="password" id="exampleInputPassword1" required>
+
+                                                <div class="password-container">
+                                                    <input class="form-control" type="password" value="" name="password" id="exampleInputPassword1" onkeyup="checkPasswordStrength(this.value)" required>
+                                                    <span class="toggle-password1" onclick="togglePasswordVisibility('password', 'toggle-password1')">👁️‍🗨️</span>
+
+
+                                                </div>
+                                                <div id="password-strength"></div>
                                             </div>
                                             <div class="form-group col-sm-6">
-                                                <label for="exampleInputPassword1">Confirm Password</label>
-                                                <input type="password" class="form-control" name="cpassword" id="exampleInputPassword2" required>
+                                                <label for="exampleInputPassword2">Confirm Password</label>
+
+                                                <div class="password-container">
+                                                    <input class="form-control" type="password" value="" name="cpassword" id="exampleInputPassword2" onkeyup="checkPasswordMatch()" required>
+                                                    <span class="toggle-password2" onclick="togglePasswordVisibility('cpassword', 'toggle-password2')">👁️‍🗨️</span>
+                                                </div>
+                                                <p id="password-match-text"></p>
                                             </div>
+
+
                                             <!-- <div class="form-group col-sm-12">
                                        <label for="exampleTextarea">Delivery Address</label>
                                        <textarea class="form-control" id="exampleTextarea"  name="address" rows="3"></textarea>

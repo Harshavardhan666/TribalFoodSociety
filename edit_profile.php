@@ -308,7 +308,43 @@ session_start();
         #footer-bottom {
             display: block;
         }
+
+        .password-container {
+            position: relative;
+        }
+
+        #password {
+            padding-right: 30px;
+        }
+
+        .toggle-password1,
+        .toggle-password2,
+        .toggle-password3 {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
     </style>
+
+    <script>
+        function togglePasswordVisibility(fieldId, buttonId) {
+            const passwordField = document.querySelector(`input[name="${fieldId}"]`);
+            const toggleButton = document.querySelector(`.${buttonId}`);
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleButton.textContent = '👁️';
+            } else {
+                passwordField.type = 'password';
+                toggleButton.textContent = '👁️‍🗨️';
+            }
+        }
+    </script>
+
+
+
 </head>
 
 <body>
@@ -420,27 +456,41 @@ session_start();
                                 <input class="form-control" type="number" value="<?php echo $rows["balance"]; ?>" readonly>
                             </div>
                         </div> -->
+
+
                         <div id="passwordFields" style="display: none;">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Current Password:</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" type="password" value="" name="old_pass" required>
+                                    <div class="password-container">
+                                        <input class="form-control" type="password" value="" name="old_pass" required>
+                                        <span class="toggle-password1" onclick="togglePasswordVisibility('old_pass', 'toggle-password1')">👁️‍🗨️</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">New Password:</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" type="password" value="" name="new_pass" onkeyup="checkPasswordStrength(this.value)" required>
+                                    <div class="password-container">
+                                        <input class="form-control" type="password" value="" name="new_pass" id="p1" onkeyup="checkPasswordStrength(this.value)" required>
+                                        <span class="toggle-password2" onclick="togglePasswordVisibility('new_pass', 'toggle-password2')">👁️‍🗨️</span>
+                                    </div>
                                     <div id="password-strength"></div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Confirm New password:</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" type="password" value="" name="confirm_pass" required>
+                                    <div class="password-container">
+                                        <input class="form-control" type="password" value="" name="confirm_pass" id="p2" onkeyup="checkPasswordMatch()" required>
+                                        <span class="toggle-password3" onclick="togglePasswordVisibility('confirm_pass', 'toggle-password3')">👁️‍🗨️</span>
+                                    </div>
+                                    <p id="password-match-text"></p>
                                 </div>
                             </div>
                         </div>
+
+
 
                         <div class="form-group">
                             <label class="col-md-3 control-label"></label>
@@ -613,6 +663,26 @@ session_start();
 
             strengthText.innerHTML = "<strong>Password Strength: </strong>";
             strengthText.appendChild(strengthIndicator);
+        }
+    </script>
+
+    <script>
+        function checkPasswordMatch() {
+            const password = document.getElementById('p1').value;
+            const confirmPassword = document.getElementById('p2').value;
+            const matchText = document.getElementById('password-match-text');
+
+            if (password !== '' && confirmPassword !== '') {
+                if (password === confirmPassword) {
+                    matchText.textContent = 'Passwords Match!';
+                    matchText.style.color = 'green';
+                } else {
+                    matchText.textContent = "Passwords Don't Match";
+                    matchText.style.color = 'red';
+                }
+            } else {
+                matchText.textContent = '';
+            }
         }
     </script>
 

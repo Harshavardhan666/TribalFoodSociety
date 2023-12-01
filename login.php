@@ -154,6 +154,22 @@ if (isset($_POST['submit'])) {
         #footer-bottom {
             display: block;
         }
+
+        .password-container {
+            position: relative;
+        }
+
+        #password {
+            padding-right: 30px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -223,13 +239,20 @@ if (isset($_POST['submit'])) {
                     <br>
                     <table>
                         <tr>
-                            <th align="center" colspan="2"><input type="text" name="username" id="username" placeholder="Username" class="btn1 btn1-lg btn1-danger" data-container="body" data-placement="right" data-html="true" data-template='<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>' data-content="<p class = 'my-class'>Your Complete Roll No, <br> <strong> Example: </strong> CB.EN.U4CSE20621 </p>" style="max-width: 400px; opacity: 1;" size="35" autofocus required></th>
+                            <th align="center" colspan="2">
+                                <input type="text" name="username" id="username" placeholder="Username" class="btn1 btn1-lg btn1-danger" data-container="body" data-placement="right" data-html="true" data-template='<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>' data-content="<p class = 'my-class'>Your Complete Roll No, <br> <strong> Example: </strong> CB.EN.U4CSE20621 </p>" style="max-width: 400px; opacity: 1;" size="35" autofocus required>
+                            </th>
                         </tr>
 
                         <tr>
-                            <th align="center" colspan="2"><input type="password" name="password" id="password" placeholder="Password" size="35" required onkeydown="capsverify(event)" class="btn1 btn1-lg btn1-danger" data-container="body" data-placement="right" data-html="true" data-template='<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>' data-content="<p class = 'my-class'> Your domain password (or) your Amrita Wi-Fi password </p>" style="max-width: 400px; opacity: 1;"> <span id="pass" onclick="toggle()"></span></th>
+                            <th align="center" colspan="2">
+                                <div class="password-container">
+                                    <input type="password" name="password" id="password" placeholder="Password" size="35" required class="btn1 btn1-lg btn1-danger" data-container="body" data-placement="right" data-html="true" data-template='<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>' data-content="<p class = 'my-class'> Your domain password (or) your Amrita Wi-Fi password </p>" style="max-width: 400px; opacity: 1;" onkeydown="checkCapsLock()">
+                                    <span class="toggle-password" onclick="togglePasswordVisibility()">👁️‍🗨️</span>
+                                </div>
+                                <div id="caps-lock-warning" class="message" style="color: red; display: none;">Caps Lock is ON</div><br>
+                            </th>
                         </tr>
-
 
                     </table>
                     <input type="submit" id="buttn" name="submit" value="Login" />
@@ -237,17 +260,37 @@ if (isset($_POST['submit'])) {
             </div>
 
             <script>
-                function capsverify(event) {
-                    var elem1 = event.getModifierState("CapsLock"); // if capslock is on it returns true otherwise false
-                    if (elem1 == true) {
-                        let val = document.getElementById("CapsLock-On");
-                        val.style.display = "block";
+                function togglePasswordVisibility() {
+                    const passwordInput = document.getElementById('password');
+                    const toggleButton = document.querySelector('.toggle-password');
+
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        toggleButton.textContent = '👁️';
                     } else {
-                        let val = document.getElementById("CapsLock-On");
-                        val.style.display = "none";
+                        passwordInput.type = 'password';
+                        toggleButton.textContent = '👁️‍🗨️';
                     }
                 }
             </script>
+
+            <script>
+                function checkCapsLock() {
+                    const password = document.querySelector('#password');
+                    const message = document.querySelector('.message');
+
+                    password.addEventListener('keydown', function(e) {
+                        if (e.getModifierState('CapsLock')) {
+                            message.textContent = 'Caps Lock is ON';
+                            message.style.display = 'block';
+                        } else {
+                            message.textContent = '';
+                            message.style.display = 'none';
+                        }
+                    });
+                }
+            </script>
+
 
             <div class="cta">Forgot Password?<a href="edit.php" style="color:#5c4ac7;"> Reset </a></div>
             <div class="cta">Not registered?<a href="registration.php" style="color:#5c4ac7;"> Create an account</a></div>
