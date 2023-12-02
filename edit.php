@@ -95,13 +95,14 @@ if (isset($_POST['submit'])) {
     $mail->SMTPAuth = true;
     $mail->Username = 'canteenavvp@gmail.com'; // Your geatt
     // $mail->Password = 'jmrknaiiwtjlcfiq';
-    $mail->Password = 'jogqrsiyblybugel';
+    // $mail->Password = 'jogqrsiyblybugel';
+    $mail->Password = 'ktmsqdslfssuczgi';
     $mail->SMTPSecure = 'ssl';
     $mail->Port = 465;
 
     $mail->setFrom('canteenavvp@gmail.com'); // Your gmail
 
-    $mail->addAddress($_POST["email"]);
+    $mail->addAddress($email);
 
     $mail->isHTML(true);
 
@@ -193,9 +194,7 @@ if (isset($_POST['submit'])) {
               ';
     // $mail->Body = "<h1>Dear " .$username . "\nTap the click below to reset your user account password. If you didn't request a new password, you can safely delete this email. \n".$link."</h1>";
     $mail->Body = $bodyContent;
-
     $mail->send();
-
     echo
     "
                   <script>
@@ -205,7 +204,14 @@ if (isset($_POST['submit'])) {
                   ";
   } else {
     // Information does not exist in the database
-    echo "Account Doesn't Exist!";
+    // echo "Account Doesn't Exist!";
+    echo
+    "
+                  <script>
+                  alert('Account Does not Exist!');
+                  document.location.href = 'edit.php';
+                  </script>
+                  ";
   }
 }
 
@@ -604,7 +610,7 @@ if (isset($_POST['submit'])) {
                       <div class="row">
                         <div class="form-group col-sm-4">
                           <label for="email">Email Address</label>
-                          <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp" required>
+                          <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" required>
                         </div>
 
                       </div>
@@ -612,7 +618,7 @@ if (isset($_POST['submit'])) {
                       <div class="row">
                         <div class="form-group col-sm-4">
                           <label for="mobile">Mobile Number</label>
-                          <input class="form-control" type="text" name="phone" id="mobile" required>
+                          <input class="form-control" type="number" name="phone" id="mobile" required>
                         </div>
                         <!-- <div class="form-group col-sm-6">
                                        <label for="exampleInputPassword1">Password</label>
