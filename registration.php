@@ -304,11 +304,11 @@ if (isset($_POST['submit'])) {
                                             </div>
                                             <div class="form-group col-sm-6">
                                                 <label for="exampleInputEmail1">Email Address</label>
-                                                <input type="text" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                                <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                                             </div>
                                             <div class="form-group col-sm-6">
                                                 <label for="exampleInputEmail1">Mobile Number</label>
-                                                <input class="form-control" type="text" name="phone" id="example-tel-input-3" required>
+                                                <input class="form-control" type="number" name="phone" id="example-tel-input-3" required>
                                             </div>
                                             <!-- <div class="form-group col-sm-6">
                                                 <label for="exampleInputPassword1">Password</label>
@@ -326,10 +326,10 @@ if (isset($_POST['submit'])) {
                                             </div> -->
 
                                             <div class="form-group col-sm-6">
-                                                <label for="exampleInputPassword1">Password</label>
+                                                <label for="exampleInputPassword1">Password(min length is 6)</label>
 
                                                 <div class="password-container">
-                                                    <input class="form-control" type="password" value="" name="password" id="exampleInputPassword1" onkeyup="checkPasswordStrength(this.value)" required>
+                                                    <input class="form-control" type="password" value="" name="password" id="exampleInputPassword1" onkeyup="checkPasswordStrength(this.value)" minlength="6" required>
                                                     <span class="toggle-password1" onclick="togglePasswordVisibility('password', 'toggle-password1')">👁️‍🗨️</span>
 
 
@@ -340,7 +340,7 @@ if (isset($_POST['submit'])) {
                                                 <label for="exampleInputPassword2">Confirm Password</label>
 
                                                 <div class="password-container">
-                                                    <input class="form-control" type="password" value="" name="cpassword" id="exampleInputPassword2" onkeyup="checkPasswordMatch()" required>
+                                                    <input class="form-control" type="password" value="" name="cpassword" id="exampleInputPassword2" onkeyup="checkPasswordMatch()" minlength="6" required>
                                                     <span class="toggle-password2" onclick="togglePasswordVisibility('cpassword', 'toggle-password2')">👁️‍🗨️</span>
                                                 </div>
                                                 <p id="password-match-text"></p>
