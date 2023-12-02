@@ -48,9 +48,7 @@ if (isset($_POST['submit'])) {
     }
 }
 
-
 ?>
-
 
 <head>
     <meta charset="utf-8">
@@ -291,8 +289,9 @@ if (isset($_POST['submit'])) {
                                     <form action="" method="post">
                                         <div class="row">
                                             <div class="form-group col-sm-7">
-                                                <label for="exampleInputEmail1">User-Name</label>
-                                                <input class="form-control" type="text" name="username" id="example-text-input" required>
+                                                <label for="username">User-Name</label>
+                                                <input class="form-control" type="text" name="username" id="username" oninput="checkUsernameAvailability()" required>
+                                                <p id="usernameStatus"></p>
                                             </div>
                                             <div class="form-group col-sm-6">
                                                 <label for="exampleInputEmail1">First Name</label>
@@ -326,12 +325,11 @@ if (isset($_POST['submit'])) {
                                             </div> -->
 
                                             <div class="form-group col-sm-6">
-                                                <label for="exampleInputPassword1">Password(min length is 6)</label>
+                                                <label for="exampleInputPassword1">Password (Min Length is 6)</label>
 
                                                 <div class="password-container">
-                                                    <input class="form-control" type="password" value="" name="password" id="exampleInputPassword1" onkeyup="checkPasswordStrength(this.value)" minlength="6" required>
+                                                    <input class="form-control" type="password" value="" name="password" id="exampleInputPassword1" onkeyup="checkPasswordStrength(this.value); checkPasswordMatch();" minlength="6" required>
                                                     <span class="toggle-password1" onclick="togglePasswordVisibility('password', 'toggle-password1')">👁️‍🗨️</span>
-
 
                                                 </div>
                                                 <div id="password-strength"></div>
