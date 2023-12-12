@@ -618,7 +618,7 @@ if (isset($_POST['submit'])) {
                       <div class="row">
                         <div class="form-group col-sm-4">
                           <label for="mobile">Mobile Number</label>
-                          <input class="form-control" type="number" name="phone" id="mobile" required>
+                          <input class="form-control" type="text" name="phone" id="mobile" required>
                         </div>
                         <!-- <div class="form-group col-sm-6">
                                        <label for="exampleInputPassword1">Password</label>

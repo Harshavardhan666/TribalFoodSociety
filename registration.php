@@ -307,7 +307,7 @@ if (isset($_POST['submit'])) {
                                             </div>
                                             <div class="form-group col-sm-6">
                                                 <label for="exampleInputEmail1">Mobile Number</label>
-                                                <input class="form-control" type="number" name="phone" id="example-tel-input-3" required>
+                                                <input class="form-control" type="text" name="phone" id="example-tel-input-3" required>
                                             </div>
                                             <!-- <div class="form-group col-sm-6">
                                                 <label for="exampleInputPassword1">Password</label>

@@ -6,36 +6,30 @@ error_reporting(0);
 session_start();
 
 
-if(isset($_POST['submit'] ))
-{
-    if(empty($_POST['fc_name']))
-		{
-			$error = '<div class="alert alert-danger alert-dismissible fade show">
+if (isset($_POST['submit'])) {
+    if (empty($_POST['fc_name'])) {
+        $error = '<div class="alert alert-danger alert-dismissible fade show">
 																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 																<strong>field Required!</strong>
 															</div>';
-		}
-	else
-	{
-		
-	
-	
-	
-       
-	
-	$mql = "update food_category set fc_name ='$_POST[fc_name]' where fc_id='$_GET[cat_upd]'";
-	mysqli_query($db, $mql);
-			$success = 	'<div class="alert alert-success alert-dismissible fade show">
+    } else {
+
+
+
+
+
+
+        $mql = "update food_category set fc_name ='$_POST[fc_name]' where fc_id='$_GET[cat_upd]'";
+        mysqli_query($db, $mql);
+        $success =     '<div class="alert alert-success alert-dismissible fade show">
 																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 																<strong>Updated!</strong> Successfully.</br></div>';
-	
-    
-	}
-
+    }
 }
 
 
 ?>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,22 +46,23 @@ if(isset($_POST['submit'] ))
 <body class="fix-header">
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
-			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
     </div>
     <div id="main-wrapper">
         <div class="header">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
-            <div class="navbar-header">
+                <div class="navbar-header">
                     <a class="navbar-brand" href="dashboard.php">
-                        
-                        <span><img src="images/Logo.jpeg" alt="homepage" class="dark-logo" width="115" height="50"/></span>
+
+                        <span><img src="images/Logo.jpeg" alt="homepage" class="dark-logo" width="115" height="50" /></span>
                     </a>
                 </div>
                 <div class="navbar-collapse">
 
                     <ul class="navbar-nav mr-auto mt-md-0">
-                   
-                        <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-th-large"></i></a>
+
+                        <!-- <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-th-large"></i></a>
                             <div class="dropdown-menu animated zoomIn">
                                 <ul class="mega-dropdown-menu row">
 
@@ -121,15 +116,15 @@ if(isset($_POST['submit'] ))
                                     </li>
                                 </ul>
                             </div>
-                        </li>
-                  
+                        </li> -->
+
                     </ul>
-         
+
                     <ul class="navbar-nav my-lg-0">
 
 
                         <li class="nav-item dropdown">
-                           
+
                             <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
                                 <ul>
                                     <li>
@@ -137,28 +132,28 @@ if(isset($_POST['submit'] ))
                                     </li>
                                     <li>
                                         <div class="message-center">
-                                  
+
                                             <a href="#">
                                                 <div class="btn btn-danger btn-circle m-r-10"><i class="fa fa-link"></i></div>
                                                 <div class="mail-contnet">
                                                     <h5>This is title</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
                                                 </div>
                                             </a>
-                                     
+
                                             <a href="#">
                                                 <div class="btn btn-primary btn-circle m-r-10"><i class="ti-calendar"></i></div>
                                                 <div class="mail-contnet">
                                                     <h5>This is another title</h5> <span class="mail-desc">Just a reminder that you have event</span> <span class="time">9:10 AM</span>
                                                 </div>
                                             </a>
-                                        
+
                                             <a href="#">
                                                 <div class="btn btn-info btn-circle m-r-10"><i class="ti-settings"></i></div>
                                                 <div class="mail-contnet">
                                                     <h5>This is title</h5> <span class="mail-desc">You can customize this template as you want</span> <span class="time">9:08 AM</span>
                                                 </div>
                                             </a>
-                                    
+
                                             <a href="#">
                                                 <div class="btn btn-primary btn-circle m-r-10"><i class="ti-user"></i></div>
                                                 <div class="mail-contnet">
@@ -173,11 +168,11 @@ if(isset($_POST['submit'] ))
                                 </ul>
                             </div>
                         </li>
-                  
+
                         <li class="nav-item dropdown">
-                           
-								<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-							</a>
+
+                            <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
                                 <ul>
                                     <li>
@@ -185,28 +180,28 @@ if(isset($_POST['submit'] ))
                                     </li>
                                     <li>
                                         <div class="message-center">
-                                    
+
                                             <a href="#">
                                                 <div class="user-img"> <img src="images/bookingSystem/user-icn.png" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
                                                 <div class="mail-contnet">
                                                     <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span>
                                                 </div>
                                             </a>
-                                          
+
                                             <a href="#">
                                                 <div class="user-img"> <img src="images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
                                                 <div class="mail-contnet">
                                                     <h5>John Doe</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span>
                                                 </div>
                                             </a>
-                   
+
                                             <a href="#">
                                                 <div class="user-img"> <img src="images/users/3.jpg" alt="user" class="img-circle"> <span class="profile-status away pull-right"></span> </div>
                                                 <div class="mail-contnet">
                                                     <h5>Mr. John</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span>
                                                 </div>
                                             </a>
-                                  
+
                                             <a href="#">
                                                 <div class="user-img"> <img src="images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
                                                 <div class="mail-contnet">
@@ -221,7 +216,7 @@ if(isset($_POST['submit'] ))
                                 </ul>
                             </div>
                         </li>
-               
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/bookingSystem/user-icn.png" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
@@ -234,125 +229,116 @@ if(isset($_POST['submit'] ))
                 </div>
             </nav>
         </div>
-     
+
         <div class="left-sidebar">
-    
+
             <div class="scroll-sidebar">
-           
+
                 <nav class="sidebar-nav">
-                   <ul id="sidebarnav">
+                    <ul id="sidebarnav">
                         <li class="nav-devider"></li>
                         <li class="nav-label">Home</li>
                         <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
                         <li class="nav-label">Log</li>
-                        <li> <a href="all_users.php">  <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li>
+                        <li> <a href="all_users.php"> <span><i class="fa fa-user f-s-20 "></i></span><span>Users</span></a></li>
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Departments</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_restaurant.php">All Departments</a></li>
-								<!-- <li><a href="add_category.php">Add village</a></li> -->
+                                <li><a href="all_restaurant.php">All Departments</a></li>
+                                <!-- <li><a href="add_category.php">Add village</a></li> -->
                                 <li><a href="add_restaurant.php">Add new Departments</a></li>
-                                
+
                             </ul>
                         </li>
-                     <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Items</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Items</span></a>
                             <ul aria-expanded="false" class="collapse">
-								<li><a href="all_menu.php">All Categories</a></li>
+                                <li><a href="all_menu.php">All Categories</a></li>
                                 <li><a href="add_foodCat.php">Edit Item Category</a></li>
-								<li><a href="add_menu.php">Add Item</a></li>
-                              
-                                
+                                <li><a href="add_menu.php">Add Item</a></li>
+
+
                             </ul>
                         </li>
-						 <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
-                         <li> <a href="reports.php"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Reports</span></a></li>
-                         
-                         <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items Report</span></a></li>
+                        <li> <a href="all_orders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span>Orders</span></a></li>
+                        <li> <a href="reports.php"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Reports</span></a></li>
+
+                        <li> <a href="item_reports.php"><i class="fa fa-bar-chart" aria-hidden="true"></i><span>Items Report</span></a></li>
 
                     </ul>
                 </nav>
-        
+
             </div>
-         
+
         </div>
-   
+
         <div class="page-wrapper">
- 
+
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Dashboard</h3> </div>
-            </div>
-         
-            <div class="container-fluid">
-           
-                     
-					
-					
-					  <div class="row">
-                   
-                   
-					
-					 <div class="container-fluid">
-          
-                  
-									
-									<?php  
-									        echo $error;
-									        echo $success; ?>
-									
-									
-								
-								
-					    <div class="col-lg-12">
-                        <div class="card card-outline-primary">
-                            <div class="card-header">
-                                <h4 class="m-b-0 text-white">Update Food Category</h4>
-                            </div>
-                            <div class="card-body">
-                                <form action='' method='post' >
-                                    <div class="form-body">
-                                        <?php $ssql ="select * from food_category where fc_id='$_GET[cat_upd]'";
-													$res=mysqli_query($db, $ssql); 
-													$row=mysqli_fetch_array($res);?>
-                                        <hr>
-                                        <div class="row p-t-20">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="control-label">Category</label>
-                                                    <input type="text" name="fc_name" value="<?php echo $row['fc_name'];  ?>" class="form-control" placeholder="Category Name">
-                                                   </div>
+                    <!-- <h3 class="text-primary">Dashboard</h3> </div> -->
+                </div>
+
+                <div class="container-fluid">
+
+
+
+
+                    <div class="row">
+
+
+
+                        <div class="container-fluid">
+
+
+
+                            <?php
+                            echo $error;
+                            echo $success; ?>
+
+
+
+
+                            <div class="col-lg-12">
+                                <div class="card card-outline-primary">
+                                    <div class="card-header">
+                                        <h4 class="m-b-0 text-white">Update Food Category</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action='' method='post'>
+                                            <div class="form-body">
+                                                <?php $ssql = "select * from food_category where fc_id='$_GET[cat_upd]'";
+                                                $res = mysqli_query($db, $ssql);
+                                                $row = mysqli_fetch_array($res); ?>
+                                                <hr>
+                                                <div class="row p-t-20">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Category</label>
+                                                            <input type="text" name="fc_name" value="<?php echo $row['fc_name'];  ?>" class="form-control" placeholder="Category Name">
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="form-actions">
+                                                    <input type="submit" name="submit" class="btn btn-primary" value="Save">
+                                                    <a href="add_foodCat.php" class="btn btn-inverse">Cancel</a>
+                                                </div>
                                             </div>
-                                      
-                                            
+                                        </form>
                                     </div>
-                                    <div class="form-actions">
-                                        <input type="submit" name="submit" class="btn btn-primary" value="Save"> 
-                                        <a href="add_foodCat.php" class="btn btn-inverse">Cancel</a>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
+
                         </div>
                     </div>
-					
+
                 </div>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-                </div>
-            
             </div>
-       
             <footer class="footer"> © 2023 - Native Nest </footer>
-         
         </div>
-      
     </div>
- 
+
+
     <script src="js/lib/jquery/jquery.min.js"></script>
     <script src="js/lib/bootstrap/js/popper.min.js"></script>
     <script src="js/lib/bootstrap/js/bootstrap.min.js"></script>

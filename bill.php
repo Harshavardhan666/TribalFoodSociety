@@ -182,10 +182,9 @@
                                 </div>
                             </div>
 
-
                             <div class="row">
                                 <div class="col-md-2">
-                                    <img class="logo" src="images/Logo.jpeg" style="max-width: 20%; height: auto; margin-left: 530px; margin-right: 20px;" />
+                                    <img class="logo" src="images/Logo.jpeg" style="max-width: 20%; height: auto; margin-left: 530px; margin-right: 20px; margin-top: 10px;" />
                                 </div>
                                 <div class="col-md-10">
                                     <div class="ui" style="margin-bottom: 20px; margin-top: 0px;">
@@ -197,9 +196,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
 
                         </div>
                     </div>
@@ -271,57 +267,58 @@
                 <div class="content center aligned text segment">
                     <div class="header">Payment Details</div>
                 </div><?php
-                include("connection/connect.php");
-                session_start();
-                // var_dump($_SESSION);
+                        include("connection/connect.php");
+                        session_start();
+                        // var_dump($_SESSION);
 
-                // Check if user_id is set in the session
-                if (isset($_SESSION['user_id'])) {
-                    $user_id = $_SESSION['user_id'];
+                        // Check if user_id is set in the session
+                        if (isset($_SESSION['user_id'])) {
+                            $user_id = $_SESSION['user_id'];
 
-                    // Prepare the SQL query
-                    $query = "SELECT username FROM users WHERE u_id = ?";
-                    $stmt = $db->prepare($query);
+                            // Prepare the SQL query
+                            $query = "SELECT username FROM users WHERE u_id = ?";
+                            $stmt = $db->prepare($query);
 
-                    // Check if the statement is prepared successfully
-                    if ($stmt) {
-                        // Bind the parameter
-                        $stmt->bind_param('i', $user_id);
+                            // Check if the statement is prepared successfully
+                            if ($stmt) {
+                                // Bind the parameter
+                                $stmt->bind_param('i', $user_id);
 
-                        // Execute the statement
-                        $stmt->execute();
+                                // Execute the statement
+                                $stmt->execute();
 
-                        // Check for errors during execution
-                        if ($stmt->errno) {
-                            echo "Error Executing Statement: " . $stmt->error;
-                        } else {
-                            // Bind the result
-                            $stmt->bind_result($username);
+                                // Check for errors during execution
+                                if ($stmt->errno) {
+                                    echo "Error Executing Statement: " . $stmt->error;
+                                } else {
+                                    // Bind the result
+                                    $stmt->bind_result($username);
 
-                            // Fetch the result
-                            $stmt->fetch();
+                                    // Fetch the result
+                                    $stmt->fetch();
 
-                            // Close the statement
-                            $stmt->close();
+                                    // Close the statement
+                                    $stmt->close();
 
-                            // Check if the username is not null
-                            if ($username !== null) {
-                                // Display the username in your HTML
-                                echo '<div class="content">';
-                                echo '<p> <strong> Account Name: </strong> <span id="payment-account">' . htmlspecialchars($username) . '</span> </p>';
-                                echo '</div>';
+                                    // Check if the username is not null
+                                    if ($username !== null) {
+                                        // Display the username in your HTML
+                                        echo '<div class="content">';
+                                        echo '<p> <strong> Account Name: </strong> <span id="payment-account">' . htmlspecialchars($username) . '</span> </p>';
+                                        echo '</div>';
+                                    } else {
+                                        echo "User Not Found.";
+                                    }
+                                }
                             } else {
-                                echo "User Not Found.";
+                                echo "Error Preparing Statement: " . $db->error;
                             }
+                        } else {
+                            // Handle the case where user_id is not set
+                            echo "User ID Not Set in the Session.";
                         }
-                    } else {
-                        echo "Error Preparing Statement: " . $db->error;
-                    }
-                } else {
-                    // Handle the case where user_id is not set
-                    echo "User ID Not Set in the Session.";
-                }
-                ?></div>
+                        ?>
+            </div>
             <div class="ui card">
                 <div class="content center aligned text segment">
                     <div class="header">Notes</div>
